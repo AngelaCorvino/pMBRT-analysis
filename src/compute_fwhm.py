@@ -29,7 +29,7 @@ def fit_multibeam_fwhm(
     This follows the active ``fit_FWHM.py`` calculation: Savitzky-Golay
     smoothing, peak counting, Gaussian fitting, and ``FWHM = abs(sigma)*2.355``.
     Plotting is intentionally not implemented here; public reproduction scripts
-    plot already processed CSV values.
+    plot already processed text values.
     """
 
     if plotprofile:

@@ -4,9 +4,6 @@ old_modules/
 Slider_*.py
 pMBRT.code-workspace
 
-# Processed public text data
-# Small curated .txt files under data/processed_text/ are intentionally tracked.
-
 # Large/raw Monte Carlo and image-volume data
 *.npy
 !data/example_source_data/**/*.npy

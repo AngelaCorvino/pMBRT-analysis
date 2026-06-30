@@ -1,4 +1,4 @@
-"""Reproduce the representative homogeneity figure from processed CSV data."""
+"""Reproduce the representative homogeneity figure directly from processed .txt data."""
 
 from __future__ import annotations
 
@@ -16,16 +16,47 @@ import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import finalize_axes, output_path, read_nonempty_csv
+from plotting import PROCESSED_TEXT_ROOT, finalize_axes, iter_metric_dictionary, output_path
+
+
+SOURCES = [
+    ("PBP 1D array", "x", "dose_min_max_1Darray_dictionary.txt", "o"),
+    ("PBP 2D array", "xy", "dose_min_max_2Darray_finalversion.txt", "s"),
+]
 
 
 def main() -> None:
-    csv_path = ROOT / "data" / "figure_source_data" / "fig_homogeneity.csv"
-    data = read_nonempty_csv(csv_path, ["energy_MeV", "ctc_mm", "homogeneous_flag"])
+    rows = []
+    for setup, dimension, filename, marker in SOURCES:
+        path = PROCESSED_TEXT_ROOT / filename
+        for row in iter_metric_dictionary(path, setup=setup, dimension=dimension):
+            metrics = row["metrics"]
+            homogeneity_code = metrics.get("homogeneity_at_BP", 0)
+            rows.append({**row, "homogeneous": float(homogeneity_code) > 0, "marker": marker})
+
+    if not rows:
+        raise ValueError("No homogeneity rows found in processed text dictionaries")
 
     fig, ax = plt.subplots(figsize=(6.5, 4.5))
-    colors = data["homogeneous_flag"].map({0: "#7F7F7F", 1: "#1B9E77", False: "#7F7F7F", True: "#1B9E77"})
-    ax.scatter(data["energy_MeV"], data["ctc_mm"], c=colors, s=36, edgecolor="black", linewidth=0.4)
+    for setup, _, _, marker in SOURCES:
+        setup_rows = [row for row in rows if row["setup"] == setup]
+        for homogeneous, color, label_suffix in [
+            (True, "#1B9E77", "homogeneous"),
+            (False, "#7F7F7F", "not homogeneous"),
+        ]:
+            filtered = [row for row in setup_rows if row["homogeneous"] is homogeneous]
+            if not filtered:
+                continue
+            ax.scatter(
+                [row["energy_MeV"] for row in filtered],
+                [row["ctc_mm"] for row in filtered],
+                c=color,
+                marker=marker,
+                s=36,
+                edgecolor="black",
+                linewidth=0.4,
+                label=f"{setup}, {label_suffix}",
+            )
 
     finalize_axes(
         ax,
@@ -33,11 +64,6 @@ def main() -> None:
         ylabel="Center-to-center distance [mm]",
         title="Target homogeneity",
     )
-    legend_handles = [
-        plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="#1B9E77", markeredgecolor="black", label="Homogeneous"),
-        plt.Line2D([0], [0], marker="o", color="w", markerfacecolor="#7F7F7F", markeredgecolor="black", label="Not homogeneous"),
-    ]
-    ax.legend(handles=legend_handles, frameon=False)
     fig.tight_layout()
     output = output_path("fig_homogeneity.png")
     fig.savefig(output, dpi=300)
