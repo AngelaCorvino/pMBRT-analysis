@@ -1,4 +1,4 @@
-"""Reproduce the representative PVDR figure directly from processed .txt data."""
+"""Generate the PVDR depth-profile figure from processed .txt data."""
 
 from __future__ import annotations
 

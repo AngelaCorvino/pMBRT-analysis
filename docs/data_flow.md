@@ -62,11 +62,11 @@ The active proton workflow uses derived arrays and text files before plotting:
 | Load profiles | `utilities/getprofile.py` and wrappers | `.npy` or `.mhd` dose grid | In-memory `zprofile_peak`, `zprofile_valley`, masked `zxprofile`, masked `zyprofile` |
 | Save single-beam peak depth profile | `utilities/save_zprofile.py` | single-beam dose grid | `zpeak_singlebeam_{energy}MeV.txt` |
 | Fit single-beam FWHM | `fit_singlebeam_FWHM.py` | single-beam lateral profiles | `{energy}MeV/FWHM_singlebeam_{energy}MeV.txt` |
-| Fit multi-beam FWHM | `fit_FWHM.py` | multi-beam lateral profiles | `FWHM_1DGRID_ctc{ctc}_{energy}MeV.txt` or `FWHM_2DGRID_ctc{ctc}_{energy}MeV.txt`; the supplied subset stores these as `FWHM_1Darray_ctc*` and `FWHM_2Darray_ctc*` |
-| Compute PVDR | `inspect_PVDRvsctc_toreview.py`, `Slider_PVDR.py` | in-memory peak and valley depth profiles | PVDR arrays computed as `z_peak / z_valley`; the supplied subset includes processed `PVDR_2Darray_*` text files |
-| Compute 1D homogeneity | `inspect_1Dhomogeneity.py` | masked x profiles | `ctc{ctc}_homogeneity.npy`, a two-row array containing energy and pass/fail flags; the supplied subset includes JSON-style summary dictionaries instead |
+| Fit multi-beam FWHM | `fit_FWHM.py` | multi-beam lateral profiles | `FWHM_1DGRID_ctc{ctc}_{energy}MeV.txt` or `FWHM_2DGRID_ctc{ctc}_{energy}MeV.txt`; the curated data folder stores these as `FWHM_1Darray_ctc*` and `FWHM_2Darray_ctc*` |
+| Compute PVDR | `inspect_PVDRvsctc_toreview.py`, `Slider_PVDR.py` | in-memory peak and valley depth profiles | PVDR arrays computed as `z_peak / z_valley`; the curated data folder includes processed `PVDR_2Darray_*` text files |
+| Compute 1D homogeneity | `inspect_1Dhomogeneity.py` | masked x profiles | `ctc{ctc}_homogeneity.npy`, a two-row array containing energy and pass/fail flags; the curated data folder includes JSON-style summary dictionaries instead |
 | Compute 1D homogeneity and relative standard deviation | `inspect_1Dhomog_and_std.py`, `inspect_xdeviation.py` | masked x profiles | homogeneity `.npy`; `inspect_xdeviation.py` writes `ctc{ctc}_std.npy` |
-| Compute 2D lateral homogeneity | `inspect_2Dlateralhomogeneity.py` | masked x and y profiles | `ctc{ctc}_homogeneity_overxy.npy`, a two-row array containing energy and 2D pass/fail flags; the supplied subset includes JSON-style summary dictionaries instead |
+| Compute 2D lateral homogeneity | `inspect_2Dlateralhomogeneity.py` | masked x and y profiles | `ctc{ctc}_homogeneity_overxy.npy`, a two-row array containing energy and 2D pass/fail flags; the curated data folder includes JSON-style summary dictionaries instead |
 
 The multi-beam creator and profile loaders use center-to-center distance labels as tenths of a millimeter, for example `ctc12` for `1.2 mm`.
 
@@ -80,12 +80,12 @@ The plotting scripts do not generally plot directly from raw dose arrays:
 | `plot_ctchomgeneity.py` | `ctc*_homogeneity.npy`, `ctc*_homogeneity_overxy.npy`, and `ctc*_std.npy` |
 | `Slider_FWHM.py` | FWHM `.txt` files and single-beam depth profiles |
 | `Slider_PVDR.py` | Recomputes PVDR from raw/intermediate dose grids through `Get_profile_updated` |
-| `inspect_PVDRvsctc_toreview.py` | Recomputes PVDR from peak and valley depth profiles in memory; the supplied subset includes saved processed PVDR text files |
+| `inspect_PVDRvsctc_toreview.py` | Recomputes PVDR from peak and valley depth profiles in memory; the curated data folder includes saved processed PVDR text files |
 | `mergestatistics.py` | Prints summed primary counts; no reusable table output was found |
 
 ## 4. Public Processed Text Data
 
-After the initial code inspection, a partial legacy dataset was provided outside the public repository. The subset is organized as `PBP_dataset/FWHM5` and includes `bw = 0.5 mm` PBP data. This repository publishes the available processed `.txt` outputs from that subset directly:
+The curated processed dataset is organized as `PBP_dataset/FWHM5` and includes PBP data with `bw = 0.5 mm`. This repository publishes processed `.txt` outputs directly:
 
 - processed FWHM text files: `FWHM_singlebeam_*`, `FWHM_singleslit_*`, `FWHM_1Darray_ctc*`, and `FWHM_2Darray_ctc*`;
 - processed PVDR text files: `PVDR_2Darray_*`;
@@ -94,7 +94,7 @@ After the initial code inspection, a partial legacy dataset was provided outside
 - BEDR-related threshold dictionaries: `dose_BEDR_1Darray_dictionary*.txt`, which store binary threshold flags, not numeric BEDR values;
 - SOBP helper dictionaries present in the curated subset.
 
-No public CSV figure-source layer is generated or published. The reproduction scripts read these processed `.txt` files directly.
+No public CSV figure-source layer is generated or published. Public plotting code reads processed `.txt` files directly.
 
 ## 5. Excluded Files and Rationale
 
@@ -107,12 +107,8 @@ The public repository excludes:
 - `old_modules/`, slider scripts, workspace files, caches, and notebooks because they are exploratory or private workflow material rather than public reproducibility code.
 - TOPAS run statistics and raw simulation outputs unless a small, non-private example is curated later.
 
-## 6. Reproducibility Gaps Found During Inspection
+## 6. File Conventions
 
-- The public processed text files are based on a partial `bw = 0.5 mm` PBP subset, not the complete manuscript dataset.
-- Some current legacy scripts depend on processed outputs that were not present in the supplied subset.
-- Some scripts contain call/signature drift around `Get_profile_updated`, whose active constructor requires a `monobeam` argument.
-- `inspect_1Dhomogeneity.py`, `inspect_1Dhomog_and_std.py`, `inspect_2Dlateralhomogeneity.py`, and `inspect_xdeviation.py` import `get_ctc_values_to_check_homogeneity`, but the active `utilities/functions.py` does not define it.
-- The supplied partial subset contains processed PVDR text files labeled `PVDR_2Darray_*`; the files store PVDR values, not separate peak and valley dose components.
-- No numeric BEDR formula was found in the inspected scripts. The supplied `dose_BEDR_1Darray_dictionary.txt` stores `D_BP>0.6D_entrance` threshold flags only.
-- Some PVDR files in the supplied subset are stored under a parent energy folder that differs from the filename energy. Direct reproduction scripts use unambiguous `PVDR_2Darray_ctc*_{energy}MeV.txt` files where available.
+- `ctc` labels in filenames use tenths of a millimeter where inherited from the legacy workflow, for example `ctc10` corresponds to `ctc = 1.0 mm`.
+- Processed PVDR text files store PVDR values only, not separate peak and valley dose components.
+- BEDR-related dictionary files store threshold flags in the curated text layer, not numeric BEDR values.
