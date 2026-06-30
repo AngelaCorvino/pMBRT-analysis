@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROCESSED_TEXT_ROOT = ROOT / "data" / "processed_text" / "PBP_paperdataset" / "FWHM5"
+PROCESSED_DATA_ROOT = ROOT / "data" / "processed_data" / "PBP_dataset" / "FWHM5"
 
 
 def output_path(filename: str) -> Path:

@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import PROCESSED_TEXT_ROOT, finalize_axes, output_path, read_numeric_series
+from plotting import PROCESSED_DATA_ROOT, finalize_axes, output_path, read_numeric_series
 
 
 PVDR_DEPTH_STEP_MM = 1
@@ -34,14 +34,14 @@ def parse_pvdr_path(path: Path) -> tuple[int, float]:
 
 
 def main() -> None:
-    preferred_dir = PROCESSED_TEXT_ROOT / f"{PREFERRED_ENERGY_MEV}MeV"
+    preferred_dir = PROCESSED_DATA_ROOT / f"{PREFERRED_ENERGY_MEV}MeV"
     paths = sorted(preferred_dir.glob(f"PVDR_2Darray_ctc*_{PREFERRED_ENERGY_MEV}MeV.txt"), key=parse_pvdr_path)
     energy = PREFERRED_ENERGY_MEV
 
     if not paths:
-        all_paths = sorted(PROCESSED_TEXT_ROOT.glob("*MeV/PVDR_2Darray_ctc*_*.txt"), key=parse_pvdr_path)
+        all_paths = sorted(PROCESSED_DATA_ROOT.glob("*MeV/PVDR_2Darray_ctc*_*.txt"), key=parse_pvdr_path)
         if not all_paths:
-            raise FileNotFoundError("No PVDR_2Darray_ctc*_*.txt files found under data/processed_text")
+            raise FileNotFoundError("No PVDR_2Darray_ctc*_*.txt files found under data/processed_data")
         energy = parse_pvdr_path(all_paths[0])[0]
         paths = [path for path in all_paths if parse_pvdr_path(path)[0] == energy]
 

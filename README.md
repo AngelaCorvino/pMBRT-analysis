@@ -8,13 +8,13 @@ This repository contains a small curated processed-data subset and lightweight a
 
 ## Current Data Status
 
-The legacy code was inspected to reconstruct the raw/source data formats and preprocessing workflow. The public data are small processed `.txt` outputs from the partial `PBP_paperdataset/FWHM5` subset. This subset represents PBP data with `bw = 0.5 mm` and includes processed FWHM text files, processed PVDR text files, processed peak-profile text files, and homogeneity/BEDR-related summary dictionaries.
+The legacy code was inspected to reconstruct the raw/source data formats and preprocessing workflow. The public data are small processed `.txt` outputs from the partial `PBP_dataset/FWHM5` subset. This subset represents PBP data with `bw = 0.5 mm` and includes processed FWHM text files, processed PVDR text files, processed peak-profile text files, and homogeneity/BEDR-related summary dictionaries.
 
 No second numerical CSV layer is published. The reproduction scripts read the processed `.txt` files directly. Raw and intermediate dose arrays are not copied into this public repository. The reconstructed workflow and extraction decisions are documented in `docs/data_flow.md`.
 
 ## Repository Contents
 
-- `data/processed_text/`: curated processed `.txt` arrays and dictionaries from the partial PBP/FWHM5 subset; these are not raw Monte Carlo dose volumes.
+- `data/processed_data/`: curated processed `.txt` arrays and dictionaries from the partial PBP/FWHM5 subset; these are not raw Monte Carlo dose volumes.
 - `src/`: cleaned reusable helpers for loading processed text profiles, computing FWHM/PVDR/homogeneity/PDD utilities, and plotting.
 - `scripts/`: reproduction scripts that read the processed `.txt` files directly.
 - `figures/generated/`: output folder for regenerated figures and text summary tables.

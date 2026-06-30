@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 os.environ.setdefault("MPLCONFIGDIR", str(ROOT / "figures" / "generated" / ".mplconfig"))
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import PROCESSED_TEXT_ROOT, iter_metric_dictionary, output_path, read_json_dictionary
+from plotting import PROCESSED_DATA_ROOT, iter_metric_dictionary, output_path, read_json_dictionary
 
 
 BP_DEPTH_MM = {
@@ -26,7 +26,7 @@ BP_DEPTH_MM = {
 
 
 def load_bedr_flags() -> dict[tuple[float, int, float], object]:
-    path = PROCESSED_TEXT_ROOT / "dose_BEDR_1Darray_dictionary.txt"
+    path = PROCESSED_DATA_ROOT / "dose_BEDR_1Darray_dictionary.txt"
     data = read_json_dictionary(path)
     flags = {}
     for bw_label, by_energy in data.items():
@@ -56,7 +56,7 @@ def main() -> None:
     bedr_flags = load_bedr_flags()
     rows = []
     for row in iter_metric_dictionary(
-        PROCESSED_TEXT_ROOT / "dose_min_max_1Darray_dictionary.txt",
+        PROCESSED_DATA_ROOT / "dose_min_max_1Darray_dictionary.txt",
         setup="PBP 1D array",
         dimension="x",
     ):

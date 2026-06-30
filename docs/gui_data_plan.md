@@ -4,7 +4,7 @@ This repository is currently a curated analysis/data repository, not a finished 
 
 ## Public Data Layer
 
-`data/processed_text/PBP_paperdataset/FWHM5/`
+`data/processed_data/PBP_dataset/FWHM5/`
 
 This folder contains the public processed profile arrays and JSON-style dictionaries from the curated partial `bw = 0.5 mm` PBP subset. These files can support browser-side visualization of processed FWHM, PVDR, homogeneity, and profile curves.
 

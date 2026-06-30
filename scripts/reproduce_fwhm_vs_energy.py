@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import PROCESSED_TEXT_ROOT, finalize_axes, output_path, read_numeric_series
+from plotting import PROCESSED_DATA_ROOT, finalize_axes, output_path, read_numeric_series
 
 
 FWHM_DEPTH_STEP_MM = 3
@@ -31,9 +31,9 @@ def parse_energy(path: Path) -> int:
 
 
 def main() -> None:
-    paths = sorted(PROCESSED_TEXT_ROOT.glob("*MeV/FWHM_singlebeam_*MeV.txt"), key=parse_energy)
+    paths = sorted(PROCESSED_DATA_ROOT.glob("*MeV/FWHM_singlebeam_*MeV.txt"), key=parse_energy)
     if not paths:
-        raise FileNotFoundError("No FWHM_singlebeam_*MeV.txt files found under data/processed_text")
+        raise FileNotFoundError("No FWHM_singlebeam_*MeV.txt files found under data/processed_data")
 
     fig, ax = plt.subplots(figsize=(7.0, 4.5))
     for path in paths:

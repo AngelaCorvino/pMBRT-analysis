@@ -1,10 +1,10 @@
 # Data Dictionary
 
-The public numerical data are the processed `.txt` files under `data/processed_text/PBP_paperdataset/FWHM5/`. The subset represents PBP data with `bw = 0.5 mm`. The files are derived processed outputs from the inspected legacy workflow, not raw Monte Carlo dose-volume arrays.
+The public numerical data are the processed `.txt` files under `data/processed_data/PBP_dataset/FWHM5/`. The subset represents PBP data with `bw = 0.5 mm`. The files are derived processed outputs from the inspected legacy workflow, not raw Monte Carlo dose-volume arrays.
 
 ## Folder
 
-`data/processed_text/PBP_paperdataset/FWHM5/`
+`data/processed_data/PBP_dataset/FWHM5/`
 
 The folder name `FWHM5` follows the legacy naming convention where `5` corresponds to `bw = 0.5 mm`.
 

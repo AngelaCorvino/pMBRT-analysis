@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import PROCESSED_TEXT_ROOT, finalize_axes, iter_metric_dictionary, output_path
+from plotting import PROCESSED_DATA_ROOT, finalize_axes, iter_metric_dictionary, output_path
 
 
 SOURCES = [
@@ -28,7 +28,7 @@ SOURCES = [
 def main() -> None:
     rows = []
     for setup, dimension, filename, marker in SOURCES:
-        path = PROCESSED_TEXT_ROOT / filename
+        path = PROCESSED_DATA_ROOT / filename
         for row in iter_metric_dictionary(path, setup=setup, dimension=dimension):
             metrics = row["metrics"]
             homogeneity_code = metrics.get("homogeneity_at_BP", 0)

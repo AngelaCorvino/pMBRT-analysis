@@ -1,6 +1,6 @@
 # Processed Text Data
 
-This folder contains small processed text outputs from the curated partial `PBP_paperdataset/FWHM5` subset. The subset represents PBP data with `bw = 0.5 mm`. These files are the public numerical data layer for the repository and can support both the current reproduction scripts and a future static GitHub Pages/GUI viewer.
+This folder contains small processed text outputs from the curated partial `PBP_dataset/FWHM5` subset. The subset represents PBP data with `bw = 0.5 mm`. These files are the public numerical data layer for the repository and can support both the current reproduction scripts and a future static GitHub Pages/GUI viewer.
 
 These files are not raw Monte Carlo dose volumes. Large `.npy`, `.header`, `.mhd`, `.raw`, and related raw/intermediate simulation outputs are intentionally excluded from the public repository.
 

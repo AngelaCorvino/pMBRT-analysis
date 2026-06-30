@@ -85,7 +85,7 @@ The plotting scripts do not generally plot directly from raw dose arrays:
 
 ## 4. Public Processed Text Data
 
-After the initial code inspection, a partial legacy dataset was provided outside the public repository. The subset is organized as `PBP_paperdataset/FWHM5` and includes `bw = 0.5 mm` PBP data. This repository publishes the available processed `.txt` outputs from that subset directly:
+After the initial code inspection, a partial legacy dataset was provided outside the public repository. The subset is organized as `PBP_dataset/FWHM5` and includes `bw = 0.5 mm` PBP data. This repository publishes the available processed `.txt` outputs from that subset directly:
 
 - processed FWHM text files: `FWHM_singlebeam_*`, `FWHM_singleslit_*`, `FWHM_1Darray_ctc*`, and `FWHM_2Darray_ctc*`;
 - processed PVDR text files: `PVDR_2Darray_*`;
@@ -100,7 +100,7 @@ No public CSV figure-source layer is generated or published. The reproduction sc
 
 The public repository excludes:
 
-- Raw and intermediate 3D dose arrays (`.npy`, `.mhd`, `.raw`, `.bin`, `.root`), including the partial raw/intermediate dose grids supplied with `PBP_paperdataset/FWHM5`, because they can be large and are not necessary for readers who only need to replot representative figures from processed text outputs.
+- Raw and intermediate 3D dose arrays (`.npy`, `.mhd`, `.raw`, `.bin`, `.root`), including the partial raw/intermediate dose grids supplied with `PBP_dataset/FWHM5`, because they can be large and are not necessary for readers who only need to replot representative figures from processed text outputs.
 - Sidecar headers (`.header`) unless a future small example dataset is intentionally curated.
 - Legacy README text files from the private data folder, because the public Markdown documentation replaces them with cleaned, publication-focused descriptions.
 - Machine-specific or private path references from legacy scripts.
