@@ -1,0 +1,1044 @@
+{
+    "5": {
+        "50": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9667503528051012,
+                "max_dose": 1.0314685443767926,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.9372605513114227,
+                "max_dose": 1.0945095659266564,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.8520928443647051,
+                "max_dose": 1.2265413312646296,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.6996244854778041,
+                "max_dose": 1.452445276575152,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.5544902390759777,
+                "max_dose": 1.6388938326364204,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.41685932460850483,
+                "max_dose": 1.8142006212110944,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.30608882994324393,
+                "max_dose": 2.014444337822126,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.23193709575186097,
+                "max_dose": 2.1179859500313474,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.14882789225332133,
+                "max_dose": 2.3590690374036596,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.11004643790579836,
+                "max_dose": 2.440379479665202,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.07358127085957913,
+                "max_dose": 2.746480112303107,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.053315512680063015,
+                "max_dose": 2.9404974479990065,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.03887785413578245,
+                "max_dose": 3.0431079436396065,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.030553243200023433,
+                "max_dose": 3.2290171352595918,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.025461626361783007,
+                "max_dose": 3.2668075039496003,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.021605607244526863,
+                "max_dose": 3.6013432984554554,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            }
+        },
+        "75": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9591578736854439,
+                "max_dose": 1.020450168104471,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.935968456868624,
+                "max_dose": 1.031116414530184,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.9293835300433231,
+                "max_dose": 1.032350877708865,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.943905791159473,
+                "max_dose": 1.0273717557032975,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.9580396965319713,
+                "max_dose": 1.0334964737717283,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.9722606779977236,
+                "max_dose": 1.0509455382004407,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.9422316544955814,
+                "max_dose": 1.0829787532778745,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.9104016934560215,
+                "max_dose": 1.1156716986903883,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.8442872482266501,
+                "max_dose": 1.1874498562489002,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.7941946164824576,
+                "max_dose": 1.2343033789560929,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.7109545359350549,
+                "max_dose": 1.333584225429062,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.6426437519265289,
+                "max_dose": 1.4160778199898836,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.565545600332042,
+                "max_dose": 1.4900966031971419,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.49777707321129305,
+                "max_dose": 1.5754889714726408,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.44454524190187505,
+                "max_dose": 1.6267325833108763,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.371665264041638,
+                "max_dose": 1.7505189038707352,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            }
+        },
+        "100": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9712242460744834,
+                "max_dose": 1.0150191033088012,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.9447884779298389,
+                "max_dose": 1.028606262777708,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.9192020839072763,
+                "max_dose": 1.0421518835182804,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.9053006864391091,
+                "max_dose": 1.0490162015991666,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.8934751456680844,
+                "max_dose": 1.0532552222575544,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.88731372425188,
+                "max_dose": 1.053150978471439,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.8932074429323577,
+                "max_dose": 1.0467224145211949,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.8946384667072885,
+                "max_dose": 1.0444872129541667,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.9105732102935514,
+                "max_dose": 1.0403385641338372,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.917155988345479,
+                "max_dose": 1.039578702352079,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.9458410262640795,
+                "max_dose": 1.041459201538438,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.9691468461950634,
+                "max_dose": 1.0489597709228047,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.9617312258032072,
+                "max_dose": 1.0641873671311013,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.9387290437364139,
+                "max_dose": 1.0845556900138327,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.9179341580580134,
+                "max_dose": 1.100806466543826,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.8819676385288079,
+                "max_dose": 1.1389598502208165,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            }
+        },
+        "125": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9852141953178403,
+                "max_dose": 1.009193536768541,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.9669391264129588,
+                "max_dose": 1.0169386839524535,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.9457634560702574,
+                "max_dose": 1.0280607809338331,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.9290148322583073,
+                "max_dose": 1.0372321455694715,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.9099547441104854,
+                "max_dose": 1.0479793686558112,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.8905406889686631,
+                "max_dose": 1.0572391257110345,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.8830232401516176,
+                "max_dose": 1.062459955805957,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.8730991001033525,
+                "max_dose": 1.0665808361132967,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.870707037987346,
+                "max_dose": 1.0654364821154205,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.8627277267144648,
+                "max_dose": 1.0660030962518,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.8744989852907495,
+                "max_dose": 1.0598206654032765,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.8788496159032159,
+                "max_dose": 1.0561159466829273,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.8778863561030189,
+                "max_dose": 1.0524246323485233,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.8849585150487806,
+                "max_dose": 1.0488245582993794,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.8876082913189783,
+                "max_dose": 1.046394108154262,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.908090531153678,
+                "max_dose": 1.0427115543769865,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            }
+        },
+        "150": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9905395220063576,
+                "max_dose": 1.0054034271003844,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.9792967776319629,
+                "max_dose": 1.009948143619258,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.9689722474299217,
+                "max_dose": 1.017294396646061,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.9524333353692035,
+                "max_dose": 1.0250890067847305,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.9388714599696207,
+                "max_dose": 1.0339399873268056,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.919867877032475,
+                "max_dose": 1.0421164550344566,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.9081463533133247,
+                "max_dose": 1.0486083527991377,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.8991894907341664,
+                "max_dose": 1.0552434580678696,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.8863155508326512,
+                "max_dose": 1.0605062749088112,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.8757731951652301,
+                "max_dose": 1.0668724909999527,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.8738955664247732,
+                "max_dose": 1.0690208865339288,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.8684091166639336,
+                "max_dose": 1.0691676113368624,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.8594436134155747,
+                "max_dose": 1.0731865329623373,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.8594553296402707,
+                "max_dose": 1.0728778790082683,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.8564029549201648,
+                "max_dose": 1.0736544474641037,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.8624640547612727,
+                "max_dose": 1.0693573583094909,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            }
+        },
+        "175": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9949290406377014,
+                "max_dose": 1.0042838078309626,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.9864701749134902,
+                "max_dose": 1.007071438854909,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.9810960777611677,
+                "max_dose": 1.0116098457506801,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.968298070943532,
+                "max_dose": 1.0163543017421568,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.9617763638367121,
+                "max_dose": 1.0223996747332316,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.9475562858102233,
+                "max_dose": 1.0277238162526094,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.9344565736065151,
+                "max_dose": 1.0348290470242147,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.9248044346878,
+                "max_dose": 1.0404902651726526,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.912651049473018,
+                "max_dose": 1.0467940417284611,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.900250007443011,
+                "max_dose": 1.0532369092700047,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.8931320681938202,
+                "max_dose": 1.0560304710181523,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.8863862526806964,
+                "max_dose": 1.0602630257493675,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.8757962613845138,
+                "max_dose": 1.0668378141162207,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.8722713725812178,
+                "max_dose": 1.0693453760927707,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.8676480226391017,
+                "max_dose": 1.0745192917697304,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.8647008114846485,
+                "max_dose": 1.0720081273925106,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            }
+        },
+        "200": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9969928415915716,
+                "max_dose": 1.0032831850182669,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.991027602451824,
+                "max_dose": 1.0069662218885687,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.9857675370267195,
+                "max_dose": 1.008960393396228,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.9829090656880977,
+                "max_dose": 1.0119101424841004,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.9735774151990986,
+                "max_dose": 1.0182322351202338,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.9649598422144664,
+                "max_dose": 1.021320655659431,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.9549042096634004,
+                "max_dose": 1.027077755035605,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.9489825928911152,
+                "max_dose": 1.030122600758044,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.9330796826683747,
+                "max_dose": 1.0362502538704694,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.9299053888390633,
+                "max_dose": 1.0401083538959413,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.9241849960001183,
+                "max_dose": 1.0446229766157071,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.9139562994638121,
+                "max_dose": 1.0496116622590963,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.9032398348971876,
+                "max_dose": 1.0524139325338924,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.8938766058333079,
+                "max_dose": 1.05599423353218,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.8887941209431831,
+                "max_dose": 1.0635956898121548,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.8829571211250694,
+                "max_dose": 1.0669149146449968,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            }
+        },
+        "230": {
+            "1.0": {
+                "gamma": 0.5,
+                "min_dose": 0.9943071753338522,
+                "max_dose": 1.0057213175821673,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.2": {
+                "gamma": 0.4167,
+                "min_dose": 0.9930680997889954,
+                "max_dose": 1.0052225897524592,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.4": {
+                "gamma": 0.3571,
+                "min_dose": 0.984077144491011,
+                "max_dose": 1.0073082977047345,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.6": {
+                "gamma": 0.3125,
+                "min_dose": 0.9822559902665751,
+                "max_dose": 1.0129801887821654,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "1.8": {
+                "gamma": 0.2778,
+                "min_dose": 0.9815178529933258,
+                "max_dose": 1.011979302336123,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.0": {
+                "gamma": 0.25,
+                "min_dose": 0.973687095778779,
+                "max_dose": 1.0181755072341752,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.2": {
+                "gamma": 0.2273,
+                "min_dose": 0.9705292273833993,
+                "max_dose": 1.0242401217677781,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.4": {
+                "gamma": 0.2083,
+                "min_dose": 0.9661415152601956,
+                "max_dose": 1.0230282473931198,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.6": {
+                "gamma": 0.1923,
+                "min_dose": 0.9618506100644449,
+                "max_dose": 1.0285183875529185,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "2.8": {
+                "gamma": 0.1786,
+                "min_dose": 0.9520499427279576,
+                "max_dose": 1.0294898271577695,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.9450709313857981,
+                "max_dose": 1.0322696147736232,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.9369126345327631,
+                "max_dose": 1.0374735693691663,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.9327905247301198,
+                "max_dose": 1.0417868102578893,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.9196021840939518,
+                "max_dose": 1.045982750644246,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.9156802753634221,
+                "max_dose": 1.0473486530520466,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.9079307227265355,
+                "max_dose": 1.050805727678272,
+                "D_BP>0.4D_entrance": 0,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            }
+        }
+    }
+}

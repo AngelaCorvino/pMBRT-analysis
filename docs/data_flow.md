@@ -102,7 +102,7 @@ After the initial code inspection, a partial legacy dataset was provided outside
 - homogeneity/min-max summary dictionaries: `dose_min_max_1Darray_dictionary.txt` and `dose_min_max_2Darray_finalversion.txt`;
 - BEDR-related threshold dictionary: `dose_BEDR_1Darray_dictionary.txt`, which stores only a binary threshold flag, not a numeric BEDR value.
 
-Raw/intermediate `.npy` dose grids in the partial subset were inspected for data-flow context but were not copied into the public repository.
+Raw/intermediate `.npy` dose grids in the partial subset were inspected for data-flow context but were not copied into the public repository. The small processed `.txt` files from this subset are copied under `data/processed_text/` because they are derived outputs, are small enough for GitHub, and can support future static visualization.
 
 ## 5. Excluded Files and Rationale
 
@@ -110,13 +110,14 @@ The public repository excludes:
 
 - Raw and intermediate 3D dose arrays (`.npy`, `.mhd`, `.raw`, `.bin`, `.root`), including the partial raw/intermediate dose grids supplied with `PBP_paperdataset/FWHM5`, because they can be large and are not necessary for readers who only need to replot representative figure-source data.
 - Sidecar headers (`.header`) unless a future small example dataset is intentionally curated.
+- Legacy README text files from the private data folder, because the public Markdown documentation replaces them with cleaned, publication-focused descriptions.
 - Machine-specific or private path references from legacy scripts.
 - `old_modules/`, slider scripts, workspace files, caches, and notebooks because they are exploratory or private workflow material rather than public reproducibility code.
 - TOPAS run statistics and raw simulation outputs unless a small, non-private example is curated later.
 
 ## 6. Published Processed CSV Files
 
-The clean public repository defines these processed CSVs:
+The clean public repository defines these processed CSVs as the primary figure-source data:
 
 - `data/figure_source_data/fig_fwhm_vs_energy.csv`
 - `data/figure_source_data/fig_pvdr_vs_depth_or_ctc.csv`
@@ -124,6 +125,8 @@ The clean public repository defines these processed CSVs:
 - `data/figure_source_data/summary_metrics.csv`
 
 These files contain long/tidy processed figure-source data extracted from the available partial `PBP_paperdataset/FWHM5` subset. They are representative, not complete coverage of all manuscript simulations.
+
+The repository also includes `data/processed_text/PBP_paperdataset/FWHM5/`, a small processed-text provenance layer containing 403 `.txt` files from the same subset. These are lower-level processed outputs, not raw dose-volume arrays.
 
 ## Reproducibility Gaps Found During Inspection
 
@@ -137,9 +140,12 @@ These files contain long/tidy processed figure-source data extracted from the av
 
 ## CSV Extraction Command
 
-The processed CSV files can be rebuilt from a private legacy subset with:
+The processed CSV files can be rebuilt from the public processed-text layer or from a private legacy subset with:
 
 ```bash
+python scripts/build_figure_source_data_from_legacy.py data/processed_text
+
+# or, for maintainers with the private full/partial data folder:
 python scripts/build_figure_source_data_from_legacy.py /path/to/pMBRTData
 ```
 

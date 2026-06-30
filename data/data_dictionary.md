@@ -119,3 +119,19 @@ Curated row-level summary metrics for representative setups.
 | `relative_std_at_target` | Standard deviation divided by mean dose at target depth, where available. |
 | `source_files` | Semicolon-separated provenance labels for processed source files. |
 | `notes` | Non-private extraction notes. |
+
+## `data/processed_text/`
+
+This folder contains small processed `.txt` files from the curated partial `PBP_paperdataset/FWHM5` subset. These files are included for provenance, auditability, and future static visualization. They are not raw Monte Carlo dose volumes.
+
+| File pattern | Meaning | Notes |
+|---|---|---|
+| `FWHM_1Darray_ctc*_*.txt` | Processed FWHM values versus depth for 1D minibeam arrays. | One numeric value per line. The CSV extraction uses 3 mm depth spacing to match the legacy plotting workflow. |
+| `FWHM_2Darray_ctc*_*.txt` | Processed FWHM values versus depth for selected 2D minibeam-array cases. | One numeric value per line. |
+| `<energy>MeV/FWHM_singlebeam_*MeV.txt` | Processed single-beam FWHM values versus depth. | One numeric value per line. |
+| `<energy>MeV/FWHM_singleslit_*MeV.txt` | Processed single-slit FWHM values versus depth where available. | Included for provenance; not currently used by the representative reproduction scripts. |
+| `<energy>MeV/PVDR_2Darray_*.txt` | Processed PVDR values versus depth for 2D minibeam-array cases. | One numeric value per line. Peak and valley dose values are not stored in these files. The CSV extraction uses 1 mm depth spacing. |
+| `<energy>MeV/zpeak_*.txt` | Processed peak-region depth-dose/profile text outputs saved by the legacy workflow. | Included as lightweight derived profiles for auditability and future visualization. |
+| `dose_min_max_*dictionary*.txt` | JSON-style dictionaries of homogeneity and dose-threshold metrics. | Used to populate homogeneity and summary CSV files. |
+| `dose_BEDR_1Darray_dictionary*.txt` | JSON-style BEDR-related threshold dictionaries. | Stores threshold flags in the inspected subset, not numeric BEDR values. |
+| `dictionaryforSOBP_*.txt` | Processed SOBP helper dictionaries present in the curated subset. | Included for provenance; current public CSVs focus on the PBP/FWHM5 subset. |

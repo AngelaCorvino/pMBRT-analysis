@@ -1,0 +1,118 @@
+{
+    "5": {
+        "125": {
+            "3.0": {
+                "gamma": 0.1667,
+                "min_dose": 0.8746551544759485,
+                "max_dose": 1.0583023136078031,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.2": {
+                "gamma": 0.1562,
+                "min_dose": 0.8785952135205017,
+                "max_dose": 1.0540237074435153,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 2,
+                "homogeneity_before_BP": 1
+            },
+            "3.4": {
+                "gamma": 0.1471,
+                "min_dose": 0.8798302485874968,
+                "max_dose": 1.0512530780377858,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "3.6": {
+                "gamma": 0.1389,
+                "min_dose": 0.8870201132272558,
+                "max_dose": 1.0463600012990577,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "3.8": {
+                "gamma": 0.1316,
+                "min_dose": 0.8878017725172169,
+                "max_dose": 1.0454403623028528,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "4.0": {
+                "gamma": 0.125,
+                "min_dose": 0.9071570764598534,
+                "max_dose": 1.0405999494949896,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "4.2": {
+                "gamma": 0.119,
+                "min_dose": 0.9190407307585406,
+                "max_dose": 1.0401681763768782,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 1,
+                "homogeneity_before_BP": 0
+            },
+            "4.4": {
+                "gamma": 0.1136,
+                "min_dose": 0.9325039143864972,
+                "max_dose": 1.0414024166274596,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "4.6": {
+                "gamma": 0.1087,
+                "min_dose": 0.9388472530168527,
+                "max_dose": 1.044273232529817,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "4.8": {
+                "gamma": 0.1042,
+                "min_dose": 0.9552718310035966,
+                "max_dose": 1.0497413766621309,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "5.0": {
+                "gamma": 0.1,
+                "min_dose": 0.9664444510065399,
+                "max_dose": 1.0599403185727294,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "5.2": {
+                "gamma": 0.0962,
+                "min_dose": 0.9539232067360903,
+                "max_dose": 1.0719900598020693,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "5.4": {
+                "gamma": 0.0926,
+                "min_dose": 0.9390493766725398,
+                "max_dose": 1.0862373153851397,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            },
+            "5.6": {
+                "gamma": 0.0893,
+                "min_dose": 0.9261073045610616,
+                "max_dose": 1.0978210443236562,
+                "D_BP>0.4D_entrance": 1,
+                "homogeneity_at_BP": 0,
+                "homogeneity_before_BP": 0
+            }
+        }
+    }
+}

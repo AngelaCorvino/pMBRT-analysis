@@ -1,0 +1,93 @@
+{
+    "5": {
+        "50": {
+            "1.5": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "1.6": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "1.8": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.0": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.2": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.4": {
+                "D_BP>0.6D_entrance": 1
+            }
+        },
+        "125": {
+            "1.5": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "1.6": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "1.8": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.0": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.2": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.4": {
+                "D_BP>0.6D_entrance": 1
+            },
+            "2.5": {
+                "D_BP>0.6D_entrance": 1
+            }
+        },
+        "175": {
+            "1.4": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "1.6": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "1.8": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.0": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.2": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.4": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.5": {
+                "D_BP>0.6D_entrance": 0
+            }
+        },
+        "230": {
+            "1.4": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "1.6": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "1.8": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.0": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.2": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.4": {
+                "D_BP>0.6D_entrance": 0
+            },
+            "2.5": {
+                "D_BP>0.6D_entrance": 0
+            }
+        }
+    }
+}
