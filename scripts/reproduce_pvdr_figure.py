@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from pathlib import Path
 import os
-import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,55 +12,13 @@ os.environ.setdefault("MPLCONFIGDIR", str(ROOT / "figures" / "generated" / ".mpl
 import matplotlib
 
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import PROCESSED_DATA_ROOT, finalize_axes, output_path, read_numeric_series
-
-
-PVDR_DEPTH_STEP_MM = 1
-PREFERRED_ENERGY_MEV = 150
-
-
-def parse_pvdr_path(path: Path) -> tuple[int, float]:
-    match = re.fullmatch(r"PVDR_2Darray_ctc(\d+)_(\d+)MeV\.txt", path.name)
-    if not match:
-        raise ValueError(f"Unexpected PVDR filename: {path.name}")
-    ctc_mm = int(match.group(1)) / 10.0
-    energy = int(match.group(2))
-    return energy, ctc_mm
+from plotting import plot_pvdr_vs_depth
 
 
 def main() -> None:
-    preferred_dir = PROCESSED_DATA_ROOT / f"{PREFERRED_ENERGY_MEV}MeV"
-    paths = sorted(preferred_dir.glob(f"PVDR_2Darray_ctc*_{PREFERRED_ENERGY_MEV}MeV.txt"), key=parse_pvdr_path)
-    energy = PREFERRED_ENERGY_MEV
-
-    if not paths:
-        all_paths = sorted(PROCESSED_DATA_ROOT.glob("*MeV/PVDR_2Darray_ctc*_*.txt"), key=parse_pvdr_path)
-        if not all_paths:
-            raise FileNotFoundError("No PVDR_2Darray_ctc*_*.txt files found under data/processed_data")
-        energy = parse_pvdr_path(all_paths[0])[0]
-        paths = [path for path in all_paths if parse_pvdr_path(path)[0] == energy]
-
-    fig, ax = plt.subplots(figsize=(7.0, 4.5))
-    for path in paths:
-        _, ctc_mm = parse_pvdr_path(path)
-        values = read_numeric_series(path)
-        depths_mm = [index * PVDR_DEPTH_STEP_MM for index in range(len(values))]
-        ax.plot(depths_mm, values, marker="o", linewidth=1.5, label=f"ctc={ctc_mm:g} mm")
-
-    ax.axhline(1.1, color="0.35", linestyle=":", linewidth=1.0)
-    finalize_axes(
-        ax,
-        xlabel="Depth [mm]",
-        ylabel="PVDR",
-        title=f"PVDR versus depth at {energy} MeV",
-    )
-    fig.tight_layout()
-    output = output_path("fig_pvdr_vs_depth_or_ctc.png")
-    fig.savefig(output, dpi=300)
+    output = plot_pvdr_vs_depth()
     print(f"Wrote {output}")
 
 
