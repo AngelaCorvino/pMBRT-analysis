@@ -1,10 +1,10 @@
 # pMBRT Analysis
 
-Curated public analysis scaffold for the manuscript:
+Curated public analysis repository for the manuscript:
 
 **Monte Carlo-based characterization of proton minibeam radiation therapy across clinically relevant beam parameters**
 
-This repository contains a small curated processed-data subset and lightweight analysis scripts that allow readers to replot representative manuscript figures and tables. It is not the full raw Monte Carlo workflow and does not include large raw or intermediate dose arrays.
+This repository contains analysis scripts for post-processing and figure generation for the pMBRT Monte Carlo study, together with a small curated subset of processed `.txt` data used by those scripts. It is not the full raw Monte Carlo workflow and does not include large raw or intermediate dose arrays.
 
 ## Current Data Status
 
@@ -57,12 +57,12 @@ Citation metadata is provided in `CITATION.cff`. The Zenodo DOI is currently a p
 
 ## License
 
-A final license has not been selected yet. Replace `LICENSE_PLACEHOLDER.txt` with the chosen license before publication.
+A final license has not been selected yet. `LICENSE` is currently a placeholder and must be replaced with the chosen license text before publication.
 
 ## Manual Checks Before Public Release
 
 - Confirm the included processed `.txt` files are the intended representative subset for public release.
-- Replace the Zenodo DOI and repository URL placeholders in `CITATION.cff`.
+- Replace the Zenodo DOI and release date placeholders in `CITATION.cff`.
 - Choose and add a final license.
 - Confirm no local paths, private comments, institutional/patient-related data, or large raw dose arrays are included.
 - Confirm the reproduction commands generate the expected figures and text summary table.
