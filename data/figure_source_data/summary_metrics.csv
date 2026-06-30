@@ -1,0 +1,369 @@
+setup,energy_MeV,bw_mm,ctc_mm,target_depth_mm,target_depth_cm,PVDR_target,PVDR_entrance,BEDR,BEDR_threshold_flag,FWHM_entrance_mm,FWHM_target_mm,target_homogeneity,homogeneity_code,relative_std_at_target,source_files,notes
+PBP_1D_array,50,0.5,1.0,21,2.1,,,,,0.47865853517008633,0.5013310167731646,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_50MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,1.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,1.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,1.6,21,2.1,,,,1,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,50,0.5,1.8,21,2.1,,,,1,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,50,0.5,2.0,21,2.1,,,,1,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,50,0.5,2.2,21,2.1,,,,1,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,50,0.5,2.4,21,2.1,,,,1,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,50,0.5,2.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,2.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,3.0,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,3.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,3.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,3.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,3.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,4.0,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,4.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,4.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,4.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,4.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,5.0,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,5.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,5.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,5.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,5.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,6.0,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,6.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,6.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,6.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,6.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,50,0.5,7.0,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,1.0,45,4.5,,,,,0.4774207621018105,0.5233490886065214,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_75MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,1.2,45,4.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,1.4,45,4.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,1.6,45,4.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,1.8,45,4.5,,,,,0.5056992052612406,0.6436928391817418,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc18_75MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,2.0,45,4.5,,,,,0.5057497488898878,0.645765827616035,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc20_75MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,2.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,2.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,2.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,2.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,3.0,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,3.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,3.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,3.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,3.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,4.0,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,4.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,4.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,4.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,4.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,5.0,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,5.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,5.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,5.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,5.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,6.0,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,6.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,6.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,6.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,6.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,75,0.5,7.0,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,1.0,75,7.5,,,,,0.4777973073259337,0.5369635818213077,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_100MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,1.2,75,7.5,,,,,0.4987692243619348,0.6256312264383185,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc12_100MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,1.4,75,7.5,,,,,0.5045265141852188,0.702554020712641,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc14_100MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,1.6,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,1.8,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,2.0,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,2.2,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,2.4,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,2.6,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,2.8,75,7.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,3.0,75,7.5,,,,,0.5062609738085672,0.8073876960480005,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc30_100MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,3.2,75,7.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,3.4,75,7.5,,,,,0.506342188616859,0.808787955447841,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc34_100MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,3.6,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,3.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,4.0,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,4.2,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,4.4,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,4.6,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,4.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,5.0,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,5.2,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,5.4,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,5.6,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,5.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,6.0,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,6.2,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,6.4,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,6.6,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,6.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,100,0.5,7.0,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,1.0,112,11.2,,,,,0.4778513909352658,0.5503399415572613,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_125MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,1.2,112,11.2,,,,,0.49938132922512707,0.6325108909837652,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc12_125MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,1.4,112,11.2,,,,,0.5051795092844303,0.7390152325116593,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc14_125MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,1.6,112,11.2,,,,1,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,125,0.5,1.8,112,11.2,,,,1,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,125,0.5,2.0,112,11.2,,,,1,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,125,0.5,2.2,112,11.2,,,,1,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,125,0.5,2.4,112,11.2,,,,1,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,125,0.5,2.6,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,2.8,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,3.0,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,3.2,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,3.4,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,3.6,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,3.8,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,4.0,112,11.2,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,4.2,112,11.2,,,,,10.613661475037105,1.067042354617028,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc42_125MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,4.4,112,11.2,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,4.6,112,11.2,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,4.8,112,11.2,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,5.0,112,11.2,,,,,0.5078052226374632,1.0362929296317547,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc50_125MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,5.2,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,5.4,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,5.6,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,5.8,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,6.0,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,6.2,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,6.4,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,6.6,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,6.8,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,125,0.5,7.0,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,1.0,155,15.5,,,,,0.4781748121968326,1.6328631283560573,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_150MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,1.2,155,15.5,,,,,0.4998744946924478,0.7236513827840764,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc12_150MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,1.4,155,15.5,,,,,0.5059619580122072,0.7524544197473894,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc14_150MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,1.6,155,15.5,,,,,0.508293193514612,0.8630930982281771,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc16_150MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,1.8,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,2.0,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,2.2,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,2.4,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,2.6,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,2.8,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,3.0,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,3.2,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,3.4,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,3.6,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,3.8,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,4.0,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,4.2,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,4.4,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,4.6,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,4.8,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,5.0,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,5.2,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,5.4,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,5.6,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,5.8,155,15.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,6.0,155,15.5,,,,,0.0,1.3563939343344174,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc60_150MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,6.2,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,6.4,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,6.6,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,6.8,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,150,0.5,7.0,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,1.0,203,20.3,,,,,0.4784632655148196,0.0,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_175MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,1.2,203,20.3,,,,,0.500286551580562,0.0,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc12_175MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,1.4,203,20.3,,,,0,0.5072747004408952,1.069058804036079,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc14_175MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,175,0.5,1.6,203,20.3,,,,0,0.5091291846740718,0.8884653615092253,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc16_175MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,175,0.5,1.8,203,20.3,,,,0,0.5096707764695244,0.9743594730464484,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc18_175MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,175,0.5,2.0,203,20.3,,,,0,0.5093620360424418,1.0800065168397321,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc20_175MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,175,0.5,2.2,203,20.3,,,,0,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,175,0.5,2.4,203,20.3,,,,0,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,175,0.5,2.6,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,2.8,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,3.0,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,3.2,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,3.4,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,3.6,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,3.8,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,4.0,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,4.2,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,4.4,203,20.3,,,,,0.5106869800262063,1.6727696748028105,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc44_175MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,4.6,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,4.8,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,5.0,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,5.2,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,5.4,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,5.6,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,5.8,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,6.0,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,6.2,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,6.4,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,6.6,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,6.8,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,175,0.5,7.0,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,1.0,256,25.6,,,,,0.47845077305970973,3.604144408912015,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,1.2,256,25.6,,,,,0.500356428340834,0.0,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc12_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,1.4,256,25.6,,,,,0.5074455056007396,0.0,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc14_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,1.6,256,25.6,,,,,0.5095129126418178,1.4903284161436925,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc16_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,1.8,256,25.6,,,,,0.5102359142661083,1.0773322709375377,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc18_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,2.0,256,25.6,,,,,0.5100614713526165,1.1102360362752057,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc20_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,2.2,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,2.4,256,25.6,,,,,0.5105672001430017,1.289559971928787,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc24_200MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,2.6,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,2.8,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,3.0,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,3.2,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,3.4,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,3.6,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,3.8,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,4.0,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,4.2,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,4.4,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,4.6,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,4.8,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,5.0,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,5.2,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,5.4,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,5.6,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,5.8,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,6.0,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,6.2,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,6.4,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,6.6,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,6.8,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,200,0.5,7.0,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,1.0,325,32.5,,,,,0.47832414562686454,4.0532458208875495,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc10_230MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,1.2,325,32.5,,,,,0.5002954176046449,2.8957034524767344,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc12_230MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,1.4,325,32.5,,,,0,0.5075577385844248,4.843356645953548,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc14_230MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,230,0.5,1.6,325,32.5,,,,0,0.5097791561551536,0.0,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc16_230MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,230,0.5,1.8,325,32.5,,,,0,0.5106357143522601,0.0,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc18_230MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,230,0.5,2.0,325,32.5,,,,0,0.5112221470337193,1.9390868456485035,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc20_230MeV.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,230,0.5,2.2,325,32.5,,,,0,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,230,0.5,2.4,325,32.5,,,,0,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/dose_BEDR_1Darray_dictionary.txt,"PVDR source files in this subset are labeled 2Darray; BEDR source provides threshold flag only, not numeric BEDR"
+PBP_1D_array,230,0.5,2.6,325,32.5,,,,,0.5116856120414294,1.4283672304945716,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc26_230MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,2.8,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,3.0,325,32.5,,,,,0.5121027307337849,1.6251909346037214,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt;PBP_paperdataset/FWHM5/FWHM_1Darray_ctc30_230MeV.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,3.2,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,3.4,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,3.6,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,3.8,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,4.0,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,4.2,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,4.4,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,4.6,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,4.8,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,5.0,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,5.2,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,5.4,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,5.6,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,5.8,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,6.0,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,6.2,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,6.4,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,6.6,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,6.8,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_1D_array,230,0.5,7.0,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_1Darray_dictionary.txt,PVDR source files in this subset are labeled 2Darray
+PBP_2D_array,50,0.5,1.0,21,2.1,1.133788487837347,43.83431769060637,,,0.4785410543018565,0.5009638215966092,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/FWHM_2Darray_ctc10_50MeV.txt;PBP_paperdataset/FWHM5/50MeV/PVDR_2Darray_ctc10_50MeV.txt,
+PBP_2D_array,50,0.5,1.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,1.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,1.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,1.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,2.0,21,2.1,13.639934734630595,5422.257111096848,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/50MeV/PVDR_2Darray_ctc20_50MeV.txt,
+PBP_2D_array,50,0.5,2.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,2.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,2.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,2.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,3.0,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,3.2,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,3.4,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,3.6,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,50,0.5,3.8,21,2.1,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,1.0,45,4.5,1.13044935892761,43.206625726117124,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/75MeV/PVDR_2Darray_ctc10_75MeV.txt,
+PBP_2D_array,75,0.5,1.2,45,4.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,1.4,45,4.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,1.6,45,4.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,1.8,45,4.5,,,,,0.5047045471912391,0.640764479683168,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/FWHM_2Darray_ctc18_75MeV.txt,
+PBP_2D_array,75,0.5,2.0,45,4.5,1.1590987709635665,4866.723599211325,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/75MeV/PVDR_2Darray_ctc20_75MeV.txt,
+PBP_2D_array,75,0.5,2.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,2.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,2.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,2.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,3.0,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,3.2,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,3.4,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,3.6,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,75,0.5,3.8,45,4.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,1.0,75,7.5,1.092379548295904,41.85618793862642,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/100MeV/PVDR_2Darray_ctc10_100MeV.txt,
+PBP_2D_array,100,0.5,1.2,75,7.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,1.4,75,7.5,,,,,0.5042430654390638,0.7013976710316688,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/FWHM_2Darray_ctc14_100MeV.txt,
+PBP_2D_array,100,0.5,1.6,75,7.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,1.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,2.0,75,7.5,1.1016640759627663,4040.398025322586,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/100MeV/PVDR_2Darray_ctc20_100MeV.txt,
+PBP_2D_array,100,0.5,2.2,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,2.4,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,2.6,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,2.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,3.0,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,3.2,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,3.4,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,3.6,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,100,0.5,3.8,75,7.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,1.0,112,11.2,1.0491763993008412,40.18427663996656,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/125MeV/PVDR_2Darray_ctc10_125MeV.txt,
+PBP_2D_array,125,0.5,1.2,112,11.2,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,1.4,112,11.2,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,1.6,112,11.2,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,1.8,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,2.0,112,11.2,1.1177581708536206,3302.227090304419,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/125MeV/PVDR_2Darray_ctc20_125MeV.txt,
+PBP_2D_array,125,0.5,2.2,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,2.4,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,2.6,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,2.8,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,3.0,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,3.2,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,3.4,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,3.6,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,125,0.5,3.8,112,11.2,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,1.0,155,15.5,1.024836213718123,38.3594289312736,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/150MeV/PVDR_2Darray_ctc10_150MeV.txt,
+PBP_2D_array,150,0.5,1.2,155,15.5,,,,,0.49923375322585334,0.7027324696006626,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/FWHM_2Darray_ctc12_150MeV.txt,
+PBP_2D_array,150,0.5,1.4,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,1.6,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,1.8,155,15.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,2.0,155,15.5,1.0833491980544097,2886.425895441635,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/150MeV/PVDR_2Darray_ctc20_150MeV.txt,
+PBP_2D_array,150,0.5,2.2,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,2.4,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,2.6,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,2.8,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,3.0,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,3.2,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,3.4,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,3.6,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,150,0.5,3.8,155,15.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,1.0,203,20.3,1.0164261213481494,36.76056627887317,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/175MeV/PVDR_2Darray_ctc10_175MeV.txt,
+PBP_2D_array,175,0.5,1.2,203,20.3,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,1.4,203,20.3,,,,,0.5056558126636125,1.1077630034559145,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/FWHM_2Darray_ctc14_175MeV.txt,
+PBP_2D_array,175,0.5,1.6,203,20.3,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,1.8,203,20.3,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,2.0,203,20.3,1.0565352283582885,2494.6104918900924,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/175MeV/PVDR_2Darray_ctc20_175MeV.txt,
+PBP_2D_array,175,0.5,2.2,203,20.3,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,2.4,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,2.6,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,2.8,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,3.0,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,3.2,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,3.4,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,3.6,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,175,0.5,3.8,203,20.3,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,1.0,256,25.6,1.008143918674352,35.49535416987128,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/200MeV/PVDR_2Darray_ctc10_200MeV.txt,
+PBP_2D_array,200,0.5,1.2,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,1.4,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,1.6,256,25.6,,,,,0.5074484414926675,1.5343373601068586,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/FWHM_2Darray_ctc16_200MeV.txt,
+PBP_2D_array,200,0.5,1.8,256,25.6,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,2.0,256,25.6,1.0389096071096067,2206.397532201651,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/200MeV/PVDR_2Darray_ctc20_200MeV.txt,
+PBP_2D_array,200,0.5,2.2,256,25.6,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,2.4,256,25.6,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,2.6,256,25.6,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,2.8,256,25.6,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,3.0,256,25.6,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,3.2,256,25.6,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,3.4,256,25.6,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,3.6,256,25.6,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,200,0.5,3.8,256,25.6,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,1.0,325,32.5,1.0082363017358964,34.39614998787079,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/230MeV/PVDR_2Darray_ctc10_230MeV.txt,
+PBP_2D_array,230,0.5,1.2,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,1.4,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,1.6,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,1.8,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,2.0,325,32.5,1.0228367425778788,1844.7362123890055,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt;PBP_paperdataset/FWHM5/230MeV/PVDR_2Darray_ctc20_230MeV.txt,
+PBP_2D_array,230,0.5,2.2,325,32.5,,,,,,,1,2,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,2.4,325,32.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,2.6,325,32.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,2.8,325,32.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,3.0,325,32.5,,,,,,,1,1,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,3.2,325,32.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,3.4,325,32.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,3.6,325,32.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,
+PBP_2D_array,230,0.5,3.8,325,32.5,,,,,,,0,0,,PBP_paperdataset/FWHM5/dose_min_max_2Darray_finalversion.txt,

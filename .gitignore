@@ -1,0 +1,50 @@
+# Private or legacy material
+private_legacy_do_not_publish/
+old_modules/
+Slider_*.py
+pMBRT.code-workspace
+
+# Large/raw Monte Carlo and image-volume data
+*.npy
+!data/example_source_data/**/*.npy
+*.npz
+*.mhd
+*.raw
+*.bin
+*.root
+*.header
+*.mha
+
+# TOPAS and run-output products that should be curated before publication
+*Dose.*
+*DoseToWater.*
+*Doseuncertainty.*
+*TotalDose*
+*Statistics*.txt
+stat*.txt
+
+# Python caches and generated files
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.coverage
+
+# Local notebooks and editor state
+.ipynb_checkpoints/
+.DS_Store
+.vscode/
+.idea/
+*.code-workspace
+
+# Local environments and temporary files
+.venv/
+venv/
+env/
+*.tmp
+*.bak
+*.log
+
+# Generated figure outputs
+figures/generated/*
+!figures/generated/.gitkeep

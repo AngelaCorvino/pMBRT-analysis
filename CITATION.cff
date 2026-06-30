@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this curated analysis repository, please cite the manuscript and the archived Zenodo record."
+title: "pMBRT analysis: processed figure-source data and reproducibility scripts"
+authors:
+  - family-names: "Corvino"
+    given-names: "Angela"
+doi: "10.5281/zenodo.TODO"
+date-released: "TODO"
+repository-code: "https://github.com/TODO/pMBRT-analysis"
+abstract: "Curated processed figure-source data and plotting scripts accompanying the manuscript Monte Carlo-based characterization of proton minibeam radiation therapy across clinically relevant beam parameters."
+keywords:
+  - proton minibeam radiation therapy
+  - Monte Carlo
+  - FWHM
+  - PVDR
+  - homogeneity
+  - PDD
+license: "TODO"
