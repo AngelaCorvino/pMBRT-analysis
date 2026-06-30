@@ -8,13 +8,13 @@ This repository contains analysis scripts for post-processing and figure generat
 
 ## Data
 
-The public data are processed `.txt` outputs in `data/processed_data/PBP_dataset/FWHM5/`. The folder name `FWHM5` follows the legacy naming convention where `5` corresponds to `bw = 0.5 mm`.
+The public data are processed PVDR `.txt` profiles under `data/processed_data/PBP_dataset/FWHM*/150MeV/`.
 
 No second numerical CSV layer is published. The plotting script reads the processed `.txt` files directly. Raw and intermediate dose arrays are not copied into this public repository. The reconstructed data flow is documented in `docs/data_flow.md`.
 
 ## Repository Contents
 
-- `data/processed_data/`: curated processed `.txt` arrays and dictionaries; these are not raw Monte Carlo dose volumes.
+- `data/processed_data/`: processed PVDR `.txt` profiles used by the public plotting script; these are not raw Monte Carlo dose volumes.
 - `src/plotting.py`: plotting and processed-text loading utilities used by the public figure script.
 - `scripts/`: public figure-generation entry points.
 - `figures/generated/`: output folder for generated figures.

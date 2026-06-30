@@ -62,11 +62,11 @@ The active proton workflow uses derived arrays and text files before plotting:
 | Load profiles | `utilities/getprofile.py` and wrappers | `.npy` or `.mhd` dose grid | In-memory `zprofile_peak`, `zprofile_valley`, masked `zxprofile`, masked `zyprofile` |
 | Save single-beam peak depth profile | `utilities/save_zprofile.py` | single-beam dose grid | `zpeak_singlebeam_{energy}MeV.txt` |
 | Fit single-beam FWHM | `fit_singlebeam_FWHM.py` | single-beam lateral profiles | `{energy}MeV/FWHM_singlebeam_{energy}MeV.txt` |
-| Fit multi-beam FWHM | `fit_FWHM.py` | multi-beam lateral profiles | `FWHM_1DGRID_ctc{ctc}_{energy}MeV.txt` or `FWHM_2DGRID_ctc{ctc}_{energy}MeV.txt`; the curated data folder stores these as `FWHM_1Darray_ctc*` and `FWHM_2Darray_ctc*` |
-| Compute PVDR | `inspect_PVDRvsctc_toreview.py`, `Slider_PVDR.py` | in-memory peak and valley depth profiles | PVDR arrays computed as `z_peak / z_valley`; the curated data folder includes processed `PVDR_2Darray_*` text files |
-| Compute 1D homogeneity | `inspect_1Dhomogeneity.py` | masked x profiles | `ctc{ctc}_homogeneity.npy`, a two-row array containing energy and pass/fail flags; the curated data folder includes JSON-style summary dictionaries instead |
+| Fit multi-beam FWHM | `fit_FWHM.py` | multi-beam lateral profiles | `FWHM_1DGRID_ctc{ctc}_{energy}MeV.txt` or `FWHM_2DGRID_ctc{ctc}_{energy}MeV.txt` |
+| Compute PVDR | `inspect_PVDRvsctc_toreview.py`, `Slider_PVDR.py` | in-memory peak and valley depth profiles | PVDR arrays computed as `z_peak / z_valley` |
+| Compute 1D homogeneity | `inspect_1Dhomogeneity.py` | masked x profiles | `ctc{ctc}_homogeneity.npy`, a two-row array containing energy and pass/fail flags |
 | Compute 1D homogeneity and relative standard deviation | `inspect_1Dhomog_and_std.py`, `inspect_xdeviation.py` | masked x profiles | homogeneity `.npy`; `inspect_xdeviation.py` writes `ctc{ctc}_std.npy` |
-| Compute 2D lateral homogeneity | `inspect_2Dlateralhomogeneity.py` | masked x and y profiles | `ctc{ctc}_homogeneity_overxy.npy`, a two-row array containing energy and 2D pass/fail flags; the curated data folder includes JSON-style summary dictionaries instead |
+| Compute 2D lateral homogeneity | `inspect_2Dlateralhomogeneity.py` | masked x and y profiles | `ctc{ctc}_homogeneity_overxy.npy`, a two-row array containing energy and 2D pass/fail flags |
 
 The multi-beam creator and profile loaders use center-to-center distance labels as tenths of a millimeter, for example `ctc12` for `1.2 mm`.
 
@@ -85,14 +85,9 @@ The plotting scripts do not generally plot directly from raw dose arrays:
 
 ## 4. Public Processed Text Data
 
-The curated processed dataset is organized as `PBP_dataset/FWHM5` and includes PBP data with `bw = 0.5 mm`. This repository publishes processed `.txt` outputs directly:
+The public processed text data are PVDR depth profiles matching this pattern:
 
-- processed FWHM text files: `FWHM_singlebeam_*`, `FWHM_singleslit_*`, `FWHM_1Darray_ctc*`, and `FWHM_2Darray_ctc*`;
-- processed PVDR text files: `PVDR_2Darray_*`;
-- processed z-peak text files: `zpeak_*`;
-- homogeneity/min-max summary dictionaries: `dose_min_max_*dictionary*.txt` and `dose_min_max_2Darray_finalversion.txt`;
-- BEDR-related threshold dictionaries: `dose_BEDR_1Darray_dictionary*.txt`, which store binary threshold flags, not numeric BEDR values;
-- SOBP helper dictionaries present in the curated subset.
+- `data/processed_data/PBP_dataset/FWHM*/150MeV/PVDR_2Darray_ctc<ctc>_150MeV.txt`
 
 No public CSV figure-source layer is generated or published. Public plotting code reads processed `.txt` files directly.
 
@@ -100,7 +95,7 @@ No public CSV figure-source layer is generated or published. Public plotting cod
 
 The public repository excludes:
 
-- Raw and intermediate 3D dose arrays (`.npy`, `.mhd`, `.raw`, `.bin`, `.root`), including the partial raw/intermediate dose grids supplied with `PBP_dataset/FWHM5`, because they can be large and are not necessary for readers who only need to replot representative figures from processed text outputs.
+- Raw and intermediate 3D dose arrays (`.npy`, `.mhd`, `.raw`, `.bin`, `.root`), because they can be large and are not necessary for readers who only need to run the public figure-generation script.
 - Sidecar headers (`.header`) unless a future small example dataset is intentionally curated.
 - Legacy README text files from the private data folder, because the public Markdown documentation replaces them with cleaned, publication-focused descriptions.
 - Machine-specific or private path references from legacy scripts.
@@ -111,4 +106,3 @@ The public repository excludes:
 
 - `ctc` labels in filenames use tenths of a millimeter where inherited from the legacy workflow, for example `ctc10` corresponds to `ctc = 1.0 mm`.
 - Processed PVDR text files store PVDR values only, not separate peak and valley dose components.
-- BEDR-related dictionary files store threshold flags in the curated text layer, not numeric BEDR values.

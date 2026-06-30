@@ -12,7 +12,7 @@ import numpy as np
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PROCESSED_DATA_ROOT = ROOT / "data" / "processed_data" / "PBP_dataset" / "FWHM5"
+PROCESSED_DATA_ROOT = ROOT / "data" / "processed_data" / "PBP_dataset"
 
 PVDR_DEPTH_STEP_MM = 1
 PREFERRED_PVDR_ENERGY_MEV = 150
@@ -62,14 +62,14 @@ def set_publication_style() -> None:
             "figure.dpi": 120,
             "savefig.dpi": 300,
             "font.size": 12,
-            "axes.titlesize": 15,
-            "axes.labelsize": 14,
-            "xtick.labelsize": 12,
-            "ytick.labelsize": 12,
-            "legend.fontsize": 10,
-            "legend.title_fontsize": 11,
+            "axes.titlesize": 14,
+            "axes.labelsize": 13,
+            "xtick.labelsize": 11,
+            "ytick.labelsize": 11,
+            "legend.fontsize": 9,
+            "legend.title_fontsize": 10,
             "axes.linewidth": 1.0,
-            "lines.linewidth": 2.2,
+            "lines.linewidth": 2.0,
             "lines.markersize": 5,
             "xtick.major.width": 1.0,
             "ytick.major.width": 1.0,
@@ -91,7 +91,7 @@ def style_axes(ax, *, xlabel: str, ylabel: str, title: str | None = None, grid_a
     ax.set_xlabel(xlabel)
     ax.set_ylabel(ylabel)
     if title:
-        ax.set_title(title, pad=10)
+        ax.set_title(title, pad=8)
     ax.grid(True, axis=grid_axis, linestyle=":", linewidth=0.8, color="0.25", alpha=0.18)
     ax.tick_params(axis="both", which="major", direction="out", length=5)
     ax.tick_params(axis="both", which="minor", direction="out", length=3)
@@ -109,23 +109,28 @@ def parse_pvdr_path(path: Path) -> tuple[int, float]:
     return energy, ctc_mm
 
 
-def plot_pvdr_vs_depth(*, energy: int = PREFERRED_PVDR_ENERGY_MEV, output: Path | None = None) -> Path:
-    """Plot PVDR versus depth for the selected processed profiles."""
+def parse_beam_width(path: Path) -> float:
+    """Return the beam width in millimeters from a folder name such as FWHM5."""
 
-    set_publication_style()
-    energy_dir = PROCESSED_DATA_ROOT / f"{energy}MeV"
-    paths = sorted(energy_dir.glob(f"PVDR_2Darray_ctc*_{energy}MeV.txt"), key=parse_pvdr_path)
+    match = re.fullmatch(r"FWHM(\d+)", path.name)
+    if not match:
+        raise ValueError(f"Unexpected beam-width folder: {path.name}")
+    return int(match.group(1)) / 10.0
 
-    if not paths:
-        all_paths = sorted(PROCESSED_DATA_ROOT.glob("*MeV/PVDR_2Darray_ctc*_*.txt"), key=parse_pvdr_path)
-        if not all_paths:
-            raise FileNotFoundError("No PVDR_2Darray_ctc*_*.txt files found under data/processed_data")
-        energy = parse_pvdr_path(all_paths[0])[0]
-        paths = [path for path in all_paths if parse_pvdr_path(path)[0] == energy]
 
-    fig, ax = plt.subplots(figsize=(8.8, 5.4))
-    inset = ax.inset_axes([0.53, 0.18, 0.40, 0.35])
+def find_pvdr_profile_groups(*, energy: int) -> list[tuple[float, list[Path]]]:
+    """Find public PVDR profile files grouped by beam-width folder."""
 
+    groups: list[tuple[float, list[Path]]] = []
+    for bw_dir in sorted(PROCESSED_DATA_ROOT.glob("FWHM*"), key=parse_beam_width):
+        energy_dir = bw_dir / f"{energy}MeV"
+        paths = sorted(energy_dir.glob(f"PVDR_2Darray_ctc*_{energy}MeV.txt"), key=parse_pvdr_path)
+        if paths:
+            groups.append((parse_beam_width(bw_dir), paths))
+    return groups
+
+
+def _plot_pvdr_group(ax, paths: list[Path]) -> tuple[int, float, list[Line2D]]:
     max_depth = 0
     finite_positive_max = 1.0
     ctc_handles = []
@@ -142,38 +147,62 @@ def plot_pvdr_vs_depth(*, energy: int = PREFERRED_PVDR_ENERGY_MEV, output: Path 
 
         label = f"ctc = {ctc_mm:g} mm"
         ax.plot(depths_mm, positive, color=color, label=label)
-        inset.plot(depths_mm, values, color=color, linewidth=1.8)
         ctc_handles.append(Line2D([0], [0], color=color, linewidth=2.4, label=label))
+    return max_depth, finite_positive_max, ctc_handles
 
-    ax.set_yscale("log")
+
+def plot_pvdr_vs_depth(*, energy: int = PREFERRED_PVDR_ENERGY_MEV, output: Path | None = None) -> Path:
+    """Plot PVDR versus depth for all public beam-width folders."""
+
+    set_publication_style()
+    groups = find_pvdr_profile_groups(energy=energy)
+    if not groups:
+        raise FileNotFoundError("No PVDR_2Darray_ctc*_*.txt files found under data/processed_data")
+
+    n_groups = len(groups)
+    if n_groups == 1:
+        fig, axes = plt.subplots(figsize=(8.8, 5.4))
+        axes = [axes]
+    else:
+        fig, axes_array = plt.subplots(n_groups, 1, figsize=(8.8, 3.6 * n_groups), sharex=True)
+        axes = list(np.atleast_1d(axes_array))
+
+    shared_handles: list[Line2D] = []
+    global_max_depth = 0
+    global_positive_max = 1.0
+    for ax, (bw_mm, paths) in zip(axes, groups):
+        max_depth, finite_positive_max, ctc_handles = _plot_pvdr_group(ax, paths)
+        global_max_depth = max(global_max_depth, max_depth)
+        global_positive_max = max(global_positive_max, finite_positive_max)
+        shared_handles = ctc_handles
+        ax.axhline(1.05, color="#D95F02", linestyle=":", linewidth=1.6)
+        ax.axhline(1.10, color="0.35", linestyle=":", linewidth=1.1)
+        style_axes(
+            ax,
+            xlabel="Depth z [mm]" if ax is axes[-1] else "",
+            ylabel="PVDR",
+            title=f"bw = {bw_mm:g} mm",
+            grid_axis="y",
+        )
+        ax.set_yscale("log")
+
     lower = 0.2
-    upper = 10 ** math.ceil(math.log10(finite_positive_max))
-    ax.set_ylim(lower, upper)
-    ax.set_xlim(left=0, right=max_depth)
-    ax.axhline(1.05, color="#D95F02", linestyle=":", linewidth=1.8)
-    ax.axhline(1.10, color="0.35", linestyle=":", linewidth=1.2)
-    style_axes(
-        ax,
-        xlabel="Depth z [mm]",
-        ylabel="PVDR",
-        title=f"PVDR versus depth at {energy} MeV",
-        grid_axis="y",
-    )
-    ax.legend(handles=ctc_handles, title="Center-to-center distance", loc="upper right", frameon=False)
+    upper = 10 ** math.ceil(math.log10(global_positive_max))
+    for ax in axes:
+        ax.set_ylim(lower, upper)
+        ax.set_xlim(left=0, right=global_max_depth)
 
-    inset.axhline(1.05, color="#D95F02", linestyle=":", linewidth=1.4)
-    inset.axhline(1.10, color="0.35", linestyle=":", linewidth=1.0)
-    inset.set_xlim(0, max_depth)
-    inset.set_ylim(0.2, 1.6)
-    inset.set_title("near unity", fontsize=10, pad=3)
-    inset.tick_params(axis="both", which="major", labelsize=9, direction="out", length=3)
-    inset.grid(True, axis="y", linestyle=":", linewidth=0.7, color="0.25", alpha=0.18)
-    for spine in inset.spines.values():
-        spine.set_color("0.55")
-        spine.set_linewidth(0.8)
-
-    fig.tight_layout()
-    output = output or output_path("fig_pvdr_vs_depth_or_ctc.png")
+    fig.suptitle(f"PVDR versus depth at {energy} MeV", y=0.995)
+    if shared_handles:
+        fig.legend(
+            handles=shared_handles,
+            title="Center-to-center distance",
+            loc="upper right",
+            bbox_to_anchor=(0.98, 0.94),
+            frameon=False,
+        )
+    fig.tight_layout(rect=(0, 0, 0.86, 0.96))
+    output = output or output_path("fig_pvdr_depth_profiles.png")
     fig.savefig(output, bbox_inches="tight")
     plt.close(fig)
     return output

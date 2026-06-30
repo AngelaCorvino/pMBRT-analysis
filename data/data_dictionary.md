@@ -1,41 +1,42 @@
 # Data Dictionary
 
-The public numerical data are processed `.txt` files under `data/processed_data/PBP_dataset/FWHM5/`. The files are derived processed outputs from the inspected analysis workflow, not raw Monte Carlo dose-volume arrays.
+The public numerical data are processed `.txt` files under `data/processed_data/PBP_dataset/FWHM*/150MeV/`. The files are derived processed outputs from the analysis workflow, not raw Monte Carlo dose-volume arrays.
 
-## Folder
+## Folder Pattern
 
-`data/processed_data/PBP_dataset/FWHM5/`
+`data/processed_data/PBP_dataset/FWHM*/150MeV/`
 
-The folder name `FWHM5` follows the legacy naming convention where `5` corresponds to `bw = 0.5 mm`.
+The folder name follows the legacy naming convention where `FWHM5` corresponds to `bw = 0.5 mm`, `FWHM7` corresponds to `bw = 0.7 mm`, and so on.
 
-## Files Used by the Public Plotting Script
+## Public Data Files
 
 | File pattern | Meaning | Notes |
 |---|---|---|
-| `<energy>MeV/PVDR_2Darray_ctc<ctc>_<energy>MeV.txt` | Processed PVDR values versus depth for 2D minibeam-array cases. | One numeric value per line. The script uses 1 mm depth spacing. `ctc10` corresponds to `ctc = 1.0 mm`. |
+| `FWHM*/150MeV/PVDR_2Darray_ctc<ctc>_150MeV.txt` | Processed PVDR values versus depth for E = 150 MeV, grouped by beam width and center-to-center distance. | One numeric value per line. The plotting script uses 1 mm depth spacing. `ctc10` corresponds to `ctc = 1.0 mm`. |
 
-## Other Processed Text Files in the Curated Data Folder
+## Currently Included Files
 
-| File pattern | Meaning |
+| File | Meaning |
 |---|---|
-| `FWHM_1Darray_ctc*_*.txt` | Processed FWHM values versus depth for 1D minibeam arrays. |
-| `FWHM_2Darray_ctc*_*.txt` | Processed FWHM values versus depth for selected 2D minibeam-array cases. |
-| `<energy>MeV/FWHM_singlebeam_*MeV.txt` | Processed single-beam FWHM values versus depth. |
-| `<energy>MeV/FWHM_singleslit_*MeV.txt` | Processed single-slit FWHM values versus depth where available. |
-| `<energy>MeV/PVDR_2Darray_*.txt` | Processed PVDR values versus depth. |
-| `<energy>MeV/zpeak_*.txt` | Processed peak-region depth-dose/profile text outputs. |
-| `dose_min_max_*dictionary*.txt` | JSON-style dictionaries of homogeneity and dose-threshold summary metrics. |
-| `dose_BEDR_1Darray_dictionary*.txt` | JSON-style BEDR-related threshold dictionaries. In the inspected subset these store threshold flags, not numeric BEDR values. |
-| `dictionaryforSOBP_*.txt` | Processed SOBP helper dictionaries present in the curated folder. |
+| `FWHM5/150MeV/PVDR_2Darray_ctc10_150MeV.txt` | PVDR profile for `bw = 0.5 mm`, `ctc = 1.0 mm`. |
+| `FWHM5/150MeV/PVDR_2Darray_ctc15_150MeV.txt` | PVDR profile for `bw = 0.5 mm`, `ctc = 1.5 mm`. |
+| `FWHM5/150MeV/PVDR_2Darray_ctc20_150MeV.txt` | PVDR profile for `bw = 0.5 mm`, `ctc = 2.0 mm`. |
 
-## Dictionary Metric Fields
+Additional beam-width folders can be added with the same filename pattern.
 
-| Field | Meaning |
+## Values
+
+The public data files are one-dimensional text profiles. Each non-empty line contains one PVDR value sampled at the corresponding depth index.
+
+For a line index `i`, the plotting script uses:
+
+`depth_mm = i * 1 mm`
+
+## Filename Terms
+
+| Term | Meaning |
 |---|---|
-| `gamma` | Ratio recorded in the processed dictionary. |
-| `min_dose` | Minimum normalized dose in the target region from the summary dictionary. |
-| `max_dose` | Maximum normalized dose in the target region from the summary dictionary. |
-| `D_BP>0.4D_entrance` | Binary dose-threshold flag from the homogeneity dictionaries. |
-| `D_BP>0.6D_entrance` | Binary BEDR-related threshold flag from the BEDR dictionary. This is not a numeric BEDR value. |
-| `homogeneity_at_BP` | Homogeneity code at the Bragg-peak/target depth. |
-| `homogeneity_before_BP` | Homogeneity-before-target flag. |
+| `PVDR` | Peak-to-valley dose ratio. |
+| `2Darray` | 2D minibeam-array setup label inherited from the processed output filename. |
+| `ctc10`, `ctc15`, `ctc20` | Center-to-center distance labels corresponding to 1.0 mm, 1.5 mm, and 2.0 mm. |
+| `150MeV` | Initial proton energy. |
