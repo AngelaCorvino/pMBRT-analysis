@@ -1,42 +1,58 @@
 # Data Dictionary
 
-The public numerical data are processed `.txt` files under `data/processed_data/PBP_dataset/FWHM*/150MeV/`. The files are derived processed outputs from the analysis workflow, not raw Monte Carlo dose-volume arrays.
+The public numerical data are processed `.txt` files under `data/processed_data/`. The files are derived processed outputs from the analysis workflow, not raw Monte Carlo dose-volume arrays.
 
-## Folder Pattern
+## Folder Patterns
 
-`data/processed_data/PBP_dataset/FWHM*/150MeV/`
+`data/processed_data/PBP_dataset/FWHM*/<energy>MeV/`
+
+`data/processed_data/SOBP_dataset/FWHM*/<energy>MeV/`
 
 The folder name follows the legacy naming convention where `FWHM5` corresponds to `bw = 0.5 mm`, `FWHM7` corresponds to `bw = 0.7 mm`, and so on.
 
 ## Public Data Files
 
-| File pattern | Meaning | Notes |
+| File pattern | Meaning | Figure |
 |---|---|---|
-| `FWHM*/150MeV/PVDR_2Darray_ctc<ctc>_150MeV.txt` | Processed PVDR values versus depth for E = 150 MeV, grouped by beam width and center-to-center distance. | One numeric value per line. The plotting script uses 1 mm depth spacing. `ctc10` corresponds to `ctc = 1.0 mm`. |
+| `PBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed peak depth-dose values for the PBP 1D MB array geometry. One numeric value per line. | Figure 1 and Figure 2 normalization |
+| `PBP_dataset/FWHM*/<energy>MeV/zvalley_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed valley depth-dose values for the PBP 1D MB array geometry. One numeric value per line. | Figure 2 |
+| `SOBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt` | Final SOBP peak depth-dose profile for the 1D MB array geometry. | Figure 5 |
+| `SOBP_dataset/FWHM*/<energy>MeV/zvalley_1Darray_ctc<ctc>_<energy>MeV.txt` | Final SOBP valley depth-dose profile for the 1D MB array geometry. | Figure 5 |
+| `SOBP_dataset/FWHM*/<energy>MeV/PVDR_1Darray_ctc<ctc>_<energy>MeV.txt` | SOBP peak-to-valley dose ratio versus depth. | Figure 5 |
+| `PBP_dataset/FWHM*/<energy>MeV/PVDR_2Darray_ctc<ctc>_<energy>MeV.txt` | Processed PVDR values versus depth retained from the legacy processed output convention. | Not part of the first public figure set unless selected later |
 
-## Currently Included Files
+## Figure 5 Panel Cases
 
-| File | Meaning |
-|---|---|
-| `FWHM5/150MeV/PVDR_2Darray_ctc10_150MeV.txt` | PVDR profile for `bw = 0.5 mm`, `ctc = 1.0 mm`. |
-| `FWHM5/150MeV/PVDR_2Darray_ctc15_150MeV.txt` | PVDR profile for `bw = 0.5 mm`, `ctc = 1.5 mm`. |
-| `FWHM5/150MeV/PVDR_2Darray_ctc20_150MeV.txt` | PVDR profile for `bw = 0.5 mm`, `ctc = 2.0 mm`. |
-
-Additional beam-width folders can be added with the same filename pattern.
+| Panel | Energy [MeV] | bw [mm] | ctc [mm] | Folder and ctc label |
+|---|---:|---:|---:|---|
+| a | 50 | 0.5 | 1.5 | `FWHM5`, `ctc15` |
+| b | 230 | 2.0 | 8.0 | `FWHM20`, `ctc80` |
+| c | 125 | 1.0 | 4.0 | `FWHM10`, `ctc40` |
+| d | 125 | 1.0 | 5.0 | `FWHM10`, `ctc50` |
+| e | 125 | 1.2 | 4.8 | `FWHM12`, `ctc48` |
+| f | 125 | 1.2 | 6.0 | `FWHM12`, `ctc60` |
+| g | 175 | 1.2 | 4.8 | `FWHM12`, `ctc48` |
+| h | 175 | 1.2 | 6.0 | `FWHM12`, `ctc60` |
+| i | 175 | 1.5 | 6.0 | `FWHM15`, `ctc60` |
+| l | 175 | 1.5 | 7.5 | `FWHM15`, `ctc75` |
 
 ## Values
 
-The public data files are one-dimensional text profiles. Each non-empty line contains one PVDR value sampled at the corresponding depth index.
+Each non-empty line contains one value sampled at the corresponding depth index.
 
-For a line index `i`, the plotting script uses:
+For a line index `i`, the plotting scripts use:
 
 `depth_mm = i * 1 mm`
+
+Figure 1 normalizes each peak profile by its own maximum. Figure 2 normalizes each valley profile by the maximum of the matching peak profile. Figure 5 plots the supplied SOBP peak and valley profile values directly and plots PVDR on a second y-axis.
 
 ## Filename Terms
 
 | Term | Meaning |
 |---|---|
+| `zpeak` | Peak-region depth-dose profile. |
+| `zvalley` | Valley-region depth-dose profile. |
+| `1Darray` | 1D MB array geometry. |
 | `PVDR` | Peak-to-valley dose ratio. |
-| `2Darray` | 2D minibeam-array setup label inherited from the processed output filename. |
 | `ctc10`, `ctc15`, `ctc20` | Center-to-center distance labels corresponding to 1.0 mm, 1.5 mm, and 2.0 mm. |
-| `150MeV` | Initial proton energy. |
+| `150MeV` | Initial proton energy or maximum SOBP energy, depending on the figure context. |

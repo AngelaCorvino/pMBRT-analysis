@@ -14,8 +14,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 PROCESSED_DATA_ROOT = ROOT / "data" / "processed_data" / "PBP_dataset"
 
-PVDR_DEPTH_STEP_MM = 1
-PREFERRED_PVDR_ENERGY_MEV = 150
+DEPTH_STEP_MM = 1
 
 
 def output_path(filename: str) -> Path:
@@ -98,17 +97,6 @@ def style_axes(ax, *, xlabel: str, ylabel: str, title: str | None = None, grid_a
     ax.spines["top"].set_visible(False)
 
 
-def parse_pvdr_path(path: Path) -> tuple[int, float]:
-    """Return energy and ctc from a processed PVDR filename."""
-
-    match = re.fullmatch(r"PVDR_2Darray_ctc(\d+)_(\d+)MeV\.txt", path.name)
-    if not match:
-        raise ValueError(f"Unexpected PVDR filename: {path.name}")
-    ctc_mm = int(match.group(1)) / 10.0
-    energy = int(match.group(2))
-    return energy, ctc_mm
-
-
 def parse_beam_width(path: Path) -> float:
     """Return the beam width in millimeters from a folder name such as FWHM5."""
 
@@ -118,91 +106,364 @@ def parse_beam_width(path: Path) -> float:
     return int(match.group(1)) / 10.0
 
 
-def find_pvdr_profile_groups(*, energy: int) -> list[tuple[float, list[Path]]]:
-    """Find public PVDR profile files grouped by beam-width folder."""
+def parse_zpeak_1d_path(path: Path) -> tuple[float, int, float]:
+    """Return beam width, energy, and ctc from a 1D-array peak-profile path."""
 
-    groups: list[tuple[float, list[Path]]] = []
-    for bw_dir in sorted(PROCESSED_DATA_ROOT.glob("FWHM*"), key=parse_beam_width):
-        energy_dir = bw_dir / f"{energy}MeV"
-        paths = sorted(energy_dir.glob(f"PVDR_2Darray_ctc*_{energy}MeV.txt"), key=parse_pvdr_path)
-        if paths:
-            groups.append((parse_beam_width(bw_dir), paths))
-    return groups
+    match = re.fullmatch(r"zpeak_1Darray_ctc(\d+)_(\d+)MeV\.txt", path.name)
+    if not match:
+        raise ValueError(f"Unexpected peak-profile filename: {path.name}")
 
+    bw_dir = next((parent for parent in path.parents if re.fullmatch(r"FWHM\d+", parent.name)), None)
+    if bw_dir is None:
+        raise ValueError(f"No FWHM folder found for {path}")
 
-def _plot_pvdr_group(ax, paths: list[Path]) -> tuple[int, float, list[Line2D]]:
-    max_depth = 0
-    finite_positive_max = 1.0
-    ctc_handles = []
-    for index, path in enumerate(paths):
-        _, ctc_mm = parse_pvdr_path(path)
-        color = paired_color(2 * index + 1)
-        values = np.asarray(read_numeric_series(path), dtype=float)
-        depths_mm = np.arange(values.size) * PVDR_DEPTH_STEP_MM
-        max_depth = max(max_depth, int(depths_mm[-1]))
-        positive = np.where(values > 0, values, np.nan)
-        finite_positive = positive[np.isfinite(positive)]
-        if finite_positive.size:
-            finite_positive_max = max(finite_positive_max, float(np.nanmax(finite_positive)))
-
-        label = f"ctc = {ctc_mm:g} mm"
-        ax.plot(depths_mm, positive, color=color, label=label)
-        ctc_handles.append(Line2D([0], [0], color=color, linewidth=2.4, label=label))
-    return max_depth, finite_positive_max, ctc_handles
+    ctc_mm = int(match.group(1)) / 10.0
+    energy = int(match.group(2))
+    return parse_beam_width(bw_dir), energy, ctc_mm
 
 
-def plot_pvdr_vs_depth(*, energy: int = PREFERRED_PVDR_ENERGY_MEV, output: Path | None = None) -> Path:
-    """Plot PVDR versus depth for all public beam-width folders."""
+def _dedupe_profiles_by_ctc(profiles: list[tuple[float, Path]]) -> list[tuple[float, Path]]:
+    deduped: dict[float, Path] = {}
+    for ctc_mm, path in profiles:
+        current = deduped.get(ctc_mm)
+        if current is None or len(path.parts) < len(current.parts):
+            deduped[ctc_mm] = path
+    return sorted(deduped.items(), key=lambda item: item[0])
+
+
+def find_figure1_peak_profiles() -> list[tuple[float, list[tuple[int, str, float, Path]]]]:
+    """Find Figure 1 peak profiles, selecting uploaded minimum and maximum ctc curves."""
+
+    grouped: dict[float, dict[int, list[tuple[float, Path]]]] = {}
+    for path in sorted(PROCESSED_DATA_ROOT.glob("FWHM*/**/zpeak_1Darray_ctc*_*.txt")):
+        bw_mm, energy, ctc_mm = parse_zpeak_1d_path(path)
+        grouped.setdefault(bw_mm, {}).setdefault(energy, []).append((ctc_mm, path))
+
+    figure_groups: list[tuple[float, list[tuple[int, str, float, Path]]]] = []
+    for bw_mm in sorted(grouped):
+        selected: list[tuple[int, str, float, Path]] = []
+        for energy in sorted(grouped[bw_mm]):
+            profiles = _dedupe_profiles_by_ctc(grouped[bw_mm][energy])
+            if not profiles:
+                continue
+            min_ctc, min_path = profiles[0]
+            selected.append((energy, "minimum ctc", min_ctc, min_path))
+            max_ctc, max_path = profiles[-1]
+            if max_ctc != min_ctc:
+                selected.append((energy, "maximum ctc", max_ctc, max_path))
+        if selected:
+            figure_groups.append((bw_mm, selected))
+    return figure_groups
+
+
+def _panel_grid(n_panels: int) -> tuple[int, int]:
+    if n_panels <= 2:
+        return 1, n_panels
+    return math.ceil(n_panels / 2), 2
+
+
+def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
+    """Plot Figure 1 peak depth-dose profiles for the 1D MB geometry."""
 
     set_publication_style()
-    groups = find_pvdr_profile_groups(energy=energy)
+    groups = find_figure1_peak_profiles()
     if not groups:
-        raise FileNotFoundError("No PVDR_2Darray_ctc*_*.txt files found under data/processed_data")
+        raise FileNotFoundError("No zpeak_1Darray_ctc*_*.txt files found under data/processed_data")
 
-    n_groups = len(groups)
-    if n_groups == 1:
-        fig, axes = plt.subplots(figsize=(8.8, 5.4))
-        axes = [axes]
-    else:
-        fig, axes_array = plt.subplots(n_groups, 1, figsize=(8.8, 3.6 * n_groups), sharex=True)
-        axes = list(np.atleast_1d(axes_array))
+    energies = sorted({energy for _, profiles in groups for energy, _, _, _ in profiles})
+    colors = {energy: paired_color(index) for index, energy in enumerate(energies)}
 
-    shared_handles: list[Line2D] = []
-    global_max_depth = 0
-    global_positive_max = 1.0
-    for ax, (bw_mm, paths) in zip(axes, groups):
-        max_depth, finite_positive_max, ctc_handles = _plot_pvdr_group(ax, paths)
-        global_max_depth = max(global_max_depth, max_depth)
-        global_positive_max = max(global_positive_max, finite_positive_max)
-        shared_handles = ctc_handles
-        ax.axhline(1.05, color="#D95F02", linestyle=":", linewidth=1.6)
-        ax.axhline(1.10, color="0.35", linestyle=":", linewidth=1.1)
+    n_rows, n_cols = _panel_grid(len(groups))
+    fig, axes_array = plt.subplots(
+        n_rows,
+        n_cols,
+        figsize=(5.1 * n_cols, 3.65 * n_rows),
+        sharex=True,
+        sharey=True,
+        squeeze=False,
+    )
+    axes = list(axes_array.ravel())
+
+    max_depth = 0
+    for ax, (bw_mm, profiles) in zip(axes, groups):
+        for energy, ctc_role, ctc_mm, path in profiles:
+            values = np.asarray(read_numeric_series(path), dtype=float)
+            profile_max = float(np.nanmax(values))
+            if profile_max <= 0:
+                continue
+            normalized = values / profile_max
+            depths_mm = np.arange(values.size) * DEPTH_STEP_MM
+            max_depth = max(max_depth, int(depths_mm[-1]))
+            linestyle = "-" if ctc_role == "minimum ctc" else "--"
+            ax.plot(depths_mm, normalized, color=colors[energy], linestyle=linestyle)
+
         style_axes(
             ax,
-            xlabel="Depth z [mm]" if ax is axes[-1] else "",
-            ylabel="PVDR",
+            xlabel="Depth z [mm]",
+            ylabel="Normalized peak dose",
             title=f"bw = {bw_mm:g} mm",
             grid_axis="y",
         )
-        ax.set_yscale("log")
+        ax.set_ylim(0, 1.05)
 
-    lower = 0.2
-    upper = 10 ** math.ceil(math.log10(global_positive_max))
-    for ax in axes:
-        ax.set_ylim(lower, upper)
-        ax.set_xlim(left=0, right=global_max_depth)
+    for ax in axes[len(groups):]:
+        ax.set_visible(False)
+    for ax in axes[: len(groups)]:
+        ax.set_xlim(left=0, right=max_depth)
 
-    fig.suptitle(f"PVDR versus depth at {energy} MeV", y=0.995)
-    if shared_handles:
-        fig.legend(
-            handles=shared_handles,
-            title="Center-to-center distance",
-            loc="upper right",
-            bbox_to_anchor=(0.98, 0.94),
-            frameon=False,
+    energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
+    style_handles = [
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="minimum ctc"),
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="maximum ctc"),
+    ]
+    fig.legend(handles=energy_handles, title="Energy", loc="upper center", ncol=min(len(energy_handles), 4), frameon=False)
+    fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
+    fig.suptitle("Peak depth-dose profiles for the MB configuration", y=0.995)
+    fig.tight_layout(rect=(0, 0.08, 1, 0.90))
+
+    output = output or output_path("fig1_peak_depth_profiles.png")
+    fig.savefig(output, bbox_inches="tight")
+    plt.close(fig)
+    return output
+
+
+def parse_zvalley_1d_path(path: Path) -> tuple[float, int, float]:
+    """Return beam width, energy, and ctc from a 1D-array valley-profile path."""
+
+    match = re.fullmatch(r"zvalley_1Darray_ctc(\d+)_(\d+)MeV\.txt", path.name)
+    if not match:
+        raise ValueError(f"Unexpected valley-profile filename: {path.name}")
+
+    bw_dir = next((parent for parent in path.parents if re.fullmatch(r"FWHM\d+", parent.name)), None)
+    if bw_dir is None:
+        raise ValueError(f"No FWHM folder found for {path}")
+
+    ctc_mm = int(match.group(1)) / 10.0
+    energy = int(match.group(2))
+    return parse_beam_width(bw_dir), energy, ctc_mm
+
+
+def matching_peak_profile_path(valley_path: Path) -> Path:
+    """Return the peak-profile path used to normalize a Figure 2 valley profile."""
+
+    return valley_path.with_name(valley_path.name.replace("zvalley_", "zpeak_", 1))
+
+
+def find_figure2_valley_profiles() -> list[tuple[float, list[tuple[int, str, float, Path, Path]]]]:
+    """Find Figure 2 valley profiles, selecting uploaded minimum and maximum ctc curves."""
+
+    grouped: dict[float, dict[int, list[tuple[float, Path, Path]]]] = {}
+    for valley_path in sorted(PROCESSED_DATA_ROOT.glob("FWHM*/**/zvalley_1Darray_ctc*_*.txt")):
+        bw_mm, energy, ctc_mm = parse_zvalley_1d_path(valley_path)
+        peak_path = matching_peak_profile_path(valley_path)
+        if not peak_path.exists():
+            try:
+                display_path = peak_path.relative_to(ROOT)
+            except ValueError:
+                display_path = peak_path
+            raise FileNotFoundError(f"Missing matching peak profile for Figure 2 normalization: {display_path}")
+        grouped.setdefault(bw_mm, {}).setdefault(energy, []).append((ctc_mm, valley_path, peak_path))
+
+    figure_groups: list[tuple[float, list[tuple[int, str, float, Path, Path]]]] = []
+    for bw_mm in sorted(grouped):
+        selected: list[tuple[int, str, float, Path, Path]] = []
+        for energy in sorted(grouped[bw_mm]):
+            raw_profiles = grouped[bw_mm][energy]
+            deduped = {ctc: (valley_path, peak_path) for ctc, valley_path, peak_path in raw_profiles}
+            profiles = [(ctc, *paths) for ctc, paths in sorted(deduped.items(), key=lambda item: item[0])]
+            if not profiles:
+                continue
+            min_ctc, min_valley_path, min_peak_path = profiles[0]
+            selected.append((energy, "minimum ctc", min_ctc, min_valley_path, min_peak_path))
+            max_ctc, max_valley_path, max_peak_path = profiles[-1]
+            if max_ctc != min_ctc:
+                selected.append((energy, "maximum ctc", max_ctc, max_valley_path, max_peak_path))
+        if selected:
+            figure_groups.append((bw_mm, selected))
+    return figure_groups
+
+
+def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
+    """Plot Figure 2 valley depth-dose profiles for the 1D MB geometry."""
+
+    set_publication_style()
+    groups = find_figure2_valley_profiles()
+    if not groups:
+        raise FileNotFoundError("No zvalley_1Darray_ctc*_*.txt files found under data/processed_data")
+
+    energies = sorted({energy for _, profiles in groups for energy, _, _, _, _ in profiles})
+    colors = {energy: paired_color(index) for index, energy in enumerate(energies)}
+
+    n_rows, n_cols = _panel_grid(len(groups))
+    fig, axes_array = plt.subplots(
+        n_rows,
+        n_cols,
+        figsize=(5.1 * n_cols, 3.65 * n_rows),
+        sharex=True,
+        sharey=True,
+        squeeze=False,
+    )
+    axes = list(axes_array.ravel())
+
+    max_depth = 0
+    for ax, (bw_mm, profiles) in zip(axes, groups):
+        for energy, ctc_role, ctc_mm, valley_path, peak_path in profiles:
+            valley_values = np.asarray(read_numeric_series(valley_path), dtype=float)
+            peak_values = np.asarray(read_numeric_series(peak_path), dtype=float)
+            peak_max = float(np.nanmax(peak_values))
+            if peak_max <= 0:
+                continue
+            normalized = valley_values / peak_max
+            depths_mm = np.arange(valley_values.size) * DEPTH_STEP_MM
+            max_depth = max(max_depth, int(depths_mm[-1]))
+            linestyle = "-" if ctc_role == "minimum ctc" else "--"
+            ax.plot(depths_mm, normalized, color=colors[energy], linestyle=linestyle)
+
+        style_axes(
+            ax,
+            xlabel="Depth z [mm]",
+            ylabel="Normalized valley dose",
+            title=f"bw = {bw_mm:g} mm",
+            grid_axis="y",
         )
-    fig.tight_layout(rect=(0, 0, 0.86, 0.96))
-    output = output or output_path("fig_pvdr_depth_profiles.png")
+        ax.set_ylim(bottom=0)
+
+    for ax in axes[len(groups):]:
+        ax.set_visible(False)
+    for ax in axes[: len(groups)]:
+        ax.set_xlim(left=0, right=max_depth)
+
+    energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
+    style_handles = [
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="minimum ctc"),
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="maximum ctc"),
+    ]
+    fig.legend(handles=energy_handles, title="Energy", loc="upper center", ncol=min(len(energy_handles), 4), frameon=False)
+    fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
+    fig.suptitle("Valley depth-dose profiles for the MB configuration", y=0.995)
+    fig.tight_layout(rect=(0, 0.08, 1, 0.90))
+
+    output = output or output_path("fig2_valley_depth_profiles.png")
+    fig.savefig(output, bbox_inches="tight")
+    plt.close(fig)
+    return output
+
+
+SOBP_DATA_ROOT = ROOT / "data" / "processed_data" / "SOBP_dataset"
+
+FIGURE5_CASES = [
+    {"panel": "a", "energy": 50, "bw_label": "5", "bw_mm": 0.5, "ctc_mm": 1.5},
+    {"panel": "b", "energy": 230, "bw_label": "20", "bw_mm": 2.0, "ctc_mm": 8.0},
+    {"panel": "c", "energy": 125, "bw_label": "10", "bw_mm": 1.0, "ctc_mm": 4.0},
+    {"panel": "d", "energy": 125, "bw_label": "10", "bw_mm": 1.0, "ctc_mm": 5.0},
+    {"panel": "e", "energy": 125, "bw_label": "12", "bw_mm": 1.2, "ctc_mm": 4.8},
+    {"panel": "f", "energy": 125, "bw_label": "12", "bw_mm": 1.2, "ctc_mm": 6.0},
+    {"panel": "g", "energy": 175, "bw_label": "12", "bw_mm": 1.2, "ctc_mm": 4.8},
+    {"panel": "h", "energy": 175, "bw_label": "12", "bw_mm": 1.2, "ctc_mm": 6.0},
+    {"panel": "i", "energy": 175, "bw_label": "15", "bw_mm": 1.5, "ctc_mm": 6.0},
+    {"panel": "l", "energy": 175, "bw_label": "15", "bw_mm": 1.5, "ctc_mm": 7.5},
+]
+
+
+def ctc_label(ctc_mm: float) -> str:
+    """Return the legacy ctc filename label in tenths of a millimeter."""
+
+    return str(int(round(ctc_mm * 10)))
+
+
+def _first_existing(paths: list[Path], *, label: str) -> Path:
+    for path in paths:
+        if path.exists():
+            return path
+    candidates = ", ".join(str(path.relative_to(ROOT)) for path in paths)
+    raise FileNotFoundError(f"Missing Figure 5 {label} profile. Expected one of: {candidates}")
+
+
+def figure5_profile_paths(case: dict) -> dict[str, Path]:
+    """Return processed SOBP profile paths for one Figure 5 panel."""
+
+    energy = int(case["energy"])
+    ctc = ctc_label(float(case["ctc_mm"]))
+    base = SOBP_DATA_ROOT / f"FWHM{case['bw_label']}" / f"{energy}MeV"
+    suffix = f"1Darray_ctc{ctc}_{energy}MeV.txt"
+    return {
+        "peak": _first_existing(
+            [base / f"zpeak_{suffix}", base / f"fig5_peak_{suffix}"],
+            label="peak",
+        ),
+        "valley": _first_existing(
+            [base / f"zvalley_{suffix}", base / f"fig5_valley_{suffix}"],
+            label="valley",
+        ),
+        "pvdr": _first_existing(
+            [
+                base / f"PVDR_{suffix}",
+                base / f"PVDR_2Darray_ctc{ctc}_{energy}MeV.txt",
+                base / f"fig5_PVDR_{suffix}",
+            ],
+            label="PVDR",
+        ),
+    }
+
+
+def read_figure5_case(case: dict) -> dict[str, np.ndarray | dict]:
+    """Read one Figure 5 panel from processed SOBP text profiles."""
+
+    paths = figure5_profile_paths(case)
+    peak = np.asarray(read_numeric_series(paths["peak"]), dtype=float)
+    valley = np.asarray(read_numeric_series(paths["valley"]), dtype=float)
+    pvdr = np.asarray(read_numeric_series(paths["pvdr"]), dtype=float)
+    length = min(peak.size, valley.size, pvdr.size)
+    if length == 0:
+        raise ValueError(f"Figure 5 panel {case['panel']} has an empty profile")
+    return {
+        "case": case,
+        "depth_mm": np.arange(length) * DEPTH_STEP_MM,
+        "peak": peak[:length],
+        "valley": valley[:length],
+        "pvdr": pvdr[:length],
+    }
+
+
+def plot_figure5_sobp_depth_profiles(*, output: Path | None = None) -> Path:
+    """Plot Figure 5 SOBP peak, valley, and PVDR depth profiles."""
+
+    set_publication_style()
+    panels = [read_figure5_case(case) for case in FIGURE5_CASES]
+
+    fig, axes_array = plt.subplots(5, 2, figsize=(10.5, 15.5), sharex=False, squeeze=False)
+    axes = list(axes_array.ravel())
+
+    for ax, panel in zip(axes, panels):
+        case = panel["case"]
+        depth = panel["depth_mm"]
+        ax_pvdr = ax.twinx()
+        ax.plot(depth, panel["peak"], color="#1B9E77", linestyle="-", label="Peak")
+        ax.plot(depth, panel["valley"], color="#1B9E77", linestyle="--", label="Valley")
+        ax_pvdr.plot(depth, panel["pvdr"], color="#7570B3", linestyle=":", linewidth=2.2, label="PVDR")
+        ax.set_title(
+            f"{case['panel']}) E = {case['energy']} MeV, bw = {case['bw_mm']:g} mm, ctc = {case['ctc_mm']:g} mm",
+            pad=6,
+        )
+        ax.set_xlabel("Depth z [mm]")
+        ax.set_ylabel("Dose [Gy]")
+        ax_pvdr.set_ylabel("PVDR")
+        ax.grid(True, axis="y", linestyle=":", linewidth=0.8, color="0.25", alpha=0.18)
+        ax.tick_params(axis="both", which="major", direction="out", length=5)
+        ax_pvdr.tick_params(axis="y", which="major", direction="out", length=5)
+        ax.spines["top"].set_visible(False)
+        ax_pvdr.spines["top"].set_visible(False)
+
+    dose_handles = [
+        Line2D([0], [0], color="#1B9E77", linewidth=2.0, linestyle="-", label="Peak"),
+        Line2D([0], [0], color="#1B9E77", linewidth=2.0, linestyle="--", label="Valley"),
+        Line2D([0], [0], color="#7570B3", linewidth=2.2, linestyle=":", label="PVDR"),
+    ]
+    fig.legend(handles=dose_handles, loc="upper center", ncol=3, frameon=False)
+    fig.suptitle("SOBP peak, valley, and PVDR depth profiles for the MB configuration", y=0.995)
+    fig.tight_layout(rect=(0, 0, 1, 0.965))
+
+    output = output or output_path("fig5_sobp_depth_profiles.png")
     fig.savefig(output, bbox_inches="tight")
     plt.close(fig)
     return output

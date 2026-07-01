@@ -4,19 +4,19 @@ Curated public analysis repository for the manuscript:
 
 **Monte Carlo-based characterization of proton minibeam radiation therapy across clinically relevant beam parameters**
 
-This repository contains analysis scripts for post-processing and figure generation for the pMBRT Monte Carlo study, together with curated processed `.txt` data used by those scripts. It is not the full raw Monte Carlo workflow and does not include large raw or intermediate dose arrays.
+This repository contains analysis scripts for post-processing and figure generation for the pMBRT Monte Carlo study, together with curated processed `.txt` data used by those scripts. 
 
 ## Data
 
-The public data are processed PVDR `.txt` profiles under `data/processed_data/PBP_dataset/FWHM*/150MeV/`.
+The public data are curated processed `.txt` profiles under `data/processed_data/`. For Figures 1 and 2, the scripts read PBP 1D MB array profiles under `PBP_dataset/`. For Figure 5, the script reads SOBP 1D MB array profiles under `SOBP_dataset/`.
 
-No second numerical CSV layer is published. The plotting script reads the processed `.txt` files directly. Raw and intermediate dose arrays are not copied into this public repository. The reconstructed data flow is documented in `docs/data_flow.md`.
+MC Raw data are not copied into this public repository. The reconstructed data flow is documented in `docs/data_flow.md`.
 
 ## Repository Contents
 
-- `data/processed_data/`: processed PVDR `.txt` profiles used by the public plotting script; these are not raw Monte Carlo dose volumes.
-- `src/plotting.py`: plotting and processed-text loading utilities used by the public figure script.
-- `scripts/`: public figure-generation entry points.
+- `data/processed_data/`: curated processed `.txt` profiles used by the public plotting scripts; these are not raw Monte Carlo dose volumes.
+- `src/plotting.py`: plotting and processed-text loading utilities used by the public figure scripts.
+- `scripts/`: public figure-generation entry points for Figures 1, 2, and 5.
 - `figures/generated/`: output folder for generated figures.
 
 Large raw Monte Carlo outputs and private legacy workflow files are intentionally excluded. Full raw or intermediate outputs can be made available from the corresponding author upon reasonable request, if appropriate.
@@ -31,10 +31,12 @@ pip install -r requirements.txt
 
 ## Generate Figures
 
-Run this command from the repository root:
+Run these commands from the repository root:
 
 ```bash
-python scripts/plot_pvdr_depth_profiles.py
+python scripts/plot_figure1_peak_depth_profiles.py
+python scripts/plot_figure2_valley_depth_profiles.py
+python scripts/plot_figure5_sobp_depth_profiles.py
 ```
 
 Output is written to `figures/generated/`.
@@ -53,4 +55,4 @@ A final license has not been selected yet. `LICENSE` is currently a placeholder 
 - Replace the Zenodo DOI and release date placeholders in `CITATION.cff`.
 - Choose and add a final license.
 - Confirm no local paths, private comments, institutional/patient-related data, or large raw dose arrays are included.
-- Confirm the public figure-generation command creates the expected figure.
+- Confirm the public figure-generation commands create the expected manuscript figures.

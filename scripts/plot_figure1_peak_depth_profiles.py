@@ -1,4 +1,4 @@
-"""Generate the PVDR depth-profile figure from processed .txt data."""
+"""Generate Figure 1 peak depth-dose profiles from processed .txt data."""
 
 from __future__ import annotations
 
@@ -14,11 +14,11 @@ import matplotlib
 matplotlib.use("Agg")
 sys.path.insert(0, str(ROOT / "src"))
 
-from plotting import plot_pvdr_vs_depth
+from plotting import plot_figure1_peak_depth_profiles
 
 
 def main() -> None:
-    output = plot_pvdr_vs_depth()
+    output = plot_figure1_peak_depth_profiles()
     print(f"Wrote {output}")
 
 
