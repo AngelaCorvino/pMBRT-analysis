@@ -41,16 +41,19 @@ Output is written to `figures/generated/`.
 
 ## Citation
 
-Citation metadata is provided in `CITATION.cff`. The Zenodo DOI is currently a placeholder and should be replaced after the archived release is created.
+Citation metadata is provided in `CITATION.cff`. Zenodo will mint a DOI after a GitHub release is archived.
 
 ## License
 
-A final license has not been selected yet. `LICENSE` is currently a placeholder and must be replaced with the chosen license text before publication.
+This repository is licensed under the MIT License. See `LICENSE` for details.
 
 ## Manual Checks Before Public Release
 
 - Confirm the included processed `.txt` files are intended for public release.
-- Replace the Zenodo DOI and release date placeholders in `CITATION.cff`.
-- Choose and add a final license.
 - Confirm no local paths, private comments, institutional/patient-related data, or large raw dose arrays are included.
 - Confirm the public figure-generation command creates the expected figure.
+
+## After Publishing the Release
+
+- Archive the GitHub release with Zenodo.
+- Add the minted Zenodo DOI to a follow-up release if a DOI-bearing citation file is required.

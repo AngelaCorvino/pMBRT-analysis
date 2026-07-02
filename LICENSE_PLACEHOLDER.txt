@@ -1,3 +1,0 @@
-License not selected yet.
-
-Before making this repository public, choose an appropriate license for the code and data, replace this placeholder with the final license text, and update README.md accordingly.

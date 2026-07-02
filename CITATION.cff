@@ -1,11 +1,10 @@
 cff-version: 1.2.0
-message: "If you use this curated analysis repository, please cite the manuscript and the archived Zenodo record."
+message: "If you use this curated analysis repository, please cite the manuscript and the archived software release."
 title: "pMBRT analysis: post-processing and figure generation scripts"
+version: "1.0.0"
 authors:
   - family-names: "Corvino"
     given-names: "Angela"
-doi: "10.5281/zenodo.TODO"
-date-released: "TODO"
 repository-code: "https://github.com/AngelaCorvino/pMBRT-analysis"
 abstract: "Analysis scripts for post-processing and figure generation accompanying the manuscript Monte Carlo-based characterization of proton minibeam radiation therapy across clinically relevant beam parameters."
 keywords:
@@ -15,4 +14,4 @@ keywords:
   - PVDR
   - homogeneity
   - PDD
-license: "TODO"
+license: "MIT"
