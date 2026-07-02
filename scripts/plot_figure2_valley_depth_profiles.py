@@ -18,6 +18,8 @@ from plotting import plot_figure2_valley_depth_profiles
 
 
 def main() -> None:
+    """Generate Figure 2 and print the written output path."""
+
     output = plot_figure2_valley_depth_profiles()
     print(f"Wrote {output}")
 

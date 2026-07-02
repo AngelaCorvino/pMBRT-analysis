@@ -123,6 +123,8 @@ def parse_zpeak_1d_path(path: Path) -> tuple[float, int, float]:
 
 
 def _dedupe_profiles_by_ctc(profiles: list[tuple[float, Path]]) -> list[tuple[float, Path]]:
+    """Return one profile per ctc, preferring the shortest matching path."""
+
     deduped: dict[float, Path] = {}
     for ctc_mm, path in profiles:
         current = deduped.get(ctc_mm)
@@ -157,6 +159,8 @@ def find_figure1_peak_profiles() -> list[tuple[float, list[tuple[int, str, float
 
 
 def _panel_grid(n_panels: int) -> tuple[int, int]:
+    """Return a compact row-column grid for a requested panel count."""
+
     if n_panels <= 2:
         return 1, n_panels
     return math.ceil(n_panels / 2), 2
@@ -372,6 +376,8 @@ def ctc_label(ctc_mm: float) -> str:
 
 
 def _first_existing(paths: list[Path], *, label: str) -> Path:
+    """Return the first existing candidate path or raise a labeled error."""
+
     for path in paths:
         if path.exists():
             return path

@@ -18,6 +18,8 @@ from plotting import plot_figure5_sobp_depth_profiles
 
 
 def main() -> None:
+    """Generate Figure 5 and print the written output path."""
+
     output = plot_figure5_sobp_depth_profiles()
     print(f"Wrote {output}")
 
