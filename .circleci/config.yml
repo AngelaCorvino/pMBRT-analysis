@@ -52,22 +52,14 @@ jobs:
                 raise SystemExit(1)
             PY
       - run:
-          name: Smoke test processed-data reader
+          name: Generate public figures
           command: |
             . .venv/bin/activate
             mkdir -p figures/generated/.mplconfig
             export MPLCONFIGDIR=figures/generated/.mplconfig
-            python - <<'PY'
-            import sys
-
-            sys.path.insert(0, "src")
-
-            from plotting import read_numeric_series
-
-            values = read_numeric_series("data/processed_data/PBP_dataset/FWHM5/150MeV/PVDR_2Darray_ctc10_150MeV.txt")
-            if not values:
-                raise SystemExit("Tracked sample profile did not contain values")
-            PY
+            python scripts/plot_figure1_peak_depth_profiles.py
+            python scripts/plot_figure2_valley_depth_profiles.py
+            python scripts/plot_figure5_sobp_depth_profiles.py
 
 workflows:
   validate:

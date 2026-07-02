@@ -1,8 +1,6 @@
 # Data Dictionary
 
-The public numerical data are processed `.txt` files under `data/processed_data/`. The files are derived processed outputs from the analysis workflow, not raw Monte Carlo dose-volume arrays.
-
-The complete release checklist is in `docs/release_data_manifest.csv`. Any currently missing processed exports are listed in `docs/missing_release_data_files.csv`.
+The public numerical data are processed `.txt` files under `data/processed_data/`. These files are the figure-source data used by the public plotting scripts, not raw Monte Carlo dose-volume arrays.
 
 ## Folder Patterns
 
@@ -67,4 +65,4 @@ Figure 1 normalizes each peak profile by its own maximum. Figure 2 normalizes ea
 | `1Darray` | 1D MB array geometry. |
 | `PVDR` | Peak-to-valley dose ratio. |
 | `ctc10`, `ctc15`, `ctc20` | Center-to-center distance labels corresponding to 1.0 mm, 1.5 mm, and 2.0 mm. |
-| `150MeV` | Initial proton energy or maximum SOBP energy, depending on the figure context. |
+| `<energy>MeV` | Initial proton energy or maximum SOBP energy, depending on the figure context. |

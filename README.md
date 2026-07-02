@@ -1,30 +1,10 @@
 # pMBRT Analysis
 
-Curated public analysis repository for the manuscript:
+Analysis code and processed figure data for the manuscript:
 
 **Monte Carlo-based characterization of proton minibeam radiation therapy across clinically relevant beam parameters**
 
-This repository contains analysis scripts for post-processing and figure generation for the pMBRT Monte Carlo study, together with curated processed `.txt` data used by those scripts. 
-
-## Data
-
-The public data are curated processed `.txt` profiles under `data/processed_data/`. For Figures 1 and 2, the scripts read PBP 1D MB array profiles under `PBP_dataset/`. For Figure 5, the script reads SOBP 1D MB array profiles under `SOBP_dataset/`.
-
-MC raw data are not copied into this public repository. The reconstructed data flow is documented in `docs/data_flow.md`.
-
-The release data checklist is available as CSV files:
-
-- `docs/release_data_manifest.csv`: all processed data files expected by the public Figure 1, 2, and 5 scripts.
-- `docs/missing_release_data_files.csv`: currently missing processed exports, if any.
-
-## Repository Contents
-
-- `data/processed_data/`: curated processed `.txt` profiles used by the public plotting scripts.
-- `src/plotting.py`: plotting and processed-text loading utilities used by the public figure scripts.
-- `scripts/`: public figure-generation entry points for Figures 1, 2, and 5.
-- `figures/generated/`: output folder for generated figures.
-
-Large raw Monte Carlo outputs and private legacy workflow files are intentionally excluded. Full raw or intermediate outputs can be made available from the corresponding author upon reasonable request, if appropriate.
+This repository reproduces manuscript Figures 1, 2, and 5 from the included processed text profiles.
 
 ## Install
 
@@ -34,7 +14,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Generate Figures
+## Generate Figures 1, 2, and 5
 
 Run these commands from the repository root:
 
@@ -46,18 +26,21 @@ python scripts/plot_figure5_sobp_depth_profiles.py
 
 Output is written to `figures/generated/`.
 
+## Data
+
+The data needed by the figure scripts are included under `data/processed_data/`.
+
+- `PBP_dataset/`: processed pristine Bragg peak profiles for Figures 1 and 2.
+- `SOBP_dataset/`: processed spread-out Bragg peak profiles for Figure 5.
+
+The text files contain one numeric value per line. See `data/data_dictionary.md` for the figure cases and filename conventions.
+
+Raw Monte Carlo dose arrays are not included.
+
 ## Citation
 
-Citation metadata is provided in `CITATION.cff`. The Zenodo DOI is currently a placeholder and should be replaced after the archived release is created.
+Citation metadata is provided in `CITATION.cff`.
 
 ## License
 
 This repository is licensed under the MIT License. See `LICENSE` for details.
-
-## Manual Checks Before Public Release
-
-- Confirm the included processed `.txt` files are intended for public release.
-- Confirm `docs/missing_release_data_files.csv` is empty, or document any intentional omissions in the release notes.
-- Replace the Zenodo DOI and release date placeholders in `CITATION.cff`.
-- Confirm no local paths, private comments, institutional/patient-related data, or large raw dose arrays are included.
-- Confirm the public figure-generation commands create the expected manuscript figures.

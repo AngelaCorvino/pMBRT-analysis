@@ -22,4 +22,4 @@ For Figure 5, the required files are final SOBP peak, valley, and PVDR depth pro
 
 Each profile file stores one numeric value per line. Figure 5 peak and valley profiles should already be scaled consistently with the manuscript normalization.
 
-These files are not raw Monte Carlo dose volumes. Large `.npy`, `.header`, `.mhd`, `.raw`, and related raw/intermediate simulation outputs are intentionally excluded from the public repository.
+These files are not raw Monte Carlo dose volumes.

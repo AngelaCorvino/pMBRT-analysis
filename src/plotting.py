@@ -5,7 +5,6 @@ from __future__ import annotations
 from pathlib import Path
 import math
 import re
-import warnings
 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -147,16 +146,6 @@ def _pbp_profile_path(profile_name: str, bw_label: str, energy: int, ctc_mm: flo
     return PROCESSED_DATA_ROOT / f"FWHM{bw_label}" / f"{energy}MeV" / filename
 
 
-def _warn_missing_pbp_profile(path: Path, *, figure: str) -> None:
-    """Warn when an intended pMBRT PDD case has no processed public export."""
-
-    try:
-        display_path = path.relative_to(ROOT)
-    except ValueError:
-        display_path = path
-    warnings.warn(f"Skipping missing {figure} profile: {display_path}", RuntimeWarning, stacklevel=3)
-
-
 def _dedupe_profiles_by_ctc(profiles: list[tuple[float, Path]]) -> list[tuple[float, Path]]:
     """Return one profile per ctc, preferring the shortest matching path."""
 
@@ -179,9 +168,7 @@ def find_figure1_peak_profiles() -> list[tuple[float, list[tuple[int, str, float
             for ctc_role, multiplier in PBP_CTC_CASES:
                 ctc_mm = _pbp_ctc_mm(bw_label, multiplier)
                 path = _pbp_profile_path("zpeak", bw_label, energy, ctc_mm)
-                if not path.exists():
-                    _warn_missing_pbp_profile(path, figure="Figure 1")
-                    continue
+                require_existing(path)
                 selected.append((energy, ctc_role, ctc_mm, path))
         if selected:
             figure_groups.append((bw_mm, selected))
@@ -295,9 +282,7 @@ def find_figure2_valley_profiles() -> list[tuple[float, list[tuple[int, str, flo
                 ctc_mm = _pbp_ctc_mm(bw_label, multiplier)
                 valley_path = _pbp_profile_path("zvalley", bw_label, energy, ctc_mm)
                 peak_path = _pbp_profile_path("zpeak", bw_label, energy, ctc_mm)
-                if not valley_path.exists():
-                    _warn_missing_pbp_profile(valley_path, figure="Figure 2")
-                    continue
+                require_existing(valley_path)
                 if not peak_path.exists():
                     try:
                         display_path = peak_path.relative_to(ROOT)
@@ -420,7 +405,6 @@ def figure5_profile_paths(case: dict) -> dict[str, Path]:
         "pvdr": _first_existing(
             [
                 base / f"PVDR_{suffix}",
-                base / f"PVDR_2Darray_ctc{ctc}_{energy}MeV.txt",
                 base / f"fig5_PVDR_{suffix}",
             ],
             label="PVDR",
