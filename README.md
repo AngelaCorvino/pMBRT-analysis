@@ -8,6 +8,8 @@ This repository reproduces manuscript Figures 1, 2, and 5 from the included proc
 
 ## Install
 
+Use Python 3.9 or newer.
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
