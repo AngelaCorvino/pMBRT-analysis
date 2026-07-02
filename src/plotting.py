@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 import math
 import re
+import warnings
 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -15,6 +16,16 @@ ROOT = Path(__file__).resolve().parents[1]
 PROCESSED_DATA_ROOT = ROOT / "data" / "processed_data" / "PBP_dataset"
 
 DEPTH_STEP_MM = 1
+PBP_FIGURE_ENERGIES = (50, 125, 175, 230)
+PBP_CTC_CASES = (("3 x bw", 3), ("5 x bw", 5))
+FIGURE1_PBP_BEAM_WIDTHS = ("5", "10", "12", "15", "20")
+FIGURE2_PBP_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
+
+
+def ctc_label(ctc_mm: float) -> str:
+    """Return the legacy ctc filename label in tenths of a millimeter."""
+
+    return str(int(round(ctc_mm * 10)))
 
 
 def output_path(filename: str) -> Path:
@@ -122,6 +133,30 @@ def parse_zpeak_1d_path(path: Path) -> tuple[float, int, float]:
     return parse_beam_width(bw_dir), energy, ctc_mm
 
 
+def _pbp_ctc_mm(bw_label: str, multiplier: int) -> float:
+    """Return the pMBRT PDD ctc value for a beam width label and multiplier."""
+
+    return int(round(float(bw_label) * multiplier)) / 10.0
+
+
+def _pbp_profile_path(profile_name: str, bw_label: str, energy: int, ctc_mm: float) -> Path:
+    """Return the processed PBP profile path for one pMBRT PDD case."""
+
+    ctc = ctc_label(ctc_mm)
+    filename = f"{profile_name}_1Darray_ctc{ctc}_{energy}MeV.txt"
+    return PROCESSED_DATA_ROOT / f"FWHM{bw_label}" / f"{energy}MeV" / filename
+
+
+def _warn_missing_pbp_profile(path: Path, *, figure: str) -> None:
+    """Warn when an intended pMBRT PDD case has no processed public export."""
+
+    try:
+        display_path = path.relative_to(ROOT)
+    except ValueError:
+        display_path = path
+    warnings.warn(f"Skipping missing {figure} profile: {display_path}", RuntimeWarning, stacklevel=3)
+
+
 def _dedupe_profiles_by_ctc(profiles: list[tuple[float, Path]]) -> list[tuple[float, Path]]:
     """Return one profile per ctc, preferring the shortest matching path."""
 
@@ -134,25 +169,20 @@ def _dedupe_profiles_by_ctc(profiles: list[tuple[float, Path]]) -> list[tuple[fl
 
 
 def find_figure1_peak_profiles() -> list[tuple[float, list[tuple[int, str, float, Path]]]]:
-    """Find Figure 1 peak profiles, selecting uploaded minimum and maximum ctc curves."""
-
-    grouped: dict[float, dict[int, list[tuple[float, Path]]]] = {}
-    for path in sorted(PROCESSED_DATA_ROOT.glob("FWHM*/**/zpeak_1Darray_ctc*_*.txt")):
-        bw_mm, energy, ctc_mm = parse_zpeak_1d_path(path)
-        grouped.setdefault(bw_mm, {}).setdefault(energy, []).append((ctc_mm, path))
+    """Return Figure 1 peak profiles for the pMBRT PDD case list."""
 
     figure_groups: list[tuple[float, list[tuple[int, str, float, Path]]]] = []
-    for bw_mm in sorted(grouped):
+    for bw_label in FIGURE1_PBP_BEAM_WIDTHS:
+        bw_mm = int(bw_label) / 10.0
         selected: list[tuple[int, str, float, Path]] = []
-        for energy in sorted(grouped[bw_mm]):
-            profiles = _dedupe_profiles_by_ctc(grouped[bw_mm][energy])
-            if not profiles:
-                continue
-            min_ctc, min_path = profiles[0]
-            selected.append((energy, "minimum ctc", min_ctc, min_path))
-            max_ctc, max_path = profiles[-1]
-            if max_ctc != min_ctc:
-                selected.append((energy, "maximum ctc", max_ctc, max_path))
+        for energy in PBP_FIGURE_ENERGIES:
+            for ctc_role, multiplier in PBP_CTC_CASES:
+                ctc_mm = _pbp_ctc_mm(bw_label, multiplier)
+                path = _pbp_profile_path("zpeak", bw_label, energy, ctc_mm)
+                if not path.exists():
+                    _warn_missing_pbp_profile(path, figure="Figure 1")
+                    continue
+                selected.append((energy, ctc_role, ctc_mm, path))
         if selected:
             figure_groups.append((bw_mm, selected))
     return figure_groups
@@ -198,7 +228,7 @@ def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
             normalized = values / profile_max
             depths_mm = np.arange(values.size) * DEPTH_STEP_MM
             max_depth = max(max_depth, int(depths_mm[-1]))
-            linestyle = "-" if ctc_role == "minimum ctc" else "--"
+            linestyle = "-" if ctc_role == "3 x bw" else "--"
             ax.plot(depths_mm, normalized, color=colors[energy], linestyle=linestyle)
 
         style_axes(
@@ -217,8 +247,8 @@ def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
 
     energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
     style_handles = [
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="minimum ctc"),
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="maximum ctc"),
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
     ]
     fig.legend(handles=energy_handles, title="Energy", loc="upper center", ncol=min(len(energy_handles), 4), frameon=False)
     fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
@@ -254,34 +284,27 @@ def matching_peak_profile_path(valley_path: Path) -> Path:
 
 
 def find_figure2_valley_profiles() -> list[tuple[float, list[tuple[int, str, float, Path, Path]]]]:
-    """Find Figure 2 valley profiles, selecting uploaded minimum and maximum ctc curves."""
-
-    grouped: dict[float, dict[int, list[tuple[float, Path, Path]]]] = {}
-    for valley_path in sorted(PROCESSED_DATA_ROOT.glob("FWHM*/**/zvalley_1Darray_ctc*_*.txt")):
-        bw_mm, energy, ctc_mm = parse_zvalley_1d_path(valley_path)
-        peak_path = matching_peak_profile_path(valley_path)
-        if not peak_path.exists():
-            try:
-                display_path = peak_path.relative_to(ROOT)
-            except ValueError:
-                display_path = peak_path
-            raise FileNotFoundError(f"Missing matching peak profile for Figure 2 normalization: {display_path}")
-        grouped.setdefault(bw_mm, {}).setdefault(energy, []).append((ctc_mm, valley_path, peak_path))
+    """Return Figure 2 valley profiles for the pMBRT PDD case list."""
 
     figure_groups: list[tuple[float, list[tuple[int, str, float, Path, Path]]]] = []
-    for bw_mm in sorted(grouped):
+    for bw_label in FIGURE2_PBP_BEAM_WIDTHS:
+        bw_mm = int(bw_label) / 10.0
         selected: list[tuple[int, str, float, Path, Path]] = []
-        for energy in sorted(grouped[bw_mm]):
-            raw_profiles = grouped[bw_mm][energy]
-            deduped = {ctc: (valley_path, peak_path) for ctc, valley_path, peak_path in raw_profiles}
-            profiles = [(ctc, *paths) for ctc, paths in sorted(deduped.items(), key=lambda item: item[0])]
-            if not profiles:
-                continue
-            min_ctc, min_valley_path, min_peak_path = profiles[0]
-            selected.append((energy, "minimum ctc", min_ctc, min_valley_path, min_peak_path))
-            max_ctc, max_valley_path, max_peak_path = profiles[-1]
-            if max_ctc != min_ctc:
-                selected.append((energy, "maximum ctc", max_ctc, max_valley_path, max_peak_path))
+        for energy in PBP_FIGURE_ENERGIES:
+            for ctc_role, multiplier in PBP_CTC_CASES:
+                ctc_mm = _pbp_ctc_mm(bw_label, multiplier)
+                valley_path = _pbp_profile_path("zvalley", bw_label, energy, ctc_mm)
+                peak_path = _pbp_profile_path("zpeak", bw_label, energy, ctc_mm)
+                if not valley_path.exists():
+                    _warn_missing_pbp_profile(valley_path, figure="Figure 2")
+                    continue
+                if not peak_path.exists():
+                    try:
+                        display_path = peak_path.relative_to(ROOT)
+                    except ValueError:
+                        display_path = peak_path
+                    raise FileNotFoundError(f"Missing matching peak profile for Figure 2 normalization: {display_path}")
+                selected.append((energy, ctc_role, ctc_mm, valley_path, peak_path))
         if selected:
             figure_groups.append((bw_mm, selected))
     return figure_groups
@@ -320,7 +343,7 @@ def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
             normalized = valley_values / peak_max
             depths_mm = np.arange(valley_values.size) * DEPTH_STEP_MM
             max_depth = max(max_depth, int(depths_mm[-1]))
-            linestyle = "-" if ctc_role == "minimum ctc" else "--"
+            linestyle = "-" if ctc_role == "3 x bw" else "--"
             ax.plot(depths_mm, normalized, color=colors[energy], linestyle=linestyle)
 
         style_axes(
@@ -339,8 +362,8 @@ def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
 
     energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
     style_handles = [
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="minimum ctc"),
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="maximum ctc"),
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
+        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
     ]
     fig.legend(handles=energy_handles, title="Energy", loc="upper center", ncol=min(len(energy_handles), 4), frameon=False)
     fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
@@ -367,13 +390,6 @@ FIGURE5_CASES = [
     {"panel": "i", "energy": 175, "bw_label": "15", "bw_mm": 1.5, "ctc_mm": 6.0},
     {"panel": "l", "energy": 175, "bw_label": "15", "bw_mm": 1.5, "ctc_mm": 7.5},
 ]
-
-
-def ctc_label(ctc_mm: float) -> str:
-    """Return the legacy ctc filename label in tenths of a millimeter."""
-
-    return str(int(round(ctc_mm * 10)))
-
 
 def _first_existing(paths: list[Path], *, label: str) -> Path:
     """Return the first existing candidate path or raise a labeled error."""

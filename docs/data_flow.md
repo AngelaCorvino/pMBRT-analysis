@@ -35,7 +35,7 @@ The active proton workflow uses derived arrays and text files before plotting:
 |---|---|---|---|
 | Create multi-beam dose grid | `create_multibeams.py` | `protonsinglebeam-Dose.npy` | `ctc{label}/protonmultibeam-Dose.npy` |
 | Load profiles | `utilities/getprofile.py` and `utilities/getprofile_updated.py` | `.npy` or `.mhd` dose grid | In-memory `z_peak`, `z_valley`, masked `zxprofile`, masked `zyprofile` |
-| Select PBP or SOBP source | `utilities/getprofile_updated.py` | `monobeam=True` or `False` | PBP uses `symbeam_PBP`; SOBP uses `symbeam_SOBP` |
+| Select PBP or SOBP source | `utilities/getprofile_updated.py` | `monobeam=True` or `False` | PBP uses `PBP_paperdataset`; SOBP uses `SOBP_paperdataset` |
 | Fit single-beam FWHM | `fit_singlebeam_FWHM.py` | single-beam lateral profiles | `FWHM_singlebeam_{energy}MeV.txt` |
 | Fit multi-beam FWHM | `fit_FWHM.py` | multi-beam lateral profiles | `FWHM_1DGRID_ctc{ctc}_{energy}MeV.txt` or `FWHM_2DGRID_ctc{ctc}_{energy}MeV.txt` |
 | Compute PVDR | `inspect_PVDRvsctc_toreview.py`, `Slider_PVDR.py` | peak and valley depth profiles | PVDR arrays computed as `z_peak / z_valley` |
@@ -49,8 +49,8 @@ The first public repository exposes only manuscript Figures 1, 2, and 5.
 
 | Figure | Public processed inputs used |
 |---|---|
-| Figure 1 | PBP `zpeak_1Darray_ctc<ctc>_<energy>MeV.txt` files. Each profile is normalized by its own maximum during plotting. |
-| Figure 2 | PBP `zvalley_1Darray_ctc<ctc>_<energy>MeV.txt` files plus matching `zpeak_1Darray` files for normalization. |
+| Figure 1 | PBP `zpeak_1Darray_ctc<ctc>_<energy>MeV.txt` files for the pMBRT PDD cases at 50, 125, 175, and 230 MeV with `ctc = 3 x bw` and `ctc = 5 x bw`. Each profile is normalized by its own maximum during plotting. |
+| Figure 2 | PBP `zvalley_1Darray_ctc<ctc>_<energy>MeV.txt` files for the same pMBRT PDD ctc convention plus matching `zpeak_1Darray` files for normalization. |
 | Figure 5 | SOBP peak, valley, and PVDR text profiles for the panel cases listed in `data/data_dictionary.md`. The peak and valley profiles are expected to be final processed profiles scaled consistently with the manuscript normalization. |
 
 No public CSV figure-source layer is generated or published. Public plotting code reads processed `.txt` files directly.
@@ -71,6 +71,8 @@ Figure 5 requires, for each listed SOBP panel case:
 - `data/processed_data/SOBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt`
 - `data/processed_data/SOBP_dataset/FWHM*/<energy>MeV/zvalley_1Darray_ctc<ctc>_<energy>MeV.txt`
 - `data/processed_data/SOBP_dataset/FWHM*/<energy>MeV/PVDR_1Darray_ctc<ctc>_<energy>MeV.txt`
+
+The downloadable release checklist is `docs/release_data_manifest.csv`. Missing processed exports, if any, are listed in `docs/missing_release_data_files.csv`.
 
 ## 5. Excluded Files and Rationale
 

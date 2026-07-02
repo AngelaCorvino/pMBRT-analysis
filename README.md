@@ -10,11 +10,16 @@ This repository contains analysis scripts for post-processing and figure generat
 
 The public data are curated processed `.txt` profiles under `data/processed_data/`. For Figures 1 and 2, the scripts read PBP 1D MB array profiles under `PBP_dataset/`. For Figure 5, the script reads SOBP 1D MB array profiles under `SOBP_dataset/`.
 
-MC Raw data are not copied into this public repository. The reconstructed data flow is documented in `docs/data_flow.md`.
+MC raw data are not copied into this public repository. The reconstructed data flow is documented in `docs/data_flow.md`.
+
+The release data checklist is available as CSV files:
+
+- `docs/release_data_manifest.csv`: all processed data files expected by the public Figure 1, 2, and 5 scripts.
+- `docs/missing_release_data_files.csv`: currently missing processed exports, if any.
 
 ## Repository Contents
 
-- `data/processed_data/`: curated processed `.txt` profiles used by the public plotting scripts; these are not raw Monte Carlo dose volumes.
+- `data/processed_data/`: curated processed `.txt` profiles used by the public plotting scripts.
 - `src/plotting.py`: plotting and processed-text loading utilities used by the public figure scripts.
 - `scripts/`: public figure-generation entry points for Figures 1, 2, and 5.
 - `figures/generated/`: output folder for generated figures.
@@ -47,12 +52,12 @@ Citation metadata is provided in `CITATION.cff`. The Zenodo DOI is currently a p
 
 ## License
 
-A final license has not been selected yet. `LICENSE` is currently a placeholder and must be replaced with the chosen license text before publication.
+This repository is licensed under the MIT License. See `LICENSE` for details.
 
 ## Manual Checks Before Public Release
 
 - Confirm the included processed `.txt` files are intended for public release.
+- Confirm `docs/missing_release_data_files.csv` is empty, or document any intentional omissions in the release notes.
 - Replace the Zenodo DOI and release date placeholders in `CITATION.cff`.
-- Choose and add a final license.
 - Confirm no local paths, private comments, institutional/patient-related data, or large raw dose arrays are included.
 - Confirm the public figure-generation commands create the expected manuscript figures.
