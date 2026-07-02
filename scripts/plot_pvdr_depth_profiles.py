@@ -18,6 +18,8 @@ from plotting import plot_pvdr_vs_depth
 
 
 def main() -> None:
+    """Generate the PVDR depth-profile figure and print the output path."""
+
     output = plot_pvdr_vs_depth()
     print(f"Wrote {output}")
 

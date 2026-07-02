@@ -131,6 +131,8 @@ def find_pvdr_profile_groups(*, energy: int) -> list[tuple[float, list[Path]]]:
 
 
 def _plot_pvdr_group(ax, paths: list[Path]) -> tuple[int, float, list[Line2D]]:
+    """Plot one beam-width group and return axis bounds plus legend handles."""
+
     max_depth = 0
     finite_positive_max = 1.0
     ctc_handles = []
