@@ -25,12 +25,12 @@ jobs:
           name: Compile Python sources
           command: |
             . .venv/bin/activate
-            python -m compileall src scripts ci
+            python -m compileall src scripts .circleci
       - run:
           name: Check docstrings
           command: |
             . .venv/bin/activate
-            python ci/check_docstrings.py
+            python .circleci/check_docstrings.py
       - run:
           name: Generate public figures
           command: |
