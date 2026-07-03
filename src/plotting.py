@@ -20,7 +20,7 @@ PBP_CTC_CASES = (("3 x bw", 3), ("5 x bw", 5))
 FIGURE1_PBP_BEAM_WIDTHS = ("5", "10", "12", "15", "20")
 FIGURE2_PBP_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
 PBP_BRAGG_PEAK_INDEX = {50: 21, 125: 112, 175: 203, 230: 325}
-FIGURE_S5_ENERGY_COLORS = {
+PBP_ENERGY_COLORS = {
     50: "#9DD4E8",
     125: "#00A51A",
     175: "#FF1F2D",
@@ -139,12 +139,6 @@ def set_publication_style() -> None:
     )
 
 
-def paired_color(index: int):
-    """Return a color from Matplotlib's Paired palette."""
-
-    return plt.get_cmap("Paired")(index % 12)
-
-
 def style_axes(ax, *, xlabel: str, ylabel: str, title: str | None = None, grid_axis: str = "both") -> None:
     """Apply clean axis styling without changing plotted values."""
 
@@ -251,7 +245,7 @@ def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
         raise FileNotFoundError("No zpeak_1Darray_ctc*_*.txt files found under data/processed_data")
 
     energies = sorted({energy for _, profiles in groups for energy, _, _, _ in profiles})
-    colors = {energy: paired_color(index) for index, energy in enumerate(energies)}
+    colors = {energy: PBP_ENERGY_COLORS[energy] for energy in energies}
 
     n_rows, n_cols = _panel_grid(len(groups))
     fig, axes_array = plt.subplots(
@@ -296,10 +290,16 @@ def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
         Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
         Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
     ]
-    fig.legend(handles=energy_handles, title="Energy", loc="upper center", ncol=min(len(energy_handles), 4), frameon=False)
+    fig.legend(
+        handles=energy_handles,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.955),
+        ncol=min(len(energy_handles), 4),
+        frameon=False,
+    )
     fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
-    fig.suptitle("Peak depth-dose profiles for the MB configuration", y=0.995)
-    fig.tight_layout(rect=(0, 0.08, 1, 0.90))
+    fig.suptitle("Peak depth-dose profiles for the MB configuration", y=0.99)
+    fig.tight_layout(rect=(0, 0.08, 1, 0.87))
 
     output = output or output_path("fig1_peak_depth_profiles.png")
     fig.savefig(output, bbox_inches="tight")
@@ -363,7 +363,7 @@ def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
         raise FileNotFoundError("No zvalley_1Darray_ctc*_*.txt files found under data/processed_data")
 
     energies = sorted({energy for _, profiles in groups for energy, _, _, _, _ in profiles})
-    colors = {energy: paired_color(index) for index, energy in enumerate(energies)}
+    colors = {energy: PBP_ENERGY_COLORS[energy] for energy in energies}
 
     n_rows, n_cols = _panel_grid(len(groups))
     fig, axes_array = plt.subplots(
@@ -409,10 +409,16 @@ def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
         Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
         Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
     ]
-    fig.legend(handles=energy_handles, title="Energy", loc="upper center", ncol=min(len(energy_handles), 4), frameon=False)
+    fig.legend(
+        handles=energy_handles,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.955),
+        ncol=min(len(energy_handles), 4),
+        frameon=False,
+    )
     fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
-    fig.suptitle("Valley depth-dose profiles for the MB configuration", y=0.995)
-    fig.tight_layout(rect=(0, 0.08, 1, 0.90))
+    fig.suptitle("Valley depth-dose profiles for the MB configuration", y=0.99)
+    fig.tight_layout(rect=(0, 0.08, 1, 0.87))
 
     output = output or output_path("fig2_valley_depth_profiles.png")
     fig.savefig(output, bbox_inches="tight")
@@ -452,7 +458,7 @@ def plot_figure_s5_pvdr_depth_profiles(*, output: Path | None = None) -> Path:
             pvdr = np.where(values[:stop] > 0, values[:stop], np.nan)
             depths_mm = np.arange(stop) * DEPTH_STEP_MM
             linestyle = "-" if role == "min" else "--"
-            color = FIGURE_S5_ENERGY_COLORS[energy]
+            color = PBP_ENERGY_COLORS[energy]
             label = f"{ctc_mm:g} mm"
             ax.plot(depths_mm, pvdr, color=color, linestyle=linestyle)
             line_handles.append(
@@ -474,7 +480,7 @@ def plot_figure_s5_pvdr_depth_profiles(*, output: Path | None = None) -> Path:
 
     energy_handles = [
         Line2D([0], [0], marker="s", linestyle="None", color=color, markersize=10, label=f"{energy} MeV")
-        for energy, color in FIGURE_S5_ENERGY_COLORS.items()
+        for energy, color in PBP_ENERGY_COLORS.items()
     ]
     fig.legend(handles=energy_handles, loc="lower center", ncol=4, frameon=False)
     fig.tight_layout(rect=(0, 0.055, 1, 1))

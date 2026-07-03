@@ -16,6 +16,8 @@ os.environ.setdefault("MPLCONFIGDIR", str(MPLCONFIGDIR))
 sys.path.insert(0, str(ROOT / "src"))
 
 from plotting import (  # noqa: E402
+    PBP_ENERGY_COLORS,
+    PBP_FIGURE_ENERGIES,
     find_figure1_peak_profiles,
     find_figure2_valley_profiles,
     find_figure_s5_pvdr_profiles,
@@ -46,6 +48,12 @@ FORBIDDEN_TRACKED_SUFFIXES = (
     ".raw",
     ".root",
 )
+EXPECTED_ENERGY_COLORS = {
+    50: "#9DD4E8",
+    125: "#00A51A",
+    175: "#FF1F2D",
+    230: "#FF8C00",
+}
 
 
 def display(path: Path) -> str:
@@ -87,6 +95,15 @@ def check_tracked_file_scope(errors: list[str]) -> None:
             errors.append(f"Private-local path is tracked: {path}")
         if path.lower().endswith(FORBIDDEN_TRACKED_SUFFIXES):
             errors.append(f"Raw or volume data file is tracked: {path}")
+
+
+def check_energy_color_mapping(errors: list[str]) -> None:
+    """Check that all public figures use the fixed energy color convention."""
+
+    if PBP_ENERGY_COLORS != EXPECTED_ENERGY_COLORS:
+        errors.append(f"Unexpected energy color mapping: {PBP_ENERGY_COLORS}")
+    if tuple(PBP_ENERGY_COLORS) != PBP_FIGURE_ENERGIES:
+        errors.append(f"Energy color order does not match public figure energies: {tuple(PBP_ENERGY_COLORS)}")
 
 
 def check_numeric_profile(path: Path, errors: list[str]) -> None:
@@ -159,6 +176,7 @@ def main() -> None:
     errors: list[str] = []
     check_required_public_files(errors)
     check_tracked_file_scope(errors)
+    check_energy_color_mapping(errors)
     check_figure1_inputs(errors)
     check_figure2_inputs(errors)
     check_figure_s5_inputs(errors)

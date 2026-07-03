@@ -23,6 +23,8 @@ The public Figure 1 and Figure 2 scripts follow the pMBRT `plot_PDD_MB.py` case 
 - energies: 50, 125, 175, and 230 MeV
 - ctc values: `3 x bw` and `5 x bw`
 
+All public figure scripts use the same energy color convention: 50 MeV is light blue, 125 MeV is green, 175 MeV is red, and 230 MeV is orange.
+
 Figure 1 uses peak PDD cases for `FWHM5`, `FWHM10`, `FWHM12`, `FWHM15`, and `FWHM20`.
 
 Figure 2 uses valley PDD cases for `FWHM5`, `FWHM7`, `FWHM10`, `FWHM12`, `FWHM15`, and `FWHM20`, plus matching peak profiles for normalization.
