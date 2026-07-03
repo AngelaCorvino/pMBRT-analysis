@@ -1,0 +1,47 @@
+version: 2.1
+
+jobs:
+  validate:
+    docker:
+      - image: cimg/python:3.12
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-pip-{{ checksum "requirements.txt" }}
+            - v1-pip-
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv .venv
+            . .venv/bin/activate
+            python -m pip install --upgrade pip
+            python -m pip install -r requirements.txt
+      - save_cache:
+          key: v1-pip-{{ checksum "requirements.txt" }}
+          paths:
+            - ~/.cache/pip
+      - run:
+          name: Compile Python sources
+          command: |
+            . .venv/bin/activate
+            python -m compileall src scripts
+      - run:
+          name: Check docstrings
+          command: |
+            . .venv/bin/activate
+            python scripts/check_docstrings.py
+      - run:
+          name: Generate public figures
+          command: |
+            . .venv/bin/activate
+            mkdir -p figures/generated/.mplconfig
+            export MPLCONFIGDIR=figures/generated/.mplconfig
+            python scripts/plot_figure1_peak_depth_profiles.py
+            python scripts/plot_figure2_valley_depth_profiles.py
+            python scripts/plot_figure5_sobp_depth_profiles.py
+
+workflows:
+  validate:
+    jobs:
+      - validate
