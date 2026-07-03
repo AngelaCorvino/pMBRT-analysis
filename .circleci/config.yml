@@ -32,6 +32,11 @@ jobs:
             . .venv/bin/activate
             python .circleci/check_docstrings.py
       - run:
+          name: Check release inputs
+          command: |
+            . .venv/bin/activate
+            python .circleci/check_release_inputs.py
+      - run:
           name: Generate public figures
           command: |
             . .venv/bin/activate
