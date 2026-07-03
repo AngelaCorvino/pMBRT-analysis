@@ -12,6 +12,10 @@ For Figure 2, the required files are valley depth-dose profiles and matching pea
 
 `PBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt`
 
+For Supplementary Figure S5, the required files are processed PVDR profiles for the PBP 1D MB array geometry:
+
+`PBP_dataset/FWHM*/<energy>MeV/PVDR_1Darray_ctc<ctc>_<energy>MeV.txt`
+
 Each profile file stores one numeric value per line.
 
 These files are not raw Monte Carlo dose volumes.

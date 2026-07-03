@@ -19,6 +19,57 @@ PBP_FIGURE_ENERGIES = (50, 125, 175, 230)
 PBP_CTC_CASES = (("3 x bw", 3), ("5 x bw", 5))
 FIGURE1_PBP_BEAM_WIDTHS = ("5", "10", "12", "15", "20")
 FIGURE2_PBP_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
+PBP_BRAGG_PEAK_INDEX = {50: 21, 125: 112, 175: 203, 230: 325}
+FIGURE_S5_ENERGY_COLORS = {
+    50: "#9DD4E8",
+    125: "#00A51A",
+    175: "#FF1F2D",
+    230: "#FF8C00",
+}
+FIGURE_S5_PVDR_CASES = [
+    {
+        "panel": "a",
+        "bw_label": "5",
+        "bw_mm": 0.5,
+        "xmax": 120,
+        "profiles": [(50, (1.5, 2.0))],
+    },
+    {
+        "panel": "b",
+        "bw_label": "12",
+        "bw_mm": 1.2,
+        "xmax": 210,
+        "profiles": [(125, (4.8, 6.0)), (175, (4.8, 6.0))],
+    },
+    {
+        "panel": "c",
+        "bw_label": "7",
+        "bw_mm": 0.7,
+        "xmax": 120,
+        "profiles": [(50, (2.1, 2.8)), (125, (2.8, 3.5))],
+    },
+    {
+        "panel": "d",
+        "bw_label": "15",
+        "bw_mm": 1.5,
+        "xmax": 330,
+        "profiles": [(175, (6.0, 7.5)), (230, (6.0, 7.5))],
+    },
+    {
+        "panel": "e",
+        "bw_label": "10",
+        "bw_mm": 1.0,
+        "xmax": 210,
+        "profiles": [(125, (4.0, 5.0)), (175, (4.0, 5.0))],
+    },
+    {
+        "panel": "f",
+        "bw_label": "20",
+        "bw_mm": 2.0,
+        "xmax": 330,
+        "profiles": [(230, (8.0, 10.0))],
+    },
+]
 
 
 def ctc_label(ctc_mm: float) -> str:
@@ -143,6 +194,14 @@ def _pbp_profile_path(profile_name: str, bw_label: str, energy: int, ctc_mm: flo
 
     ctc = ctc_label(ctc_mm)
     filename = f"{profile_name}_1Darray_ctc{ctc}_{energy}MeV.txt"
+    return PROCESSED_DATA_ROOT / f"FWHM{bw_label}" / f"{energy}MeV" / filename
+
+
+def _pbp_pvdr_profile_path(bw_label: str, energy: int, ctc_mm: float) -> Path:
+    """Return the processed PBP PVDR profile path for one pMBRT case."""
+
+    ctc = ctc_label(ctc_mm)
+    filename = f"PVDR_1Darray_ctc{ctc}_{energy}MeV.txt"
     return PROCESSED_DATA_ROOT / f"FWHM{bw_label}" / f"{energy}MeV" / filename
 
 
@@ -356,6 +415,71 @@ def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
     fig.tight_layout(rect=(0, 0.08, 1, 0.90))
 
     output = output or output_path("fig2_valley_depth_profiles.png")
+    fig.savefig(output, bbox_inches="tight")
+    plt.close(fig)
+    return output
+
+
+def find_figure_s5_pvdr_profiles() -> list[tuple[dict[str, object], list[tuple[int, str, float, Path]]]]:
+    """Return Supplementary Figure S5 PVDR profiles for the public case list."""
+
+    figure_panels: list[tuple[dict[str, object], list[tuple[int, str, float, Path]]]] = []
+    for panel in FIGURE_S5_PVDR_CASES:
+        selected: list[tuple[int, str, float, Path]] = []
+        for energy, ctc_values in panel["profiles"]:
+            for role, ctc_mm in zip(("min", "max"), ctc_values):
+                path = _pbp_pvdr_profile_path(str(panel["bw_label"]), int(energy), float(ctc_mm))
+                require_existing(path)
+                selected.append((int(energy), role, float(ctc_mm), path))
+        figure_panels.append((panel, selected))
+    return figure_panels
+
+
+def plot_figure_s5_pvdr_depth_profiles(*, output: Path | None = None) -> Path:
+    """Plot Supplementary Figure S5 PVDR depth profiles for the 1D MB geometry."""
+
+    set_publication_style()
+    panels = find_figure_s5_pvdr_profiles()
+
+    fig, axes_array = plt.subplots(3, 2, figsize=(11.0, 11.8), sharey=True, squeeze=False)
+    axes = list(axes_array.ravel())
+
+    for ax, (panel, profiles) in zip(axes, panels):
+        line_handles: list[Line2D] = []
+        for energy, role, ctc_mm, path in profiles:
+            values = np.asarray(read_numeric_series(path), dtype=float)
+            stop = min(values.size, PBP_BRAGG_PEAK_INDEX[energy] + 5)
+            pvdr = np.where(values[:stop] > 0, values[:stop], np.nan)
+            depths_mm = np.arange(stop) * DEPTH_STEP_MM
+            linestyle = "-" if role == "min" else "--"
+            color = FIGURE_S5_ENERGY_COLORS[energy]
+            label = f"{ctc_mm:g} mm"
+            ax.plot(depths_mm, pvdr, color=color, linestyle=linestyle)
+            line_handles.append(
+                Line2D([0], [0], color=color, linestyle=linestyle, linewidth=2.0, label=label)
+            )
+
+        ax.set_yscale("log")
+        ax.set_ylim(0.75, 2000)
+        ax.set_xlim(0, int(panel["xmax"]))
+        style_axes(
+            ax,
+            xlabel="z [mm]" if str(panel["panel"]) in {"e", "f"} else "",
+            ylabel="PVDR",
+            title=f"FWHM = {panel['bw_mm']:g} mm",
+            grid_axis="y",
+        )
+        ax.text(-0.10, 1.04, str(panel["panel"]), transform=ax.transAxes, fontsize=16, fontweight="bold")
+        ax.legend(handles=line_handles, title="ctc", loc="upper right", frameon=False, handlelength=2.4)
+
+    energy_handles = [
+        Line2D([0], [0], marker="s", linestyle="None", color=color, markersize=10, label=f"{energy} MeV")
+        for energy, color in FIGURE_S5_ENERGY_COLORS.items()
+    ]
+    fig.legend(handles=energy_handles, loc="lower center", ncol=4, frameon=False)
+    fig.tight_layout(rect=(0, 0.055, 1, 1))
+
+    output = output or output_path("figS5_pvdr_depth_profiles.png")
     fig.savefig(output, bbox_inches="tight")
     plt.close(fig)
     return output

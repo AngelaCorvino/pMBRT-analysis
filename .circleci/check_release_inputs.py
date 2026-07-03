@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from plotting import (  # noqa: E402
     find_figure1_peak_profiles,
     find_figure2_valley_profiles,
+    find_figure_s5_pvdr_profiles,
     read_numeric_series,
 )
 
@@ -30,6 +31,7 @@ REQUIRED_PUBLIC_FILES = (
     "src/plotting.py",
     "scripts/plot_figure1_peak_depth_profiles.py",
     "scripts/plot_figure2_valley_depth_profiles.py",
+    "scripts/plot_figure_s5_pvdr_depth_profiles.py",
     "data/data_dictionary.md",
     "data/processed_data/README.md",
 )
@@ -131,6 +133,26 @@ def check_figure2_inputs(errors: list[str]) -> None:
             check_numeric_profile(peak_path, errors)
 
 
+def check_figure_s5_inputs(errors: list[str]) -> None:
+    """Check that Supplementary Figure S5 PVDR profiles are available."""
+
+    try:
+        panels = find_figure_s5_pvdr_profiles()
+    except Exception as exc:  # noqa: BLE001
+        errors.append(f"Supplementary Figure S5 input discovery failed: {exc}")
+        return
+
+    profile_count = sum(len(profiles) for _, profiles in panels)
+    if len(panels) != 6 or profile_count != 20:
+        errors.append(
+            f"Supplementary Figure S5 expected 6 panels and 20 profiles, "
+            f"found {len(panels)} panels and {profile_count} profiles"
+        )
+    for _, profiles in panels:
+        for _, _, _, path in profiles:
+            check_numeric_profile(path, errors)
+
+
 def main() -> None:
     """Run the release input checks."""
 
@@ -139,6 +161,7 @@ def main() -> None:
     check_tracked_file_scope(errors)
     check_figure1_inputs(errors)
     check_figure2_inputs(errors)
+    check_figure_s5_inputs(errors)
 
     if errors:
         print("Release input check failed:")
