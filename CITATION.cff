@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this curated analysis repository, please cite the associated manuscript."
-title: "pMBRT analysis: processed-profile plotting scripts"
+title: "pMBRT Monte Carlo analysis code and processed data"
 authors:
   - family-names: "Corvino"
     given-names: "Angela"
