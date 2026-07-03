@@ -5,6 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 import math
 import re
+import sys
 
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
@@ -15,10 +16,10 @@ ROOT = Path(__file__).resolve().parents[1]
 PROCESSED_DATA_ROOT = ROOT / "data" / "processed_data" / "PBP_dataset"
 
 DEPTH_STEP_MM = 1
-PBP_FIGURE_ENERGIES = (50, 125, 175, 230)
+PBP_ENERGIES = (50, 125, 175, 230)
 PBP_CTC_CASES = (("3 x bw", 3), ("5 x bw", 5))
-FIGURE1_PBP_BEAM_WIDTHS = ("5", "10", "12", "15", "20")
-FIGURE2_PBP_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
+PBP_PDD_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
+PBP_PVDR_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
 PBP_BRAGG_PEAK_INDEX = {50: 21, 125: 112, 175: 203, 230: 325}
 PBP_ENERGY_COLORS = {
     50: "#9DD4E8",
@@ -26,7 +27,7 @@ PBP_ENERGY_COLORS = {
     175: "#FF1F2D",
     230: "#FF8C00",
 }
-FIGURE_S5_PVDR_CASES = [
+PBP_PVDR_CASES = [
     {
         "panel": "a",
         "bw_label": "5",
@@ -99,6 +100,19 @@ def require_existing(path: str | Path) -> Path:
     return data_path
 
 
+def report_missing_data(missing_paths: list[Path], *, analysis_name: str) -> None:
+    """Print a concise message for processed data that are not public."""
+
+    if not missing_paths:
+        return
+
+    print(
+        f"{analysis_name}: {len(missing_paths)} processed data file(s) are not included in this public repository. "
+        "Please contact the authors if you need those data.",
+        file=sys.stderr,
+    )
+
+
 def read_numeric_series(path: str | Path) -> list[float]:
     """Read a one-value-per-line processed text profile."""
 
@@ -115,7 +129,7 @@ def read_numeric_series(path: str | Path) -> list[float]:
 
 
 def set_publication_style() -> None:
-    """Apply the shared figure style."""
+    """Apply the shared plotting style."""
 
     plt.rcParams.update(
         {
@@ -159,6 +173,62 @@ def parse_beam_width(path: Path) -> float:
     if not match:
         raise ValueError(f"Unexpected beam-width folder: {path.name}")
     return int(match.group(1)) / 10.0
+
+
+def beam_width_to_label(beam_width: str | float | int) -> str:
+    """Return a FWHM folder label from a beam width in millimeters or tenths."""
+
+    raw_value = str(beam_width).strip().lower()
+    for token in ("fwhm", "bw", "mm"):
+        raw_value = raw_value.replace(token, "")
+    raw_value = raw_value.strip()
+    if not raw_value:
+        raise ValueError("Beam width is empty")
+
+    try:
+        numeric_value = float(raw_value)
+    except ValueError as exc:
+        raise ValueError(f"Could not parse beam width: {beam_width}") from exc
+
+    if numeric_value <= 0:
+        raise ValueError(f"Beam width must be positive: {beam_width}")
+    if numeric_value > 3:
+        return str(int(round(numeric_value)))
+    return str(int(round(numeric_value * 10)))
+
+
+def beam_width_mm_from_label(bw_label: str) -> float:
+    """Return the beam width in millimeters from a FWHM folder label."""
+
+    return int(bw_label) / 10.0
+
+
+def format_beam_widths(bw_labels: tuple[str, ...]) -> str:
+    """Return a readable list of available beam widths."""
+
+    return ", ".join(f"{beam_width_mm_from_label(label):g}" for label in bw_labels)
+
+
+def select_beam_width_labels(
+    available_labels: tuple[str, ...],
+    beam_width: str | float | int | None,
+) -> tuple[str, ...]:
+    """Return all available beam-width labels or the requested single label."""
+
+    if beam_width is None:
+        return available_labels
+
+    selected_label = beam_width_to_label(beam_width)
+    if selected_label not in available_labels:
+        choices = format_beam_widths(available_labels)
+        raise ValueError(f"Beam width {beam_width} is not available. Choose one of: {choices} mm")
+    return (selected_label,)
+
+
+def beam_width_output_token(bw_mm: float) -> str:
+    """Return a filename-safe beam-width token."""
+
+    return f"bw{bw_mm:g}mm".replace(".", "p")
 
 
 def parse_zpeak_1d_path(path: Path) -> tuple[float, int, float]:
@@ -210,22 +280,28 @@ def _dedupe_profiles_by_ctc(profiles: list[tuple[float, Path]]) -> list[tuple[fl
     return sorted(deduped.items(), key=lambda item: item[0])
 
 
-def find_figure1_peak_profiles() -> list[tuple[float, list[tuple[int, str, float, Path]]]]:
-    """Return Figure 1 peak profiles for the pMBRT PDD case list."""
+def find_peak_pdd_profiles(
+    *,
+    beam_width: str | float | int | None = None,
+    missing: list[Path] | None = None,
+) -> list[tuple[float, list[tuple[int, str, float, Path]]]]:
+    """Return peak PDD profiles for all or one public beam width."""
 
-    figure_groups: list[tuple[float, list[tuple[int, str, float, Path]]]] = []
-    for bw_label in FIGURE1_PBP_BEAM_WIDTHS:
-        bw_mm = int(bw_label) / 10.0
+    profile_groups: list[tuple[float, list[tuple[int, str, float, Path]]]] = []
+    for bw_label in select_beam_width_labels(PBP_PDD_BEAM_WIDTHS, beam_width):
+        bw_mm = beam_width_mm_from_label(bw_label)
         selected: list[tuple[int, str, float, Path]] = []
-        for energy in PBP_FIGURE_ENERGIES:
+        for energy in PBP_ENERGIES:
             for ctc_role, multiplier in PBP_CTC_CASES:
                 ctc_mm = _pbp_ctc_mm(bw_label, multiplier)
                 path = _pbp_profile_path("zpeak", bw_label, energy, ctc_mm)
-                require_existing(path)
-                selected.append((energy, ctc_role, ctc_mm, path))
+                if path.exists():
+                    selected.append((energy, ctc_role, ctc_mm, path))
+                elif missing is not None:
+                    missing.append(path)
         if selected:
-            figure_groups.append((bw_mm, selected))
-    return figure_groups
+            profile_groups.append((bw_mm, selected))
+    return profile_groups
 
 
 def _panel_grid(n_panels: int) -> tuple[int, int]:
@@ -236,29 +312,44 @@ def _panel_grid(n_panels: int) -> tuple[int, int]:
     return math.ceil(n_panels / 2), 2
 
 
-def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
-    """Plot Figure 1 peak depth-dose profiles for the 1D MB geometry."""
+def plot_peak_pdd_profiles(
+    *,
+    beam_width: str | float | int | None = None,
+    output: Path | None = None,
+) -> Path:
+    """Plot peak PDD profiles for the 1D MB geometry."""
 
     set_publication_style()
-    groups = find_figure1_peak_profiles()
+    missing: list[Path] = []
+    groups = find_peak_pdd_profiles(beam_width=beam_width, missing=missing)
+    report_missing_data(missing, analysis_name="Peak PDD")
     if not groups:
-        raise FileNotFoundError("No zpeak_1Darray_ctc*_*.txt files found under data/processed_data")
+        raise FileNotFoundError(
+            "No processed peak PDD data are available for the requested beam width. "
+            "Please contact the authors for the corresponding data."
+        )
 
     energies = sorted({energy for _, profiles in groups for energy, _, _, _ in profiles})
     colors = {energy: PBP_ENERGY_COLORS[energy] for energy in energies}
+    single_panel = beam_width is not None
 
-    n_rows, n_cols = _panel_grid(len(groups))
-    fig, axes_array = plt.subplots(
-        n_rows,
-        n_cols,
-        figsize=(5.1 * n_cols, 3.65 * n_rows),
-        sharex=True,
-        sharey=True,
-        squeeze=False,
-    )
-    axes = list(axes_array.ravel())
+    if single_panel:
+        fig, ax = plt.subplots(figsize=(9.0, 6.0))
+        axes = [ax]
+    else:
+        n_rows, n_cols = _panel_grid(len(groups))
+        fig, axes_array = plt.subplots(
+            n_rows,
+            n_cols,
+            figsize=(5.1 * n_cols, 3.65 * n_rows),
+            sharex=True,
+            sharey=True,
+            squeeze=False,
+        )
+        axes = list(axes_array.ravel())
 
     max_depth = 0
+    line_handles: list[Line2D] = []
     for ax, (bw_mm, profiles) in zip(axes, groups):
         for energy, ctc_role, ctc_mm, path in profiles:
             values = np.asarray(read_numeric_series(path), dtype=float)
@@ -270,38 +361,58 @@ def plot_figure1_peak_depth_profiles(*, output: Path | None = None) -> Path:
             max_depth = max(max_depth, int(depths_mm[-1]))
             linestyle = "-" if ctc_role == "3 x bw" else "--"
             ax.plot(depths_mm, normalized, color=colors[energy], linestyle=linestyle)
+            if single_panel:
+                line_handles.append(
+                    Line2D(
+                        [0],
+                        [0],
+                        color=colors[energy],
+                        linestyle=linestyle,
+                        linewidth=2.0,
+                        label=f"{energy} MeV, ctc {ctc_mm:g} mm",
+                    )
+                )
 
         style_axes(
             ax,
-            xlabel="Depth z [mm]",
+            xlabel="z [mm]" if single_panel else "Depth z [mm]",
             ylabel="Normalized peak dose",
-            title=f"bw = {bw_mm:g} mm",
+            title=f"FWHM = {bw_mm:g} mm" if single_panel else f"bw = {bw_mm:g} mm",
             grid_axis="y",
         )
         ax.set_ylim(0, 1.05)
 
-    for ax in axes[len(groups):]:
-        ax.set_visible(False)
+    if not single_panel:
+        for ax in axes[len(groups):]:
+            ax.set_visible(False)
     for ax in axes[: len(groups)]:
         ax.set_xlim(left=0, right=max_depth)
 
-    energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
-    style_handles = [
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
-    ]
-    fig.legend(
-        handles=energy_handles,
-        loc="upper center",
-        bbox_to_anchor=(0.5, 0.955),
-        ncol=min(len(energy_handles), 4),
-        frameon=False,
-    )
-    fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
-    fig.suptitle("Peak depth-dose profiles for the MB configuration", y=0.99)
-    fig.tight_layout(rect=(0, 0.08, 1, 0.87))
+    if single_panel:
+        axes[0].legend(handles=line_handles, loc="upper right", frameon=True, fontsize=11, title="Energy, ctc")
+        fig.tight_layout()
+    else:
+        energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
+        style_handles = [
+            Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
+            Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
+        ]
+        fig.legend(
+            handles=energy_handles,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 0.955),
+            ncol=min(len(energy_handles), 4),
+            frameon=False,
+        )
+        fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
+        fig.suptitle("Peak PDD profiles for the MB configuration", y=0.99)
+        fig.tight_layout(rect=(0, 0.08, 1, 0.87))
 
-    output = output or output_path("fig1_peak_depth_profiles.png")
+    if output is None:
+        filename = "peak_pdd_profiles.png"
+        if single_panel:
+            filename = f"peak_pdd_profiles_{beam_width_output_token(groups[0][0])}.png"
+        output = output_path(filename)
     fig.savefig(output, bbox_inches="tight")
     plt.close(fig)
     return output
@@ -324,59 +435,77 @@ def parse_zvalley_1d_path(path: Path) -> tuple[float, int, float]:
 
 
 def matching_peak_profile_path(valley_path: Path) -> Path:
-    """Return the peak-profile path used to normalize a Figure 2 valley profile."""
+    """Return the peak-profile path used to normalize a valley PDD profile."""
 
     return valley_path.with_name(valley_path.name.replace("zvalley_", "zpeak_", 1))
 
 
-def find_figure2_valley_profiles() -> list[tuple[float, list[tuple[int, str, float, Path, Path]]]]:
-    """Return Figure 2 valley profiles for the pMBRT PDD case list."""
+def find_valley_pdd_profiles(
+    *,
+    beam_width: str | float | int | None = None,
+    missing: list[Path] | None = None,
+) -> list[tuple[float, list[tuple[int, str, float, Path, Path]]]]:
+    """Return valley PDD profiles for all or one public beam width."""
 
-    figure_groups: list[tuple[float, list[tuple[int, str, float, Path, Path]]]] = []
-    for bw_label in FIGURE2_PBP_BEAM_WIDTHS:
-        bw_mm = int(bw_label) / 10.0
+    profile_groups: list[tuple[float, list[tuple[int, str, float, Path, Path]]]] = []
+    for bw_label in select_beam_width_labels(PBP_PDD_BEAM_WIDTHS, beam_width):
+        bw_mm = beam_width_mm_from_label(bw_label)
         selected: list[tuple[int, str, float, Path, Path]] = []
-        for energy in PBP_FIGURE_ENERGIES:
+        for energy in PBP_ENERGIES:
             for ctc_role, multiplier in PBP_CTC_CASES:
                 ctc_mm = _pbp_ctc_mm(bw_label, multiplier)
                 valley_path = _pbp_profile_path("zvalley", bw_label, energy, ctc_mm)
                 peak_path = _pbp_profile_path("zpeak", bw_label, energy, ctc_mm)
-                require_existing(valley_path)
-                if not peak_path.exists():
-                    try:
-                        display_path = peak_path.relative_to(ROOT)
-                    except ValueError:
-                        display_path = peak_path
-                    raise FileNotFoundError(f"Missing matching peak profile for Figure 2 normalization: {display_path}")
-                selected.append((energy, ctc_role, ctc_mm, valley_path, peak_path))
+                if valley_path.exists() and peak_path.exists():
+                    selected.append((energy, ctc_role, ctc_mm, valley_path, peak_path))
+                elif missing is not None:
+                    if not valley_path.exists():
+                        missing.append(valley_path)
+                    if not peak_path.exists():
+                        missing.append(peak_path)
         if selected:
-            figure_groups.append((bw_mm, selected))
-    return figure_groups
+            profile_groups.append((bw_mm, selected))
+    return profile_groups
 
 
-def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
-    """Plot Figure 2 valley depth-dose profiles for the 1D MB geometry."""
+def plot_valley_pdd_profiles(
+    *,
+    beam_width: str | float | int | None = None,
+    output: Path | None = None,
+) -> Path:
+    """Plot valley PDD profiles for the 1D MB geometry."""
 
     set_publication_style()
-    groups = find_figure2_valley_profiles()
+    missing: list[Path] = []
+    groups = find_valley_pdd_profiles(beam_width=beam_width, missing=missing)
+    report_missing_data(missing, analysis_name="Valley PDD")
     if not groups:
-        raise FileNotFoundError("No zvalley_1Darray_ctc*_*.txt files found under data/processed_data")
+        raise FileNotFoundError(
+            "No processed valley PDD data are available for the requested beam width. "
+            "Please contact the authors for the corresponding data."
+        )
 
     energies = sorted({energy for _, profiles in groups for energy, _, _, _, _ in profiles})
     colors = {energy: PBP_ENERGY_COLORS[energy] for energy in energies}
+    single_panel = beam_width is not None
 
-    n_rows, n_cols = _panel_grid(len(groups))
-    fig, axes_array = plt.subplots(
-        n_rows,
-        n_cols,
-        figsize=(5.1 * n_cols, 3.65 * n_rows),
-        sharex=True,
-        sharey=True,
-        squeeze=False,
-    )
-    axes = list(axes_array.ravel())
+    if single_panel:
+        fig, ax = plt.subplots(figsize=(9.0, 6.0))
+        axes = [ax]
+    else:
+        n_rows, n_cols = _panel_grid(len(groups))
+        fig, axes_array = plt.subplots(
+            n_rows,
+            n_cols,
+            figsize=(5.1 * n_cols, 3.65 * n_rows),
+            sharex=True,
+            sharey=True,
+            squeeze=False,
+        )
+        axes = list(axes_array.ravel())
 
     max_depth = 0
+    line_handles: list[Line2D] = []
     for ax, (bw_mm, profiles) in zip(axes, groups):
         for energy, ctc_role, ctc_mm, valley_path, peak_path in profiles:
             valley_values = np.asarray(read_numeric_series(valley_path), dtype=float)
@@ -389,66 +518,112 @@ def plot_figure2_valley_depth_profiles(*, output: Path | None = None) -> Path:
             max_depth = max(max_depth, int(depths_mm[-1]))
             linestyle = "-" if ctc_role == "3 x bw" else "--"
             ax.plot(depths_mm, normalized, color=colors[energy], linestyle=linestyle)
+            if single_panel:
+                line_handles.append(
+                    Line2D(
+                        [0],
+                        [0],
+                        color=colors[energy],
+                        linestyle=linestyle,
+                        linewidth=2.0,
+                        label=f"{energy} MeV, ctc {ctc_mm:g} mm",
+                    )
+                )
 
         style_axes(
             ax,
-            xlabel="Depth z [mm]",
+            xlabel="z [mm]" if single_panel else "Depth z [mm]",
             ylabel="Normalized valley dose",
-            title=f"bw = {bw_mm:g} mm",
+            title=f"FWHM = {bw_mm:g} mm" if single_panel else f"bw = {bw_mm:g} mm",
             grid_axis="y",
         )
         ax.set_ylim(bottom=0)
 
-    for ax in axes[len(groups):]:
-        ax.set_visible(False)
+    if not single_panel:
+        for ax in axes[len(groups):]:
+            ax.set_visible(False)
     for ax in axes[: len(groups)]:
         ax.set_xlim(left=0, right=max_depth)
 
-    energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
-    style_handles = [
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
-        Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
-    ]
-    fig.legend(
-        handles=energy_handles,
-        loc="upper center",
-        bbox_to_anchor=(0.5, 0.955),
-        ncol=min(len(energy_handles), 4),
-        frameon=False,
-    )
-    fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
-    fig.suptitle("Valley depth-dose profiles for the MB configuration", y=0.99)
-    fig.tight_layout(rect=(0, 0.08, 1, 0.87))
+    if single_panel:
+        axes[0].legend(handles=line_handles, loc="upper right", frameon=True, fontsize=11, title="Energy, ctc")
+        fig.tight_layout()
+    else:
+        energy_handles = [Line2D([0], [0], color=colors[energy], linewidth=2.0, label=f"{energy} MeV") for energy in energies]
+        style_handles = [
+            Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="-", label="ctc = 3 x bw"),
+            Line2D([0], [0], color="0.2", linewidth=2.0, linestyle="--", label="ctc = 5 x bw"),
+        ]
+        fig.legend(
+            handles=energy_handles,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 0.955),
+            ncol=min(len(energy_handles), 4),
+            frameon=False,
+        )
+        fig.legend(handles=style_handles, loc="lower center", ncol=2, frameon=False)
+        fig.suptitle("Valley PDD profiles for the MB configuration", y=0.99)
+        fig.tight_layout(rect=(0, 0.08, 1, 0.87))
 
-    output = output or output_path("fig2_valley_depth_profiles.png")
+    if output is None:
+        filename = "valley_pdd_profiles.png"
+        if single_panel:
+            filename = f"valley_pdd_profiles_{beam_width_output_token(groups[0][0])}.png"
+        output = output_path(filename)
     fig.savefig(output, bbox_inches="tight")
     plt.close(fig)
     return output
 
 
-def find_figure_s5_pvdr_profiles() -> list[tuple[dict[str, object], list[tuple[int, str, float, Path]]]]:
-    """Return Supplementary Figure S5 PVDR profiles for the public case list."""
+def find_pvdr_profiles(
+    *,
+    beam_width: str | float | int | None = None,
+    missing: list[Path] | None = None,
+) -> list[tuple[dict[str, object], list[tuple[int, str, float, Path]]]]:
+    """Return PVDR profiles for all or one public beam width."""
 
-    figure_panels: list[tuple[dict[str, object], list[tuple[int, str, float, Path]]]] = []
-    for panel in FIGURE_S5_PVDR_CASES:
+    profile_panels: list[tuple[dict[str, object], list[tuple[int, str, float, Path]]]] = []
+    selected_labels = select_beam_width_labels(PBP_PVDR_BEAM_WIDTHS, beam_width)
+    for panel in PBP_PVDR_CASES:
+        if str(panel["bw_label"]) not in selected_labels:
+            continue
         selected: list[tuple[int, str, float, Path]] = []
         for energy, ctc_values in panel["profiles"]:
             for role, ctc_mm in zip(("min", "max"), ctc_values):
                 path = _pbp_pvdr_profile_path(str(panel["bw_label"]), int(energy), float(ctc_mm))
-                require_existing(path)
-                selected.append((int(energy), role, float(ctc_mm), path))
-        figure_panels.append((panel, selected))
-    return figure_panels
+                if path.exists():
+                    selected.append((int(energy), role, float(ctc_mm), path))
+                elif missing is not None:
+                    missing.append(path)
+        if selected:
+            profile_panels.append((panel, selected))
+    return profile_panels
 
 
-def plot_figure_s5_pvdr_depth_profiles(*, output: Path | None = None) -> Path:
-    """Plot Supplementary Figure S5 PVDR depth profiles for the 1D MB geometry."""
+def plot_pvdr_profiles(
+    *,
+    beam_width: str | float | int | None = None,
+    output: Path | None = None,
+) -> Path:
+    """Plot PVDR profiles for the 1D MB geometry."""
 
     set_publication_style()
-    panels = find_figure_s5_pvdr_profiles()
+    missing: list[Path] = []
+    panels = find_pvdr_profiles(beam_width=beam_width, missing=missing)
+    report_missing_data(missing, analysis_name="PVDR")
+    if not panels:
+        raise FileNotFoundError(
+            "No processed PVDR data are available for the requested beam width. "
+            "Please contact the authors for the corresponding data."
+        )
 
-    fig, axes_array = plt.subplots(3, 2, figsize=(11.0, 11.8), sharey=True, squeeze=False)
-    axes = list(axes_array.ravel())
+    single_panel = beam_width is not None
+    if single_panel:
+        fig, ax = plt.subplots(figsize=(8.4, 6.0))
+        axes = [ax]
+    else:
+        fig, axes_array = plt.subplots(3, 2, figsize=(11.0, 11.8), sharey=True, squeeze=False)
+        axes = list(axes_array.ravel())
 
     for ax, (panel, profiles) in zip(axes, panels):
         line_handles: list[Line2D] = []
@@ -459,7 +634,7 @@ def plot_figure_s5_pvdr_depth_profiles(*, output: Path | None = None) -> Path:
             depths_mm = np.arange(stop) * DEPTH_STEP_MM
             linestyle = "-" if role == "min" else "--"
             color = PBP_ENERGY_COLORS[energy]
-            label = f"{ctc_mm:g} mm"
+            label = f"{energy} MeV, ctc {ctc_mm:g} mm" if single_panel else f"{ctc_mm:g} mm"
             ax.plot(depths_mm, pvdr, color=color, linestyle=linestyle)
             line_handles.append(
                 Line2D([0], [0], color=color, linestyle=linestyle, linewidth=2.0, label=label)
@@ -470,22 +645,36 @@ def plot_figure_s5_pvdr_depth_profiles(*, output: Path | None = None) -> Path:
         ax.set_xlim(0, int(panel["xmax"]))
         style_axes(
             ax,
-            xlabel="z [mm]" if str(panel["panel"]) in {"e", "f"} else "",
+            xlabel="z [mm]" if single_panel or str(panel["panel"]) in {"e", "f"} else "",
             ylabel="PVDR",
             title=f"FWHM = {panel['bw_mm']:g} mm",
             grid_axis="y",
         )
-        ax.text(-0.10, 1.04, str(panel["panel"]), transform=ax.transAxes, fontsize=16, fontweight="bold")
-        ax.legend(handles=line_handles, title="ctc", loc="upper right", frameon=False, handlelength=2.4)
+        if not single_panel:
+            ax.text(-0.10, 1.04, str(panel["panel"]), transform=ax.transAxes, fontsize=16, fontweight="bold")
+        ax.legend(
+            handles=line_handles,
+            title="Energy, ctc" if single_panel else "ctc",
+            loc="upper right",
+            frameon=single_panel,
+            handlelength=2.4,
+        )
 
-    energy_handles = [
-        Line2D([0], [0], marker="s", linestyle="None", color=color, markersize=10, label=f"{energy} MeV")
-        for energy, color in PBP_ENERGY_COLORS.items()
-    ]
-    fig.legend(handles=energy_handles, loc="lower center", ncol=4, frameon=False)
-    fig.tight_layout(rect=(0, 0.055, 1, 1))
+    if single_panel:
+        fig.tight_layout()
+    else:
+        energy_handles = [
+            Line2D([0], [0], marker="s", linestyle="None", color=color, markersize=10, label=f"{energy} MeV")
+            for energy, color in PBP_ENERGY_COLORS.items()
+        ]
+        fig.legend(handles=energy_handles, loc="lower center", ncol=4, frameon=False)
+        fig.tight_layout(rect=(0, 0.055, 1, 1))
 
-    output = output or output_path("figS5_pvdr_depth_profiles.png")
+    if output is None:
+        filename = "pvdr_profiles.png"
+        if single_panel:
+            filename = f"pvdr_profiles_{beam_width_output_token(float(panels[0][0]['bw_mm']))}.png"
+        output = output_path(filename)
     fig.savefig(output, bbox_inches="tight")
     plt.close(fig)
     return output

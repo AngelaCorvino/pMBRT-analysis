@@ -37,14 +37,17 @@ jobs:
             . .venv/bin/activate
             python .circleci/check_release_inputs.py
       - run:
-          name: Generate public figures
+          name: Generate public plots
           command: |
             . .venv/bin/activate
             mkdir -p /tmp/pMBRT-analysis-mplconfig
             export MPLCONFIGDIR=/tmp/pMBRT-analysis-mplconfig
-            python scripts/plot_figure1_peak_depth_profiles.py
-            python scripts/plot_figure2_valley_depth_profiles.py
-            python scripts/plot_figure_s5_pvdr_depth_profiles.py
+            python scripts/plot_peak_pdd.py
+            python scripts/plot_valley_pdd.py
+            python scripts/plot_pvdr.py
+            python scripts/plot_peak_pdd.py --bw 0.7
+            python scripts/plot_valley_pdd.py --bw 0.7
+            python scripts/plot_pvdr.py --bw 0.7
 
 workflows:
   validate:

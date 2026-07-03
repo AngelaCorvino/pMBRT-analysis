@@ -1,6 +1,6 @@
 # Data Dictionary
 
-The public numerical data are processed `.txt` files under `data/processed_data/`. These files are the figure-source data used by the public plotting scripts, not raw Monte Carlo dose-volume arrays.
+The public numerical data are processed `.txt` files under `data/processed_data/`. These files are processed profile data used by the public plotting scripts, not raw Monte Carlo dose-volume arrays.
 
 ## Folder Patterns
 
@@ -10,28 +10,28 @@ The folder name follows the dataset naming convention where `FWHM5` corresponds 
 
 ## Public Data Files
 
-| File pattern | Meaning | Figure |
+| File pattern | Meaning | Public workflow |
 |---|---|---|
-| `PBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed peak depth-dose values for the PBP 1D MB array geometry. One numeric value per line. | Figure 1 and Figure 2 normalization |
-| `PBP_dataset/FWHM*/<energy>MeV/zvalley_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed valley depth-dose values for the PBP 1D MB array geometry. One numeric value per line. | Figure 2 |
-| `PBP_dataset/FWHM*/<energy>MeV/PVDR_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed peak-to-valley dose ratio for the PBP 1D MB array geometry. One numeric value per line. | Supplementary Figure S5 |
+| `PBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed peak depth-dose values for the PBP 1D MB array geometry. One numeric value per line. | Peak PDD plotting and valley PDD normalization |
+| `PBP_dataset/FWHM*/<energy>MeV/zvalley_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed valley depth-dose values for the PBP 1D MB array geometry. One numeric value per line. | Valley PDD plotting |
+| `PBP_dataset/FWHM*/<energy>MeV/PVDR_1Darray_ctc<ctc>_<energy>MeV.txt` | Processed peak-to-valley dose ratio for the PBP 1D MB array geometry. One numeric value per line. | PVDR plotting |
 
-## Figure 1 and Figure 2 PBP Cases
+## PDD Cases
 
-The public Figure 1 and Figure 2 scripts follow the pMBRT `plot_PDD_MB.py` case convention:
+The public peak-PDD and valley-PDD scripts follow the pMBRT `plot_PDD_MB.py` case convention:
 
 - energies: 50, 125, 175, and 230 MeV
 - ctc values: `3 x bw` and `5 x bw`
 
-All public figure scripts use the same energy color convention: 50 MeV is light blue, 125 MeV is green, 175 MeV is red, and 230 MeV is orange.
+All public plotting scripts use the same energy color convention: 50 MeV is light blue, 125 MeV is green, 175 MeV is red, and 230 MeV is orange.
 
-Figure 1 uses peak PDD cases for `FWHM5`, `FWHM10`, `FWHM12`, `FWHM15`, and `FWHM20`.
+The public PDD plotting code can use processed files for `FWHM5`, `FWHM7`, `FWHM10`, `FWHM12`, `FWHM15`, and `FWHM20` when those files are included.
 
-Figure 2 uses valley PDD cases for `FWHM5`, `FWHM7`, `FWHM10`, `FWHM12`, `FWHM15`, and `FWHM20`, plus matching peak profiles for normalization.
+Valley PDD profiles are normalized by the maximum of the matching peak PDD profile. If a requested processed case is not included, the plotting code skips it and prints a message asking the user to contact the authors for those data.
 
-## Supplementary Figure S5 PVDR Cases
+## PVDR Cases
 
-| Panel | Energy [MeV] | bw [mm] | ctc [mm] | Folder and ctc label |
+| Case | Energy [MeV] | bw [mm] | ctc [mm] | Folder and ctc label |
 |---|---:|---:|---:|---|
 | a | 50 | 0.5 | 1.5, 2.0 | `FWHM5`, `ctc15`, `ctc20` |
 | b | 125 | 1.2 | 4.8, 6.0 | `FWHM12`, `ctc48`, `ctc60` |
@@ -52,7 +52,7 @@ For a line index `i`, the plotting scripts use:
 
 `depth_mm = i * 1 mm`
 
-Figure 1 normalizes each peak profile by its own maximum. Figure 2 normalizes each valley profile by the maximum of the matching peak profile. Supplementary Figure S5 plots the supplied PVDR values directly on a logarithmic y-axis.
+Peak PDD profiles are normalized by their own maximum. Valley PDD profiles are normalized by the maximum of the matching peak profile. PVDR profiles are plotted directly on a logarithmic y-axis.
 
 ## Filename Terms
 

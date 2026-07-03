@@ -1,4 +1,4 @@
-"""Check that the public release inputs are complete and scoped."""
+"""Check that public release inputs are scoped and readable."""
 
 from __future__ import annotations
 
@@ -17,10 +17,10 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from plotting import (  # noqa: E402
     PBP_ENERGY_COLORS,
-    PBP_FIGURE_ENERGIES,
-    find_figure1_peak_profiles,
-    find_figure2_valley_profiles,
-    find_figure_s5_pvdr_profiles,
+    PBP_ENERGIES,
+    find_peak_pdd_profiles,
+    find_pvdr_profiles,
+    find_valley_pdd_profiles,
     read_numeric_series,
 )
 
@@ -31,9 +31,9 @@ REQUIRED_PUBLIC_FILES = (
     "CITATION.cff",
     "requirements.txt",
     "src/plotting.py",
-    "scripts/plot_figure1_peak_depth_profiles.py",
-    "scripts/plot_figure2_valley_depth_profiles.py",
-    "scripts/plot_figure_s5_pvdr_depth_profiles.py",
+    "scripts/plot_peak_pdd.py",
+    "scripts/plot_valley_pdd.py",
+    "scripts/plot_pvdr.py",
     "data/data_dictionary.md",
     "data/processed_data/README.md",
 )
@@ -98,12 +98,12 @@ def check_tracked_file_scope(errors: list[str]) -> None:
 
 
 def check_energy_color_mapping(errors: list[str]) -> None:
-    """Check that all public figures use the fixed energy color convention."""
+    """Check that all public plots use the fixed energy color convention."""
 
     if PBP_ENERGY_COLORS != EXPECTED_ENERGY_COLORS:
         errors.append(f"Unexpected energy color mapping: {PBP_ENERGY_COLORS}")
-    if tuple(PBP_ENERGY_COLORS) != PBP_FIGURE_ENERGIES:
-        errors.append(f"Energy color order does not match public figure energies: {tuple(PBP_ENERGY_COLORS)}")
+    if tuple(PBP_ENERGY_COLORS) != PBP_ENERGIES:
+        errors.append(f"Energy color order does not match public plot energies: {tuple(PBP_ENERGY_COLORS)}")
 
 
 def check_numeric_profile(path: Path, errors: list[str]) -> None:
@@ -115,56 +115,53 @@ def check_numeric_profile(path: Path, errors: list[str]) -> None:
         errors.append(f"Invalid processed profile {display(path)}: {exc}")
 
 
-def check_figure1_inputs(errors: list[str]) -> None:
-    """Check that Figure 1 peak profiles are available."""
+def check_peak_pdd_inputs(errors: list[str]) -> None:
+    """Check that included peak PDD profiles can be read."""
 
     try:
-        groups = find_figure1_peak_profiles()
+        groups = find_peak_pdd_profiles(missing=[])
     except Exception as exc:  # noqa: BLE001
-        errors.append(f"Figure 1 input discovery failed: {exc}")
+        errors.append(f"Peak PDD input discovery failed: {exc}")
         return
 
     profile_count = sum(len(profiles) for _, profiles in groups)
-    if len(groups) != 5 or profile_count != 40:
-        errors.append(f"Figure 1 expected 5 beam-width groups and 40 profiles, found {len(groups)} groups and {profile_count} profiles")
+    if profile_count == 0:
+        errors.append("No included peak PDD profiles were found")
     for _, profiles in groups:
         for _, _, _, path in profiles:
             check_numeric_profile(path, errors)
 
 
-def check_figure2_inputs(errors: list[str]) -> None:
-    """Check that Figure 2 valley profiles and matching peaks are available."""
+def check_valley_pdd_inputs(errors: list[str]) -> None:
+    """Check that included valley PDD profiles and matching peaks can be read."""
 
     try:
-        groups = find_figure2_valley_profiles()
+        groups = find_valley_pdd_profiles(missing=[])
     except Exception as exc:  # noqa: BLE001
-        errors.append(f"Figure 2 input discovery failed: {exc}")
+        errors.append(f"Valley PDD input discovery failed: {exc}")
         return
 
     profile_count = sum(len(profiles) for _, profiles in groups)
-    if len(groups) != 6 or profile_count != 48:
-        errors.append(f"Figure 2 expected 6 beam-width groups and 48 profiles, found {len(groups)} groups and {profile_count} profiles")
+    if profile_count == 0:
+        errors.append("No included valley PDD profiles were found")
     for _, profiles in groups:
         for _, _, _, valley_path, peak_path in profiles:
             check_numeric_profile(valley_path, errors)
             check_numeric_profile(peak_path, errors)
 
 
-def check_figure_s5_inputs(errors: list[str]) -> None:
-    """Check that Supplementary Figure S5 PVDR profiles are available."""
+def check_pvdr_inputs(errors: list[str]) -> None:
+    """Check that included PVDR profiles can be read."""
 
     try:
-        panels = find_figure_s5_pvdr_profiles()
+        panels = find_pvdr_profiles(missing=[])
     except Exception as exc:  # noqa: BLE001
-        errors.append(f"Supplementary Figure S5 input discovery failed: {exc}")
+        errors.append(f"PVDR input discovery failed: {exc}")
         return
 
     profile_count = sum(len(profiles) for _, profiles in panels)
-    if len(panels) != 6 or profile_count != 20:
-        errors.append(
-            f"Supplementary Figure S5 expected 6 panels and 20 profiles, "
-            f"found {len(panels)} panels and {profile_count} profiles"
-        )
+    if profile_count == 0:
+        errors.append("No included PVDR profiles were found")
     for _, profiles in panels:
         for _, _, _, path in profiles:
             check_numeric_profile(path, errors)
@@ -177,9 +174,9 @@ def main() -> None:
     check_required_public_files(errors)
     check_tracked_file_scope(errors)
     check_energy_color_mapping(errors)
-    check_figure1_inputs(errors)
-    check_figure2_inputs(errors)
-    check_figure_s5_inputs(errors)
+    check_peak_pdd_inputs(errors)
+    check_valley_pdd_inputs(errors)
+    check_pvdr_inputs(errors)
 
     if errors:
         print("Release input check failed:")
