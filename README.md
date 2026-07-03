@@ -1,5 +1,7 @@
 # pMBRT Analysis
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/AngelaCorvino/pMBRT-analysis/tree/release-data-cleanup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/AngelaCorvino/pMBRT-analysis/tree/release-data-cleanup)
+
 Analysis code and processed figure data for the manuscript:
 
 **Monte Carlo-based characterization of proton minibeam radiation therapy across clinically relevant beam parameters**
