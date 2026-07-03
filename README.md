@@ -28,7 +28,7 @@ python scripts/plot_figure2_valley_depth_profiles.py
 python scripts/plot_figure5_sobp_depth_profiles.py
 ```
 
-Output is written to `figures/generated/`.
+Output is written to `figures/`.
 
 ## Data
 

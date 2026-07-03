@@ -28,9 +28,9 @@ def ctc_label(ctc_mm: float) -> str:
 
 
 def output_path(filename: str) -> Path:
-    """Return an output path under ``figures/generated`` and create the folder."""
+    """Return an output path under ``figures`` and create the folder."""
 
-    out_dir = ROOT / "figures" / "generated"
+    out_dir = ROOT / "figures"
     out_dir.mkdir(parents=True, exist_ok=True)
     return out_dir / filename
 

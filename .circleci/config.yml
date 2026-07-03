@@ -40,8 +40,8 @@ jobs:
           name: Generate public figures
           command: |
             . .venv/bin/activate
-            mkdir -p figures/generated/.mplconfig
-            export MPLCONFIGDIR=figures/generated/.mplconfig
+            mkdir -p /tmp/pMBRT-analysis-mplconfig
+            export MPLCONFIGDIR=/tmp/pMBRT-analysis-mplconfig
             python scripts/plot_figure1_peak_depth_profiles.py
             python scripts/plot_figure2_valley_depth_profiles.py
             python scripts/plot_figure5_sobp_depth_profiles.py

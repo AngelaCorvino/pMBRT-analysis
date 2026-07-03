@@ -39,5 +39,8 @@ env/
 *.log
 
 # Generated figure outputs
-figures/generated/*
-!figures/generated/.gitkeep
+figures/*.png
+figures/*.pdf
+figures/*.svg
+figures/summary_metrics_table.txt
+figures/.mplconfig/
