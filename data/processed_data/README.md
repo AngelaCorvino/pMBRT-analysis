@@ -12,14 +12,6 @@ For Figure 2, the required files are valley depth-dose profiles and matching pea
 
 `PBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt`
 
-For Figure 5, the required files are final SOBP peak, valley, and PVDR depth profiles for the manuscript panel cases:
-
-`SOBP_dataset/FWHM*/<energy>MeV/zpeak_1Darray_ctc<ctc>_<energy>MeV.txt`
-
-`SOBP_dataset/FWHM*/<energy>MeV/zvalley_1Darray_ctc<ctc>_<energy>MeV.txt`
-
-`SOBP_dataset/FWHM*/<energy>MeV/PVDR_1Darray_ctc<ctc>_<energy>MeV.txt`
-
-Each profile file stores one numeric value per line. Figure 5 peak and valley profiles should already be scaled consistently with the manuscript normalization.
+Each profile file stores one numeric value per line.
 
 These files are not raw Monte Carlo dose volumes.

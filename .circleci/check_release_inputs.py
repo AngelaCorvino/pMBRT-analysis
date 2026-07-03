@@ -16,8 +16,6 @@ os.environ.setdefault("MPLCONFIGDIR", str(MPLCONFIGDIR))
 sys.path.insert(0, str(ROOT / "src"))
 
 from plotting import (  # noqa: E402
-    FIGURE5_CASES,
-    figure5_profile_paths,
     find_figure1_peak_profiles,
     find_figure2_valley_profiles,
     read_numeric_series,
@@ -32,7 +30,6 @@ REQUIRED_PUBLIC_FILES = (
     "src/plotting.py",
     "scripts/plot_figure1_peak_depth_profiles.py",
     "scripts/plot_figure2_valley_depth_profiles.py",
-    "scripts/plot_figure5_sobp_depth_profiles.py",
     "data/data_dictionary.md",
     "data/processed_data/README.md",
 )
@@ -134,22 +131,6 @@ def check_figure2_inputs(errors: list[str]) -> None:
             check_numeric_profile(peak_path, errors)
 
 
-def check_figure5_inputs(errors: list[str]) -> None:
-    """Check that Figure 5 SOBP panel profiles are available."""
-
-    if len(FIGURE5_CASES) != 10:
-        errors.append(f"Figure 5 expected 10 panel cases, found {len(FIGURE5_CASES)}")
-
-    for case in FIGURE5_CASES:
-        try:
-            paths = figure5_profile_paths(case)
-        except Exception as exc:  # noqa: BLE001
-            errors.append(f"Figure 5 panel {case.get('panel', '?')} input discovery failed: {exc}")
-            continue
-        for path in paths.values():
-            check_numeric_profile(path, errors)
-
-
 def main() -> None:
     """Run the release input checks."""
 
@@ -158,7 +139,6 @@ def main() -> None:
     check_tracked_file_scope(errors)
     check_figure1_inputs(errors)
     check_figure2_inputs(errors)
-    check_figure5_inputs(errors)
 
     if errors:
         print("Release input check failed:")
