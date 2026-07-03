@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this curated analysis repository, please cite the manuscript and the archived Zenodo record."
+message: "If you use this curated analysis repository, please cite the associated manuscript."
 title: "pMBRT analysis: post-processing and figure generation scripts"
 authors:
   - family-names: "Corvino"

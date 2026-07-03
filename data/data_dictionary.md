@@ -8,7 +8,7 @@ The public numerical data are processed `.txt` files under `data/processed_data/
 
 `data/processed_data/SOBP_dataset/FWHM*/<energy>MeV/`
 
-The folder name follows the legacy naming convention where `FWHM5` corresponds to `bw = 0.5 mm`, `FWHM7` corresponds to `bw = 0.7 mm`, and so on.
+The folder name follows the dataset naming convention where `FWHM5` corresponds to `bw = 0.5 mm`, `FWHM7` corresponds to `bw = 0.7 mm`, and so on.
 
 ## Public Data Files
 

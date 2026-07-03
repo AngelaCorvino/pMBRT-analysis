@@ -1,12 +1,5 @@
-# Private or legacy material
-private_legacy_do_not_publish/
-old_modules/
-Slider_*.py
-pMBRT.code-workspace
-
 # Large/raw Monte Carlo and image-volume data
 *.npy
-!data/example_source_data/**/*.npy
 *.npz
 *.mhd
 *.raw
@@ -15,7 +8,7 @@ pMBRT.code-workspace
 *.header
 *.mha
 
-# TOPAS and run-output products that should be curated before publication
+# Simulation run-output products
 *Dose.*
 *DoseToWater.*
 *Doseuncertainty.*

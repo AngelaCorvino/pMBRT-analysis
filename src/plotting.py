@@ -22,7 +22,7 @@ FIGURE2_PBP_BEAM_WIDTHS = ("5", "7", "10", "12", "15", "20")
 
 
 def ctc_label(ctc_mm: float) -> str:
-    """Return the legacy ctc filename label in tenths of a millimeter."""
+    """Return the ctc filename label in tenths of a millimeter."""
 
     return str(int(round(ctc_mm * 10)))
 
